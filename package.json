@@ -1,0 +1,30 @@
+***REMOVED***
+  "name": "gatsby-starter-hello-world",
+  "private": true,
+  "description": "A simplified bare-bones starter for Gatsby",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": ***REMOVED***
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write src/**/*.***REMOVED***js,jsx***REMOVED***",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  ***REMOVED***,
+  "dependencies": ***REMOVED***
+    "gatsby": "^2.7.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  ***REMOVED***,
+  "devDependencies": ***REMOVED***
+    "prettier": "^1.17.1"
+  ***REMOVED***,
+  "repository": ***REMOVED***
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+  ***REMOVED***,
+  "bugs": ***REMOVED***
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  ***REMOVED***
+***REMOVED***
