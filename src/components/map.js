@@ -10,7 +10,8 @@ import ***REMOVED***
 
 const MapComponent = compose(
   withProps(***REMOVED***
-    googleMapURL: `https://maps.googleapis.com/maps/api/js?key=AIzaSyAm31tTHPuaSkBR1Ff7pYAavUX6K1DlZ5g&callback=initMap`,
+    googleMapURL: `https://maps.googleapis.com/maps/api/js?key=
+        $***REMOVED***process.env.GATSBY_API***REMOVED***&callback=initMap`,
     loadingElement: <div style=***REMOVED******REMOVED*** height: `100%` ***REMOVED******REMOVED*** />,
     containerElement: <div style=***REMOVED******REMOVED*** height: `400px` ***REMOVED******REMOVED*** />,
     mapElement: <div style=***REMOVED******REMOVED*** height: `100%` ***REMOVED******REMOVED*** />,
@@ -22,7 +23,7 @@ const MapComponent = compose(
     ***REMOVED***<Marker position=***REMOVED******REMOVED*** lat: props.lat, lng: props.lon ***REMOVED******REMOVED*** />***REMOVED***
     ***REMOVED***
       <Circle
-        center=***REMOVED******REMOVED*** lat: props.myLat, lng: props.myLon ***REMOVED******REMOVED***
+        defaultCenter=***REMOVED******REMOVED*** lat: props.lat, lng: props.lon ***REMOVED******REMOVED***
         radius=***REMOVED***7***REMOVED***
         options=***REMOVED******REMOVED***
           fillColor: "#00f",
