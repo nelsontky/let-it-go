@@ -10,9 +10,7 @@ import ***REMOVED***
 
 const MapComponent = compose(
   withProps(***REMOVED***
-    googleMapURL: `https://maps.googleapis.com/maps/api/js?key=$***REMOVED***
-      process.env.MAPS_API
-    ***REMOVED***&callback=initMap`,
+    googleMapURL: `https://maps.googleapis.com/maps/api/js?key=AIzaSyAm31tTHPuaSkBR1Ff7pYAavUX6K1DlZ5g&callback=initMap`,
     loadingElement: <div style=***REMOVED******REMOVED*** height: `100%` ***REMOVED******REMOVED*** />,
     containerElement: <div style=***REMOVED******REMOVED*** height: `400px` ***REMOVED******REMOVED*** />,
     mapElement: <div style=***REMOVED******REMOVED*** height: `100%` ***REMOVED******REMOVED*** />,
