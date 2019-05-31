@@ -19,7 +19,7 @@ const MapComponent = compose(
   withScriptjs,
   withGoogleMap
 )(props => (
-  <GoogleMap defaultZoom=***REMOVED***17***REMOVED*** center=***REMOVED******REMOVED*** lat: props.lat, lng: props.lon ***REMOVED******REMOVED***>
+  <GoogleMap defaultZoom=***REMOVED***17***REMOVED*** defaultCenter=***REMOVED******REMOVED*** lat: props.lat, lng: props.lon ***REMOVED******REMOVED***>
     ***REMOVED***<Marker position=***REMOVED******REMOVED*** lat: props.lat, lng: props.lon ***REMOVED******REMOVED*** />***REMOVED***
     ***REMOVED***
       <Circle
