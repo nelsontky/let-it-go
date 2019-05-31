@@ -17,7 +17,9 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
         <tbody>
           ***REMOVED***edges.map((***REMOVED*** node ***REMOVED***, index) => (
             <tr key=***REMOVED***index***REMOVED***>
-              <td><Link to=***REMOVED***node.name.replace(/\s/g,'')***REMOVED***>***REMOVED***node.name***REMOVED***</Link></td>
+              <td><Link
+                to=***REMOVED***"/" + node.name.replace(/\s/g,'')***REMOVED***>***REMOVED***node.name***REMOVED***
+              </Link></td>
             </tr>
           ))***REMOVED***
         </tbody>

@@ -5,7 +5,7 @@
  */
 
 module.exports = ***REMOVED***
-  pathPrefix: "/nelsontky/let-it-go",
+  pathPrefix: "/let-it-go",
   plugins: [
     ***REMOVED***
       resolve: `gatsby-plugin-typography`,
