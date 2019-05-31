@@ -5,5 +5,32 @@
  */
 
 module.exports = ***REMOVED***
-  /* Your site config here */
+  pathPrefix: "/nelsontky/let-it-go",
+  plugins: [
+    ***REMOVED***
+      resolve: `gatsby-plugin-typography`,
+      options: ***REMOVED***
+        pathToConfigModule: `src/utils/typography`,
+      ***REMOVED***,
+    ***REMOVED***,
+    ***REMOVED***
+      resolve: "gatsby-source-firestore",
+      options: ***REMOVED***
+        credential: require("./firebase.json"),
+        types: [
+          ***REMOVED***
+            type: "Toilets",
+            collection: "toilets",
+            map: doc => ***REMOVED***
+              return ***REMOVED***
+                name: doc.name,
+                lat: doc.lat,
+                lon: doc.lon
+              ***REMOVED***
+            ***REMOVED***,
+          ***REMOVED***
+        ],
+      ***REMOVED***,
+    ***REMOVED***,
+  ],
 ***REMOVED***

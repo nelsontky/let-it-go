@@ -10,14 +10,22 @@
     "format": "prettier --write src/**/*.***REMOVED***js,jsx***REMOVED***",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   ***REMOVED***,
   "dependencies": ***REMOVED***
     "gatsby": "^2.7.5",
+    "gatsby-plugin-typography": "^2.2.13",
+    "gatsby-source-firestore": "^1.0.3",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-google-maps": "^9.4.5",
+    "react-typography": "^0.16.19",
+    "typography": "^0.16.19",
+    "typography-theme-fairy-gates": "^0.16.19"
   ***REMOVED***,
   "devDependencies": ***REMOVED***
+    "gh-pages": "^2.0.1",
     "prettier": "^1.17.1"
   ***REMOVED***,
   "repository": ***REMOVED***
