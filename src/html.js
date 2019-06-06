@@ -6,6 +6,8 @@ export default function HTML(props) ***REMOVED***
     <html ***REMOVED***...props.htmlAttributes***REMOVED***>
       <head>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm31tTHPuaSkBR1Ff7pYAavUX6K1DlZ5g&callback=initMap"></script>
+        <script type="text/javascript" src="https://cdn.pannellum.org/2.4/pannellum.js"/>
+        <link rel="stylesheet" href="https://cdn.pannellum.org/2.4/pannellum.css"/>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta

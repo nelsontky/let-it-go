@@ -15,12 +15,12 @@
   ***REMOVED***,
   "dependencies": ***REMOVED***
     "gatsby": "^2.7.5",
+    "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-typography": "^2.2.13",
     "gatsby-source-firestore": "^1.0.3",
-    "pannellum-react": "^1.2.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-google-maps": "^9.4.5",
+    "react-helmet": "^5.2.1",
     "react-typography": "^0.16.19",
     "typography": "^0.16.19",
     "typography-theme-fairy-gates": "^0.16.19"

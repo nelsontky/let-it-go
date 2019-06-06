@@ -2,7 +2,7 @@ import React from "react"
 import ***REMOVED*** graphql ***REMOVED*** from "gatsby"
 import Layout from "../components/layout"
 import Map from "../components/map"
-import ***REMOVED*** Pannellum ***REMOVED*** from "pannellum-react";
+import Paranoma from "../components/paranoma"
 
 export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
   const name = data.toilets.name
@@ -15,23 +15,7 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
     <Layout>
       <h1>***REMOVED***name***REMOVED***</h1>
       <Map lat=***REMOVED***lat***REMOVED*** lon=***REMOVED***lon***REMOVED*** />
-      <Pannellum
-        width="100%"
-        height="300px"
-        image=***REMOVED***paranomaUrl***REMOVED***
-        yaw=***REMOVED*** startingYaw ***REMOVED***
-        vaov=***REMOVED***45***REMOVED***
-        maxPitch=***REMOVED***0***REMOVED***
-        minPitch=***REMOVED***0***REMOVED***
-        autoLoad
-      >
-        <Pannellum.Hotspot
-          type="info"
-          pitch=***REMOVED***0***REMOVED***
-          yaw=***REMOVED*** startingYaw ***REMOVED***
-          text=***REMOVED***name***REMOVED***
-        />
-      </Pannellum>
+      <Paranoma name=***REMOVED***name***REMOVED*** paranomaUrl=***REMOVED***paranomaUrl***REMOVED*** startingYaw=***REMOVED***startingYaw***REMOVED*** />
       <p>Todo</p>
     </Layout>
   )

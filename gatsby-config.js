@@ -35,5 +35,6 @@ module.exports = ***REMOVED***
         ],
       ***REMOVED***,
     ***REMOVED***,
+    `gatsby-plugin-react-helmet`
   ],
 ***REMOVED***

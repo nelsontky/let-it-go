@@ -68,7 +68,7 @@ class Map extends React.Component ***REMOVED***
   ***REMOVED***
 
   render() ***REMOVED***
-    return <div id="map" style=***REMOVED******REMOVED*** width: "100%", height: 300 ***REMOVED******REMOVED*** />
+    return <div id="map" style=***REMOVED******REMOVED*** width: "100%", height: 200 ***REMOVED******REMOVED*** />
   ***REMOVED***
 ***REMOVED***
 
