@@ -1,95 +1,75 @@
 import React from "react"
-import ***REMOVED*** compose, withProps ***REMOVED*** from "recompose"
-import ***REMOVED***
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-  Circle,
-***REMOVED*** from "react-google-maps"
+// https://i.imgur.com/Rw0L7jC.png
 
-const MapComponent = compose(
-  withProps(***REMOVED***
-    googleMapURL: `https://maps.googleapis.com/maps/api/js?key=
-        $***REMOVED***process.env.GATSBY_API***REMOVED***&callback=initMap`,
-    loadingElement: <div style=***REMOVED******REMOVED*** height: `100%` ***REMOVED******REMOVED*** />,
-    containerElement: <div style=***REMOVED******REMOVED*** height: `400px` ***REMOVED******REMOVED*** />,
-    mapElement: <div style=***REMOVED******REMOVED*** height: `100%` ***REMOVED******REMOVED*** />,
-  ***REMOVED***),
-  withScriptjs,
-  withGoogleMap
-)(props => (
-  <GoogleMap defaultZoom=***REMOVED***17***REMOVED*** defaultCenter=***REMOVED******REMOVED*** lat: props.lat, lng: props.lon ***REMOVED******REMOVED***>
-    ***REMOVED***<Marker position=***REMOVED******REMOVED*** lat: props.lat, lng: props.lon ***REMOVED******REMOVED*** />***REMOVED***
-    ***REMOVED***
-      <Circle
-        center=***REMOVED******REMOVED*** lat: props.myLat, lng: props.myLon ***REMOVED******REMOVED***
-        radius=***REMOVED***7***REMOVED***
-        options=***REMOVED******REMOVED***
-          fillColor: "#00f",
-          fillOpacity: 1.0,
-          strokeOpacity: 0.0,
-        ***REMOVED******REMOVED***
-      />
-    ***REMOVED***
-    ***REMOVED***
-      <Circle
-        center=***REMOVED******REMOVED*** lat: props.myLat, lng: props.myLon ***REMOVED******REMOVED***
-        radius=***REMOVED***props.accuracy***REMOVED***
-        options=***REMOVED******REMOVED***
-          fillColor: "#00f",
-          fillOpacity: 0.2,
-          strokeOpacity: 0.0,
-        ***REMOVED******REMOVED***
-      />
-    ***REMOVED***
-  </GoogleMap>
-))
-
-class MapView extends React.Component ***REMOVED***
+class Map extends React.Component ***REMOVED***
   constructor(props) ***REMOVED***
     super(props)
-    this.state = ***REMOVED***
-      myLat: props.lat,
-      myLon: props.lon,
-      accuracy: 0,
-    ***REMOVED***
-  ***REMOVED***
-
-  getGeoLocation = () => ***REMOVED***
-    return navigator.geolocation.getCurrentPosition(
-      position => ***REMOVED***
-        console.log(position.coords)
-        this.setState(***REMOVED***
-          myLat: position.coords.latitude,
-          myLon: position.coords.longitude,
-          accuracy: position.coords.accuracy,
-        ***REMOVED***)
-      ***REMOVED***,
-      err => console.log(err),
-      ***REMOVED*** enableHighAccuracy: true ***REMOVED***
-    )
-  ***REMOVED***
-
-  componentDidMount() ***REMOVED***
-    this.timerID = setInterval(() => this.getGeoLocation(), 1000)
   ***REMOVED***
 
   componentWillUnmount() ***REMOVED***
     clearInterval(this.timerID)
   ***REMOVED***
 
+  getGeoLocation() ***REMOVED***
+    if (navigator.geolocation) ***REMOVED***
+      navigator.geolocation.getCurrentPosition(
+        position => ***REMOVED***
+          // console.log("yay")
+          this.locationMarker.setPosition(***REMOVED***
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          ***REMOVED***)
+
+          this.accuracyRadius.setCenter(***REMOVED***
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          ***REMOVED***)
+
+          this.accuracyRadius.setRadius(position.coords.accuracy)
+        ***REMOVED***,
+        () => ***REMOVED***
+          //handleLocationError(true, infoWindow, map.getCenter());
+        ***REMOVED***,
+        ***REMOVED*** enableHighAccuracy: true ***REMOVED***
+      )
+    ***REMOVED*** else ***REMOVED***
+      // Browser doesn't support Geolocation
+      //handleLocationError(false, infoWindow, map.getCenter());
+    ***REMOVED***
+  ***REMOVED***
+
+  componentDidMount() ***REMOVED***
+    this.timerID = setInterval(() => this.getGeoLocation(), 1000)
+
+    this.map = new window.google.maps.Map(document.getElementById("map"), ***REMOVED***
+      center: ***REMOVED*** lat: this.props.lat, lng: this.props.lon ***REMOVED***,
+      zoom: 17,
+    ***REMOVED***)
+
+    new window.google.maps.Marker(***REMOVED***
+      position: ***REMOVED*** lat: this.props.lat, lng: this.props.lon ***REMOVED***,
+      map: this.map,
+    ***REMOVED***)
+
+    this.locationMarker = new window.google.maps.Marker(***REMOVED***
+      map: this.map,
+      icon: `https://i.imgur.com/Rw0L7jC.png`,
+      position: ***REMOVED*** lat: this.props.lat, lng: this.props.lon ***REMOVED***
+    ***REMOVED***)
+
+    this.accuracyRadius = new window.google.maps.Circle(***REMOVED***
+      map: this.map,
+      center: this.locationMarker.getPosition(),
+      radius: 0,
+      fillColor: '#00F',
+      fillOpacity: 0.2,
+      strokeWeight: 0
+    ***REMOVED***)
+  ***REMOVED***
+
   render() ***REMOVED***
-    return (
-      <MapComponent
-        lat=***REMOVED***this.props.lat***REMOVED***
-        lon=***REMOVED***this.props.lon***REMOVED***
-        myLat=***REMOVED***this.state.myLat***REMOVED***
-        myLon=***REMOVED***this.state.myLon***REMOVED***
-        accuracy=***REMOVED***this.state.accuracy***REMOVED***
-      />
-    )
+    return <div id="map" style=***REMOVED******REMOVED*** width: "100%", height: 300 ***REMOVED******REMOVED*** />
   ***REMOVED***
 ***REMOVED***
 
-export default MapView
+export default Map

@@ -25,7 +25,10 @@ module.exports = ***REMOVED***
               return ***REMOVED***
                 name: doc.name,
                 lat: doc.lat,
-                lon: doc.lon
+                lon: doc.lon,
+                test: doc.test,
+                paranomaUrl: doc.paranomaUrl,
+                startingYaw: doc.startingYaw
               ***REMOVED***
             ***REMOVED***,
           ***REMOVED***

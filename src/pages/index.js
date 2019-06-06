@@ -8,7 +8,7 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
   return (
     <Layout>
       <h1>Let It Go</h1>
-      <table style=***REMOVED******REMOVED***tableLayout: "fixed"***REMOVED******REMOVED***>
+      <table style=***REMOVED******REMOVED*** tableLayout: "fixed" ***REMOVED******REMOVED***>
         <thead>
           <tr>
             <th>Name</th>
