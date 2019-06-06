@@ -9,7 +9,7 @@ class Paranoma extends React.Component ***REMOVED***
   componentDidMount() ***REMOVED***
     window.pannellum.viewer("panorama", ***REMOVED***
       type: "equirectangular",
-      panorama: this.props.paranomaUrl,
+      panorama: "https://i.imgur.com/hLOKpXy.jpg", //this.props.paranomaUrl
       yaw: this.props.startingYaw,
       vaov: 45,
       maxPitch: 0,
@@ -30,7 +30,8 @@ class Paranoma extends React.Component ***REMOVED***
     return (
       <div>
         <Helmet>
-          <link rel="stylesheet" href="https://cdn.pannellum.org/2.4/pannellum.css"/>
+          <link rel="stylesheet"
+            href="https://cdn.pannellum.org/2.4/pannellum.css"/>
         </Helmet>
         <div id="panorama" style=***REMOVED******REMOVED*** width: "100%", height: 200 ***REMOVED******REMOVED***></div>
       </div>

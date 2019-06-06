@@ -15,7 +15,8 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
     <Layout>
       <h1>***REMOVED***name***REMOVED***</h1>
       <Map lat=***REMOVED***lat***REMOVED*** lon=***REMOVED***lon***REMOVED*** />
-      <Paranoma name=***REMOVED***name***REMOVED*** paranomaUrl=***REMOVED***paranomaUrl***REMOVED*** startingYaw=***REMOVED***startingYaw***REMOVED*** />
+      <Paranoma name=***REMOVED***name***REMOVED*** paranomaUrl=***REMOVED***paranomaUrl***REMOVED***
+        startingYaw=***REMOVED***startingYaw***REMOVED*** />
       <p>Todo</p>
     </Layout>
   )
