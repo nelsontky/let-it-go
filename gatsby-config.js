@@ -26,9 +26,11 @@ module.exports = ***REMOVED***
                 name: doc.name,
                 lat: doc.lat,
                 lon: doc.lon,
-                test: doc.test,
                 paranomaUrl: doc.paranomaUrl,
-                startingYaw: doc.startingYaw
+                startingYaw: doc.startingYaw,
+                maleYaw: doc.maleYaw,
+                femaleYaw: doc.femaleYaw,
+                handicappedYaw: doc.handicappedYaw
               ***REMOVED***
             ***REMOVED***,
           ***REMOVED***

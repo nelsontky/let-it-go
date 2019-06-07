@@ -7,22 +7,45 @@ class Paranoma extends React.Component ***REMOVED***
   ***REMOVED***
 
   componentDidMount() ***REMOVED***
+    // Determine hotspots
+    const hotSpots = []
+
+    if (this.props.maleYaw !== null) ***REMOVED***
+      hotSpots.push(***REMOVED***
+        pitch: 0,
+        yaw: this.props.maleYaw,
+        type: "info",
+        text: this.props.name + " Male",
+      ***REMOVED***)
+    ***REMOVED***
+
+    if (this.props.femaleYaw !== null) ***REMOVED***
+      hotSpots.push(***REMOVED***
+        pitch: 0,
+        yaw: this.props.femaleYaw,
+        type: "info",
+        text: this.props.name + " Female",
+      ***REMOVED***)
+    ***REMOVED***
+
+    if (this.props.handicappedYaw !== null) ***REMOVED***
+      hotSpots.push(***REMOVED***
+        pitch: 0,
+        yaw: this.props.handicappedYaw,
+        type: "info",
+        text: this.props.name + " Handicapped",
+      ***REMOVED***)
+    ***REMOVED***
+
     window.pannellum.viewer("panorama", ***REMOVED***
       type: "equirectangular",
-      panorama: "https://i.imgur.com/hLOKpXy.jpg", //this.props.paranomaUrl
+      panorama: this.props.paranomaUrl,
       yaw: this.props.startingYaw,
       vaov: 45,
       maxPitch: 0,
       minPitch: 0,
       autoLoad: true,
-      hotSpots: [
-        ***REMOVED***
-          pitch: 0,
-          yaw: this.props.startingYaw,
-          type: "info",
-          text: this.props.name
-        ***REMOVED***,
-      ],
+      hotSpots
     ***REMOVED***)
   ***REMOVED***
 
@@ -30,10 +53,12 @@ class Paranoma extends React.Component ***REMOVED***
     return (
       <div>
         <Helmet>
-          <link rel="stylesheet"
-            href="https://cdn.pannellum.org/2.4/pannellum.css"/>
+          <link
+            rel="stylesheet"
+            href="https://cdn.pannellum.org/2.4/pannellum.css"
+          />
         </Helmet>
-        <div id="panorama" style=***REMOVED******REMOVED*** width: "100%", height: 200 ***REMOVED******REMOVED***></div>
+        <div id="panorama" style=***REMOVED******REMOVED*** width: "100%", height: 200 ***REMOVED******REMOVED*** />
       </div>
     )
   ***REMOVED***
