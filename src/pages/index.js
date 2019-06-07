@@ -14,8 +14,7 @@ export default class App extends React.Component ***REMOVED***
 
   render() ***REMOVED***
     return (
-      <Layout>
-        <h1>Let It Go</h1>
+      <Layout main=***REMOVED***true***REMOVED***>
         <table style=***REMOVED******REMOVED*** tableLayout: "fixed" ***REMOVED******REMOVED***>
           <thead>
             <tr>

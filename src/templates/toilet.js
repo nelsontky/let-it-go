@@ -15,7 +15,7 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
   const handicappedYaw = data.toilets.handicappedYaw
 
   return (
-    <Layout>
+    <Layout main=***REMOVED***false***REMOVED***>
       <h1>***REMOVED***name***REMOVED***</h1>
       <Map lat=***REMOVED***lat***REMOVED*** lon=***REMOVED***lon***REMOVED*** />
       <Paranoma
