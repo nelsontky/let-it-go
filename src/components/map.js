@@ -2,9 +2,6 @@ import React from "react"
 // https://i.imgur.com/Rw0L7jC.png
 
 class Map extends React.Component ***REMOVED***
-  constructor(props) ***REMOVED***
-    super(props)
-  ***REMOVED***
 
   componentWillUnmount() ***REMOVED***
     clearInterval(this.timerID)
@@ -14,7 +11,6 @@ class Map extends React.Component ***REMOVED***
     if (navigator.geolocation) ***REMOVED***
       navigator.geolocation.getCurrentPosition(
         position => ***REMOVED***
-
           this.locationMarker.setPosition(***REMOVED***
             lat: position.coords.latitude,
             lng: position.coords.longitude,
@@ -66,7 +62,7 @@ class Map extends React.Component ***REMOVED***
     const self = this
     function CenterControl(controlDiv, map) ***REMOVED***
       // Set CSS for the control border.
-      var controlUI = document.createElement("div")
+      let controlUI = document.createElement("div")
       controlUI.style.backgroundColor = "#fff"
       controlUI.style.border = "2px solid #fff"
       controlUI.style.borderRadius = "3px"
@@ -79,18 +75,19 @@ class Map extends React.Component ***REMOVED***
       controlDiv.appendChild(controlUI)
 
       // Set CSS for the control interior.
-      var controlText = document.createElement("div")
+      let controlText = document.createElement("div")
       controlText.innerHTML = "<img src='https://i.imgur.com/raFRca2.png' />"
       controlUI.appendChild(controlText)
 
       // Setup the click event listeners
       controlUI.addEventListener("click", function() ***REMOVED***
+        self.getGeoLocation()
         map.setCenter(self.locationMarker.getPosition());
       ***REMOVED***)
     ***REMOVED***
 
     // Render the button
-    var centerControlDiv = document.createElement("div")
+    let centerControlDiv = document.createElement("div")
     new CenterControl(centerControlDiv, this.map)
     console.log(centerControlDiv)
 

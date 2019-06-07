@@ -2,9 +2,6 @@ import React from "react"
 import ***REMOVED*** Helmet ***REMOVED*** from "react-helmet"
 
 class Paranoma extends React.Component ***REMOVED***
-  constructor(props) ***REMOVED***
-    super(props)
-  ***REMOVED***
 
   componentDidMount() ***REMOVED***
     // Determine hotspots
