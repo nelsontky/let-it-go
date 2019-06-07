@@ -7,12 +7,12 @@ export default class App extends React.Component ***REMOVED***
 
   constructor(props) ***REMOVED***
     super(props)
-
-    this.state = ***REMOVED******REMOVED***
+    this.state = ***REMOVED***
+      toilets: this.props.data.allToilets.nodes
+    ***REMOVED***
   ***REMOVED***
 
   render() ***REMOVED***
-    const edges = this.props.data.allToilets.edges
     return (
       <Layout>
         <h1>Let It Go</h1>
@@ -23,10 +23,10 @@ export default class App extends React.Component ***REMOVED***
             </tr>
           </thead>
           <tbody>
-            ***REMOVED***edges.map((***REMOVED*** node ***REMOVED***, index) => (
+            ***REMOVED***this.state.toilets.map((toilet, index) => (
               <tr key=***REMOVED***index***REMOVED***>
                 <td><Link
-                  to=***REMOVED***"/" + node.name.replace(/\s/g,'')***REMOVED***>***REMOVED***node.name***REMOVED***
+                  to=***REMOVED***"/" + toilet.name.replace(/\s/g,'')***REMOVED***>***REMOVED***toilet.name***REMOVED***
                 </Link></td>
               </tr>
             ))***REMOVED***
@@ -39,13 +39,11 @@ export default class App extends React.Component ***REMOVED***
 
 export const query = graphql`
   query ***REMOVED***
-    allToilets(sort: ***REMOVED***fields: name***REMOVED***) ***REMOVED***
-      edges ***REMOVED***
-        node ***REMOVED***
-          name
-          lat
-          lon
-        ***REMOVED***
+    allToilets(sort: ***REMOVED***fields: name, order: ASC***REMOVED***) ***REMOVED***
+      nodes ***REMOVED***
+        name
+        lat
+        lon
       ***REMOVED***
     ***REMOVED***
   ***REMOVED***
