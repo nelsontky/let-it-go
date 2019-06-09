@@ -1,6 +1,8 @@
 import React from "react"
 // https://i.imgur.com/Rw0L7jC.png
 
+let isLocationAvailable = true
+
 class Map extends React.Component ***REMOVED***
 
   componentWillUnmount() ***REMOVED***
@@ -20,13 +22,15 @@ class Map extends React.Component ***REMOVED***
           this.accuracyRadius.setRadius(position.coords.accuracy)
         ***REMOVED***,
         () => ***REMOVED***
-          //handleLocationError(true, infoWindow, map.getCenter());
+          isLocationAvailable = false
+          this.forceUpdate()
         ***REMOVED***,
         ***REMOVED*** enableHighAccuracy: true ***REMOVED***
       )
     ***REMOVED*** else ***REMOVED***
       // Browser doesn't support Geolocation
-      //handleLocationError(false, infoWindow, map.getCenter());
+      isLocationAvailable = false
+      this.forceUpdate()
     ***REMOVED***
   ***REMOVED***
 
@@ -89,7 +93,6 @@ class Map extends React.Component ***REMOVED***
     // Render the button
     let centerControlDiv = document.createElement("div")
     new CenterControl(centerControlDiv, this.map)
-    console.log(centerControlDiv)
 
     centerControlDiv.index = 1
     this.map.controls[window.google.maps.ControlPosition.LEFT_BOTTOM].push(
@@ -98,7 +101,12 @@ class Map extends React.Component ***REMOVED***
   ***REMOVED***
 
   render() ***REMOVED***
-    return <div id="map" style=***REMOVED******REMOVED*** width: "100%", height: 300 ***REMOVED******REMOVED*** />
+    return (
+      <div>
+        ***REMOVED***!isLocationAvailable && <p>Location services not working! (Add help popup, convert to component)</p>***REMOVED***
+        <div id="map" style=***REMOVED******REMOVED*** width: "100%", height: 300 ***REMOVED******REMOVED*** />
+      </div>
+    )
   ***REMOVED***
 ***REMOVED***
 
