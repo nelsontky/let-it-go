@@ -14,21 +14,15 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   ***REMOVED***,
   "dependencies": ***REMOVED***
-    "child_process": "^1.0.2",
     "firebase": "^6.2.2",
-    "firebase-admin": "^8.2.0",
-    "fs": "0.0.1-security",
     "gatsby": "^2.7.5",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-typography": "^2.2.13",
     "gatsby-source-firestore": "^1.0.3",
-    "http2": "^3.3.7",
-    "net": "^1.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-typography": "^0.16.19",
-    "tls": "0.0.1",
     "typography": "^0.16.19",
     "typography-theme-fairy-gates": "^0.16.19"
   ***REMOVED***,
