@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "../components/layout"
 import ***REMOVED*** graphql ***REMOVED*** from "gatsby"
 import ***REMOVED*** Link ***REMOVED*** from "gatsby"
+import db from "../utils/firestore"
 
 function latLonToMetres(lat1, lon1, lat2, lon2) ***REMOVED***
   if (lat1 === null || lat2 === null || lon1 === null || lon2 === null) ***REMOVED***
@@ -31,6 +32,7 @@ export default class App extends React.Component ***REMOVED***
       myLat: null,
       myLon: null,
       sortBy: `name`,
+      test: ***REMOVED******REMOVED***,
     ***REMOVED***
 
     this.sortByDistance = this.sortByDistance.bind(this)
@@ -42,6 +44,21 @@ export default class App extends React.Component ***REMOVED***
 
   componentDidMount() ***REMOVED***
     this.updatePosition()
+
+    db.collection("toilets")
+      .get()
+      .then(snapshot => ***REMOVED***
+        snapshot.forEach(doc => ***REMOVED***
+          let currToilets = this.state.test
+          currToilets[doc.id] = doc.data()
+          this.setState(***REMOVED***
+            test: currToilets
+          ***REMOVED***)
+        ***REMOVED***)
+      ***REMOVED***)
+      .catch(err => ***REMOVED***
+        console.log("Error getting documents", err)
+      ***REMOVED***)
   ***REMOVED***
 
   handleChange(event) ***REMOVED***
@@ -57,7 +74,7 @@ export default class App extends React.Component ***REMOVED***
   ***REMOVED***
 
   sortByDistance() ***REMOVED***
-    let toilets = this.state.toilets
+    let toilets = this.state.toilets.slice(0)
     toilets.sort(this.compareDistance)
 
     this.setState(***REMOVED***
@@ -83,7 +100,7 @@ export default class App extends React.Component ***REMOVED***
 
   sortByName() ***REMOVED***
     console.log("test")
-    let toilets = this.state.toilets
+    let toilets = this.state.toilets.slice(0)
     toilets.sort((t1, t2) => t1.name.localeCompare(t2.name))
 
     this.setState(***REMOVED***
@@ -122,7 +139,12 @@ export default class App extends React.Component ***REMOVED***
           <option value="name">Name</option>
           ***REMOVED***isLocationAvailable && <option value="distance">Distance</option>***REMOVED***
         </select>
-        ***REMOVED***!isLocationAvailable && <p>Location services not working! (Add help popup, convert to component)</p>***REMOVED***
+        ***REMOVED***!isLocationAvailable && (
+          <p>
+            Location services not working! (Add help popup, convert to
+            component)
+          </p>
+        )***REMOVED***
         <table style=***REMOVED******REMOVED*** tableLayout: "fixed" ***REMOVED******REMOVED***>
           <thead>
             <tr>
