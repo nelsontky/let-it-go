@@ -8,11 +8,11 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
   const name = data.toilets.name
   const lat = data.toilets.lat
   const lon = data.toilets.lon
-  const paranomaUrl = data.toilets.paranomaUrl
-  const startingYaw = data.toilets.startingYaw
-  const maleYaw = data.toilets.maleYaw
-  const femaleYaw = data.toilets.femaleYaw
-  const handicappedYaw = data.toilets.handicappedYaw
+  const paranomaUrl = data.toilets.paranoma.url
+  const startingYaw = data.toilets.paranoma.startingYaw
+  const maleYaw = data.toilets.paranoma.maleYaw
+  const femaleYaw = data.toilets.paranoma.femaleYaw
+  const handicappedYaw = data.toilets.paranoma.handicappedYaw
 
   return (
     <Layout main=***REMOVED***false***REMOVED***>
@@ -36,11 +36,17 @@ export const query = graphql`
       name
       lat
       lon
-      paranomaUrl
-      startingYaw
-      maleYaw
-      femaleYaw
-      handicappedYaw
+      paranoma ***REMOVED***
+        femaleYaw
+        handicappedYaw
+        maleYaw
+        startingYaw
+        url
+      ***REMOVED***
+      facilities ***REMOVED***
+        hose
+        showerHeads
+      ***REMOVED***
     ***REMOVED***
   ***REMOVED***
 `

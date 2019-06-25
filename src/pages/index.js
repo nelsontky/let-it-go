@@ -2,7 +2,6 @@ import React from "react"
 import Layout from "../components/layout"
 import ***REMOVED*** graphql ***REMOVED*** from "gatsby"
 import ***REMOVED*** Link ***REMOVED*** from "gatsby"
-import db from "../utils/firestore"
 
 function latLonToMetres(lat1, lon1, lat2, lon2) ***REMOVED***
   if (lat1 === null || lat2 === null || lon1 === null || lon2 === null) ***REMOVED***
@@ -32,7 +31,6 @@ export default class App extends React.Component ***REMOVED***
       myLat: null,
       myLon: null,
       sortBy: `name`,
-      test: ***REMOVED******REMOVED***,
     ***REMOVED***
 
     this.sortByDistance = this.sortByDistance.bind(this)
@@ -44,21 +42,6 @@ export default class App extends React.Component ***REMOVED***
 
   componentDidMount() ***REMOVED***
     this.updatePosition()
-
-    db.collection("toilets")
-      .get()
-      .then(snapshot => ***REMOVED***
-        snapshot.forEach(doc => ***REMOVED***
-          let currToilets = this.state.test
-          currToilets[doc.id] = doc.data()
-          this.setState(***REMOVED***
-            test: currToilets
-          ***REMOVED***)
-        ***REMOVED***)
-      ***REMOVED***)
-      .catch(err => ***REMOVED***
-        console.log("Error getting documents", err)
-      ***REMOVED***)
   ***REMOVED***
 
   handleChange(event) ***REMOVED***
@@ -99,7 +82,6 @@ export default class App extends React.Component ***REMOVED***
   ***REMOVED***
 
   sortByName() ***REMOVED***
-    console.log("test")
     let toilets = this.state.toilets.slice(0)
     toilets.sort((t1, t2) => t1.name.localeCompare(t2.name))
 
@@ -131,7 +113,7 @@ export default class App extends React.Component ***REMOVED***
   ***REMOVED***
 
   render() ***REMOVED***
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <Layout main=***REMOVED***true***REMOVED***>
         <label>Sort by: </label>
@@ -179,12 +161,23 @@ export default class App extends React.Component ***REMOVED***
 
 export const query = graphql`
   query ***REMOVED***
-    allToilets(sort: ***REMOVED*** fields: name, order: ASC ***REMOVED***) ***REMOVED***
-      nodes ***REMOVED***
-        name
-        lat
-        lon
+  allToilets(sort: ***REMOVED***fields: name***REMOVED***) ***REMOVED***
+    nodes ***REMOVED***
+      name
+      facilities ***REMOVED***
+        hose
+        showerHeads
       ***REMOVED***
+      paranoma ***REMOVED***
+        femaleYaw
+        maleYaw
+        startingYaw
+        url
+        handicappedYaw
+      ***REMOVED***
+      lat
+      lon
     ***REMOVED***
   ***REMOVED***
+***REMOVED***
 `

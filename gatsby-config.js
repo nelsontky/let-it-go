@@ -26,17 +26,23 @@ module.exports = ***REMOVED***
                 name: doc.name,
                 lat: doc.lat,
                 lon: doc.lon,
-                paranomaUrl: doc.paranomaUrl,
-                startingYaw: doc.startingYaw,
-                maleYaw: doc.maleYaw,
-                femaleYaw: doc.femaleYaw,
-                handicappedYaw: doc.handicappedYaw
+                paranoma: ***REMOVED***
+                  femaleYaw: doc.paranoma.femaleYaw,
+                  maleYaw: doc.paranoma.maleYaw,
+                  handicappedYaw: doc.paranoma.handicappedYaw,
+                  startingYaw: doc.paranoma.startingYaw,
+                  url: doc.paranoma.url,
+                ***REMOVED***,
+                facilities: ***REMOVED***
+                  hose: doc.facilities.hose,
+                  showerHeads: doc.facilities.showerHeads,
+                ***REMOVED***,
               ***REMOVED***
             ***REMOVED***,
-          ***REMOVED***
+          ***REMOVED***,
         ],
       ***REMOVED***,
     ***REMOVED***,
-    `gatsby-plugin-react-helmet`
+    `gatsby-plugin-react-helmet`,
   ],
 ***REMOVED***
