@@ -1,0 +1,1 @@
+convert "*.JPG[4096x]" -set filename:base "%[base]" "new_folder/%[filename:base].jpg"
