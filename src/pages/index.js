@@ -174,6 +174,7 @@ export const query = graphql`
         startingYaw
         url
         handicappedYaw
+        waterCoolerYaw
       ***REMOVED***
       lat
       lon

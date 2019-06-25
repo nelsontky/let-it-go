@@ -13,6 +13,7 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
   const maleYaw = data.toilets.paranoma.maleYaw
   const femaleYaw = data.toilets.paranoma.femaleYaw
   const handicappedYaw = data.toilets.paranoma.handicappedYaw
+  const waterCoolerYaw = data.toilets.paranoma.waterCoolerYaw
 
   return (
     <Layout main=***REMOVED***false***REMOVED***>
@@ -24,7 +25,9 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
         startingYaw=***REMOVED***startingYaw***REMOVED***
         maleYaw=***REMOVED***maleYaw***REMOVED***
         femaleYaw=***REMOVED***femaleYaw***REMOVED***
-        handicappedYaw=***REMOVED***handicappedYaw***REMOVED*** />
+        handicappedYaw=***REMOVED***handicappedYaw***REMOVED***
+        waterCoolerYaw=***REMOVED***waterCoolerYaw***REMOVED***
+      />
       <p>Todo</p>
     </Layout>
   )
@@ -41,6 +44,7 @@ export const query = graphql`
         handicappedYaw
         maleYaw
         startingYaw
+        waterCoolerYaw
         url
       ***REMOVED***
       facilities ***REMOVED***

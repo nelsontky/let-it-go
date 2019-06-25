@@ -31,6 +31,7 @@ module.exports = ***REMOVED***
                   maleYaw: doc.paranoma.maleYaw,
                   handicappedYaw: doc.paranoma.handicappedYaw,
                   startingYaw: doc.paranoma.startingYaw,
+                  waterCoolerYaw: doc.paranoma.waterCoolerYaw,
                   url: doc.paranoma.url,
                 ***REMOVED***,
                 facilities: ***REMOVED***
