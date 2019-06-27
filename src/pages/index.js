@@ -1,27 +1,12 @@
 import React from "react"
 import Layout from "../components/layout"
+import TypesHelp from "../components/typesHelp"
+import FilterHelp from "../components/filterHelp"
 import ***REMOVED*** graphql ***REMOVED*** from "gatsby"
 import ***REMOVED*** Link ***REMOVED*** from "gatsby"
+import * as utils from "../utils/utils"
 
-function latLonToMetres(lat1, lon1, lat2, lon2) ***REMOVED***
-  if (lat1 === null || lat2 === null || lon1 === null || lon2 === null) ***REMOVED***
-    return "Location not available"
-  ***REMOVED***
-  const R = 6371000 // Radius of the earth in m
-  const dLat = (lat2 - lat1) * (Math.PI / 180)
-  const dLon = (lon2 - lon1) * (Math.PI / 180)
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(lat1 * (Math.PI / 180)) *
-      Math.cos(lat2 * (Math.PI / 180)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2)
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-  const d = R * c // Distance in m
-  return Math.round(d)
-***REMOVED***
-
-let isLocationAvailable = true
+let isLocationAvailable = false
 
 export default class App extends React.Component ***REMOVED***
   constructor(props) ***REMOVED***
@@ -31,6 +16,13 @@ export default class App extends React.Component ***REMOVED***
       myLat: null,
       myLon: null,
       sortBy: `name`,
+      isFilterHidden: true,
+      maleChecked: false,
+      femaleChecked: false,
+      handicappedChecked: false,
+      waterCoolerChecked: false,
+      showerHeadsChecked: false,
+      hoseChecked: false,
     ***REMOVED***
 
     this.sortByDistance = this.sortByDistance.bind(this)
@@ -38,9 +30,13 @@ export default class App extends React.Component ***REMOVED***
     this.sortByName = this.sortByName.bind(this)
     this.updatePosition = this.updatePosition.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+    this.handleFilterChange = this.handleFilterChange.bind(this)
+    this.isShown = this.isShown.bind(this)
   ***REMOVED***
 
   componentDidMount() ***REMOVED***
+    isLocationAvailable = false
     this.updatePosition()
   ***REMOVED***
 
@@ -56,6 +52,19 @@ export default class App extends React.Component ***REMOVED***
     ***REMOVED***
   ***REMOVED***
 
+  // Handles click on filter button
+  handleClick() ***REMOVED***
+    this.setState(***REMOVED***
+      isFilterHidden: !this.state.isFilterHidden,
+    ***REMOVED***)
+  ***REMOVED***
+
+  handleFilterChange(event) ***REMOVED***
+    this.setState(***REMOVED***
+      [event.target.name]: !this.state[event.target.name]
+    ***REMOVED***)
+  ***REMOVED***
+
   sortByDistance() ***REMOVED***
     let toilets = this.state.toilets.slice(0)
     toilets.sort(this.compareDistance)
@@ -66,13 +75,13 @@ export default class App extends React.Component ***REMOVED***
   ***REMOVED***
 
   compareDistance(t1, t2) ***REMOVED***
-    const t1ToMe = latLonToMetres(
+    const t1ToMe = utils.latLonToMetres(
       t1.lat,
       t1.lon,
       this.state.myLat,
       this.state.myLon
     )
-    const t2ToMe = latLonToMetres(
+    const t2ToMe = utils.latLonToMetres(
       t2.lat,
       t2.lon,
       this.state.myLat,
@@ -90,6 +99,15 @@ export default class App extends React.Component ***REMOVED***
     ***REMOVED***)
   ***REMOVED***
 
+  isShown(toilet) ***REMOVED***
+    return (!this.state.maleChecked || utils.hasMaleToilet(toilet)) &&
+      (!this.state.femaleChecked || utils.hasFemaleToilet(toilet)) &&
+      (!this.state.handicappedChecked || utils.hasHandicappedToilet(toilet)) &&
+      (!this.state.showerHeadsChecked || utils.toiletHasShowerHeads(toilet)) &&
+      (!this.state.hoseChecked || utils.toiletHasHose(toilet)) &&
+      (!this.state.waterCoolerChecked || utils.toiletHasWaterCooler(toilet))
+  ***REMOVED***
+
   updatePosition() ***REMOVED***
     if (navigator.geolocation) ***REMOVED***
       navigator.geolocation.getCurrentPosition(
@@ -97,58 +115,168 @@ export default class App extends React.Component ***REMOVED***
           this.setState(***REMOVED***
             myLat: pos.coords.latitude,
             myLon: pos.coords.longitude,
+            sortBy: `distance`,
           ***REMOVED***)
+          isLocationAvailable = true
+          this.sortByDistance()
         ***REMOVED***,
         () => ***REMOVED***
+          // Geolocation permissions denied
           isLocationAvailable = false
-          this.forceUpdate()
         ***REMOVED***,
         ***REMOVED*** enableHighAccuracy: true ***REMOVED***
       )
     ***REMOVED*** else ***REMOVED***
       // Browser doesn't support Geolocation
       isLocationAvailable = false
-      this.forceUpdate()
     ***REMOVED***
+
+    this.forceUpdate()
   ***REMOVED***
 
   render() ***REMOVED***
     // console.log(this.state)
+    const iconStyle = ***REMOVED*** fontSize: "calc(0.6em + 0.5vw)" ***REMOVED***
+
     return (
       <Layout main=***REMOVED***true***REMOVED***>
-        <label>Sort by: </label>
-        <select value=***REMOVED***this.state.sortBy***REMOVED*** onChange=***REMOVED***this.handleChange***REMOVED***>
-          <option value="name">Name</option>
-          ***REMOVED***isLocationAvailable && <option value="distance">Distance</option>***REMOVED***
-        </select>
+        ***REMOVED***/* Sorting dropdown */***REMOVED***
+        <div style=***REMOVED******REMOVED*** float: "right" ***REMOVED******REMOVED***>
+          <label>
+            Sort by:
+            <select value=***REMOVED***this.state.sortBy***REMOVED*** onChange=***REMOVED***this.handleChange***REMOVED***>
+              <option value="name">Name</option>
+              ***REMOVED***isLocationAvailable && (
+                <option value="distance">Distance</option>
+              )***REMOVED***
+            </select>
+          </label>
+        </div>
+
+        ***REMOVED***/* Filtering */***REMOVED***
+        <button onClick=***REMOVED***this.handleClick***REMOVED***>
+          ***REMOVED***this.state.isFilterHidden ? "Filter" : "Hide"***REMOVED***
+        </button>
+        ***REMOVED***!this.state.isFilterHidden && (
+          <div>
+            <p>Show only<FilterHelp />:</p>
+            <label>
+              <input
+                name="maleChecked"
+                type="checkbox"
+                checked=***REMOVED***this.state.maleChecked***REMOVED***
+                onChange=***REMOVED***this.handleFilterChange***REMOVED***
+              />
+              Male
+            </label>
+            <br />
+            <label>
+              <input
+                name="femaleChecked"
+                type="checkbox"
+                checked=***REMOVED***this.state.femaleChecked***REMOVED***
+                onChange=***REMOVED***this.handleFilterChange***REMOVED***
+              />
+              Female
+            </label>
+            <br />
+            <label>
+              <input
+                name="handicappedChecked"
+                type="checkbox"
+                checked=***REMOVED***this.state.handicappedChecked***REMOVED***
+                onChange=***REMOVED***this.handleFilterChange***REMOVED***
+              />
+              Wheelchair accessible
+            </label>
+            <br />
+            <label>
+              <input
+                name="showerHeadsChecked"
+                type="checkbox"
+                checked=***REMOVED***this.state.showerHeadsChecked***REMOVED***
+                onChange=***REMOVED***this.handleFilterChange***REMOVED***
+              />
+              Has Shower Heads
+            </label>
+            <br />
+            <label>
+              <input
+                name="hoseChecked"
+                type="checkbox"
+                checked=***REMOVED***this.state.hoseChecked***REMOVED***
+                onChange=***REMOVED***this.handleFilterChange***REMOVED***
+              />
+              Has Hoses
+            </label>
+            <br />
+            <label>
+              <input
+                name="waterCoolerChecked"
+                type="checkbox"
+                checked=***REMOVED***this.state.waterCoolerChecked***REMOVED***
+                onChange=***REMOVED***this.handleFilterChange***REMOVED***
+              />
+              Has Water Cooler
+            </label>
+            <br />
+          </div>
+        )***REMOVED***
+
+        ***REMOVED***/* Location not available message */***REMOVED***
         ***REMOVED***!isLocationAvailable && (
           <p>
             Location services not working! (Add help popup, convert to
             component)
           </p>
         )***REMOVED***
+
+        ***REMOVED***/* Start of table */***REMOVED***
         <table style=***REMOVED******REMOVED*** tableLayout: "fixed" ***REMOVED******REMOVED***>
           <thead>
             <tr>
               <th>Name</th>
+              <th>Types<TypesHelp /></th>
               <th>Distance (m)</th>
             </tr>
           </thead>
           <tbody>
-            ***REMOVED***this.state.toilets.map((toilet, index) => (
+            ***REMOVED***this.state.toilets.filter(this.isShown).map((toilet, index) => (
               <tr key=***REMOVED***index***REMOVED***>
+                ***REMOVED***/* Name */***REMOVED***
                 <td>
                   <Link to=***REMOVED***"/" + toilet.name.replace(/\s/g, "")***REMOVED***>
                     ***REMOVED***toilet.name***REMOVED***
                   </Link>
                 </td>
-                <td>
-                  ***REMOVED***latLonToMetres(
-                    this.state.myLat,
-                    this.state.myLon,
-                    toilet.lat,
-                    toilet.lon
+                ***REMOVED***/* Types */***REMOVED***
+                <td style=***REMOVED******REMOVED*** textAlign: "center" ***REMOVED******REMOVED***>
+                  ***REMOVED***utils.hasMaleToilet(toilet) && (
+                    <i
+                      className="em-svg em-man-raising-hand"
+                      style=***REMOVED***iconStyle***REMOVED***
+                    />
                   )***REMOVED***
+                  ***REMOVED***utils.hasFemaleToilet(toilet) && (
+                    <i
+                      className="em-svg em-woman-raising-hand"
+                      style=***REMOVED***iconStyle***REMOVED***
+                    />
+                  )***REMOVED***
+                  ***REMOVED***utils.hasHandicappedToilet(toilet) && (
+                    <i className="em-svg em-wheelchair" style=***REMOVED***iconStyle***REMOVED*** />
+                  )***REMOVED***
+                </td>
+                ***REMOVED***/* Distance */***REMOVED***
+                <td>
+                  <span>
+                    ***REMOVED***utils.latLonToMetres(
+                      this.state.myLat,
+                      this.state.myLon,
+                      toilet.lat,
+                      toilet.lon
+                    )***REMOVED***
+                  </span>
                 </td>
               </tr>
             ))***REMOVED***
@@ -161,24 +289,22 @@ export default class App extends React.Component ***REMOVED***
 
 export const query = graphql`
   query ***REMOVED***
-  allToilets(sort: ***REMOVED***fields: name***REMOVED***) ***REMOVED***
-    nodes ***REMOVED***
-      name
-      facilities ***REMOVED***
-        hose
-        showerHeads
+    allToilets(sort: ***REMOVED*** fields: name ***REMOVED***) ***REMOVED***
+      nodes ***REMOVED***
+        name
+        facilities ***REMOVED***
+          hose
+          showerHeads
+        ***REMOVED***
+        paranoma ***REMOVED***
+          femaleYaw
+          maleYaw
+          handicappedYaw
+          waterCoolerYaw
+        ***REMOVED***
+        lat
+        lon
       ***REMOVED***
-      paranoma ***REMOVED***
-        femaleYaw
-        maleYaw
-        startingYaw
-        url
-        handicappedYaw
-        waterCoolerYaw
-      ***REMOVED***
-      lat
-      lon
     ***REMOVED***
   ***REMOVED***
-***REMOVED***
 `

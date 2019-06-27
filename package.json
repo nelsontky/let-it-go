@@ -14,6 +14,7 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   ***REMOVED***,
   "dependencies": ***REMOVED***
+    "@tippy.js/react": "^2.2.2",
     "gatsby": "^2.7.5",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-typography": "^2.2.13",

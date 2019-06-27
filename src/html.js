@@ -7,6 +7,7 @@ export default function HTML(props) ***REMOVED***
       <head>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm31tTHPuaSkBR1Ff7pYAavUX6K1DlZ5g&callback=initMap"></script>
         <script type="text/javascript" src="https://cdn.pannellum.org/2.4/pannellum.js"/>
+        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"></link>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta
