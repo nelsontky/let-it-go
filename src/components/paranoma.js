@@ -11,9 +11,7 @@ class Paranoma extends React.Component ***REMOVED***
         pitch: 0,
         yaw: this.props.maleYaw,
         type: "info",
-        text: this.props.name.includes("Male")
-          ? this.props.name
-          : this.props.name + " Male",
+        text: "Male"
       ***REMOVED***)
     ***REMOVED***
 
@@ -22,9 +20,7 @@ class Paranoma extends React.Component ***REMOVED***
         pitch: 0,
         yaw: this.props.femaleYaw,
         type: "info",
-        text: this.props.name.includes("Female")
-          ? this.props.name
-          : this.props.name + " Female",
+        text: "Female"
       ***REMOVED***)
     ***REMOVED***
 
@@ -33,7 +29,7 @@ class Paranoma extends React.Component ***REMOVED***
         pitch: 0,
         yaw: this.props.handicappedYaw,
         type: "info",
-        text: this.props.name + " Handicapped",
+        text: "Handicapped"
       ***REMOVED***)
     ***REMOVED***
 
@@ -42,7 +38,7 @@ class Paranoma extends React.Component ***REMOVED***
         pitch: 0,
         yaw: this.props.waterCoolerYaw,
         type: "info",
-        text: this.props.name + " Water Cooler",
+        text: "Water Cooler",
       ***REMOVED***)
     ***REMOVED***
 
