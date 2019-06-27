@@ -40,6 +40,7 @@ class Map extends React.Component ***REMOVED***
     this.map = new window.google.maps.Map(document.getElementById("map"), ***REMOVED***
       center: ***REMOVED*** lat: this.props.lat, lng: this.props.lon ***REMOVED***,
       zoom: 17,
+      gestureHandling: 'cooperative'
     ***REMOVED***)
 
     new window.google.maps.Marker(***REMOVED***
