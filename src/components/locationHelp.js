@@ -24,20 +24,28 @@ const content = (
             <a
               style=***REMOVED******REMOVED*** textShadow: "none" ***REMOVED******REMOVED***
               href="https://support.apple.com/en-us/HT207092"
-              rel="noopener noreferrer" 
+              rel="noopener noreferrer"
               target="_blank"
             >
               iOS
             </a>
           </li>
-          <li>Reload the page after enabling GPS settings</li>
+          <li>Reload this page after enabling GPS settings</li>
         </ul>
       </li>
       <li>
         Allowed your browser and this website the neccessary permissions to read
         your location
+        <ul>
+          <li>Press allow when a similar prompt as below appears</li>
+          <li>If such a prompt does not appear, reload the page</li>
+        </ul>
       </li>
     </ul>
+    <img
+      src="https://raw.githubusercontent.com/nelsontky/let-it-go/master/assets/misc/locationHelp.png"
+      alt=""
+    />
   </div>
 )
 

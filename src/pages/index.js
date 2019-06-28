@@ -158,7 +158,7 @@ export default class App extends React.Component ***REMOVED***
 
         ***REMOVED***/* Filtering */***REMOVED***
         <button onClick=***REMOVED***this.handleClick***REMOVED***>
-          ***REMOVED***this.state.isFilterHidden ? "Filter" : "Hide"***REMOVED***
+          ***REMOVED***this.state.isFilterHidden ? 'Filter' : "Hide"***REMOVED***
         </button>
         ***REMOVED***!this.state.isFilterHidden && (
           <div>
@@ -238,8 +238,11 @@ export default class App extends React.Component ***REMOVED***
             <tr>
               <th>
                 Name
-                <br />
-                <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>Distance</span>
+                ***REMOVED***isLocationAvailable && (
+                    <div style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
+                      Distance
+                  </div>
+                )***REMOVED***
               </th>
               <th style=***REMOVED******REMOVED*** textAlign: "center" ***REMOVED******REMOVED***>
                 Types
@@ -256,16 +259,18 @@ export default class App extends React.Component ***REMOVED***
                     ***REMOVED***toilet.name***REMOVED***
                   </Link>
                   <br />
-                  <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
-                    ***REMOVED***utils.appendMetres(
-                      utils.latLonToMetres(
-                        this.state.myLat,
-                        this.state.myLon,
-                        toilet.lat,
-                        toilet.lon
-                      )
-                    )***REMOVED***
-                  </span>
+                  ***REMOVED***isLocationAvailable && (
+                    <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
+                      ***REMOVED***utils.appendMetres(
+                        utils.latLonToMetres(
+                          this.state.myLat,
+                          this.state.myLon,
+                          toilet.lat,
+                          toilet.lon
+                        )
+                      )***REMOVED***
+                    </span>
+                  )***REMOVED***
                 </td>
                 ***REMOVED***/* Types */***REMOVED***
                 <td style=***REMOVED******REMOVED*** textAlign: "center" ***REMOVED******REMOVED***>
