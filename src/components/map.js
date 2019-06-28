@@ -1,10 +1,9 @@
 import React from "react"
-import LocationHelp from './locationHelp'
+import LocationHelp from "./locationHelp"
 
 let isLocationAvailable = true
 
 class Map extends React.Component ***REMOVED***
-
   componentWillUnmount() ***REMOVED***
     clearInterval(this.timerID)
   ***REMOVED***
@@ -17,6 +16,7 @@ class Map extends React.Component ***REMOVED***
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           ***REMOVED***)
+          isLocationAvailable = true
 
           this.accuracyRadius.setCenter(this.locationMarker.getPosition())
           this.accuracyRadius.setRadius(position.coords.accuracy)
@@ -39,7 +39,7 @@ class Map extends React.Component ***REMOVED***
     this.map = new window.google.maps.Map(document.getElementById("map"), ***REMOVED***
       center: ***REMOVED*** lat: this.props.lat, lng: this.props.lon ***REMOVED***,
       zoom: 17,
-      gestureHandling: 'cooperative'
+      gestureHandling: "cooperative",
     ***REMOVED***)
 
     new window.google.maps.Marker(***REMOVED***
@@ -73,7 +73,7 @@ class Map extends React.Component ***REMOVED***
       controlUI.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)"
       controlUI.style.cursor = "pointer"
       controlUI.style.textAlign = "center"
-      controlUI.style.marginBottom = '22px';
+      controlUI.style.marginBottom = "22px"
       controlUI.style.height = "31px"
       controlUI.title = "Click to recenter the map to location"
       controlDiv.appendChild(controlUI)
@@ -86,7 +86,7 @@ class Map extends React.Component ***REMOVED***
       // Setup the click event listeners
       controlUI.addEventListener("click", function() ***REMOVED***
         self.getGeoLocation()
-        map.setCenter(self.locationMarker.getPosition());
+        map.setCenter(self.locationMarker.getPosition())
       ***REMOVED***)
     ***REMOVED***
 
