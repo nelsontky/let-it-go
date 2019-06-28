@@ -49,14 +49,18 @@ class ShareButton extends React.Component ***REMOVED***
             title="fb"
           />
           <iframe
-            id="tweet-button"
-            allowtransparency="true"
-            frameborder="0"
+            height="20"
+            width="60"
+            height="20"
+            style=***REMOVED******REMOVED*** border: "none", overflow: "hidden" ***REMOVED******REMOVED***
             scrolling="no"
+            frameborder="0"
+            allowTransparency="true"
+            allow="encrypted-media"
             src=***REMOVED***`http://platform.twitter.com/widgets/tweet_button.html?url=$***REMOVED***
               this.state.url
             ***REMOVED***`***REMOVED***
-            style=***REMOVED******REMOVED*** width: "60px", height: "20px" ***REMOVED******REMOVED***
+            style=***REMOVED******REMOVED*** border: "none", overflow: "hidden" ***REMOVED******REMOVED***
             title="tweet"
           />
         </div>
