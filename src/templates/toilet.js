@@ -17,10 +17,17 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
   const handicappedYaw = data.toilets.paranoma.handicappedYaw
   const waterCoolerYaw = data.toilets.paranoma.waterCoolerYaw
 
+  function glanceStyle(pred) ***REMOVED***
+    return ***REMOVED***
+      textDecoration: pred(data.toilets) ? "" : "line-through",
+      color: pred(data.toilets) ? "" : "gray",
+    ***REMOVED***
+  ***REMOVED***
+
   return (
     <Layout main=***REMOVED***false***REMOVED***>
       <h3>***REMOVED***name***REMOVED***</h3>
-      <ShareButton />
+      <ShareButton name=***REMOVED***name***REMOVED*** />
       <Map lat=***REMOVED***lat***REMOVED*** lon=***REMOVED***lon***REMOVED*** />
       <Paranoma
         name=***REMOVED***name***REMOVED***
@@ -33,42 +40,30 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
       />
       <h4>At a glance</h4>
       <ul style=***REMOVED******REMOVED*** listStyle: "none" ***REMOVED******REMOVED***>
-        ***REMOVED***utils.hasMaleToilet(data.toilets) && (
-          <li>
-            <i className="em-svg em-man-raising-hand" />
-            Has Male toilet
-          </li>
-        )***REMOVED***
-        ***REMOVED***utils.hasFemaleToilet(data.toilets) && (
-          <li>
-            <i className="em-svg em-woman-raising-hand" />
-            Has Female toilet
-          </li>
-        )***REMOVED***
-        ***REMOVED***utils.hasHandicappedToilet(data.toilets) && (
-          <li>
-            <i className="em-svg em-wheelchair" />
-            Is handicap accessible (Add in seperate or not seperate)
-          </li>
-        )***REMOVED***
-        ***REMOVED***utils.toiletHasWaterCooler(data.toilets) && (
-          <li>
-            <i class="em-svg em-potable_water"></i>
-            Has water cooler
-          </li>
-        )***REMOVED***
-        ***REMOVED***utils.toiletHasShowerHeads(data.toilets) && (
-          <li>
-            <i class="em-svg em-shower" />
-            Has shower heads
-          </li>
-        )***REMOVED***
-        ***REMOVED***utils.toiletHasHose(data.toilets) && (
-          <li>
-            <i class="em-svg em-sweat_drops" />
-            Has hose
-          </li>
-        )***REMOVED***
+        <li style=***REMOVED***glanceStyle(utils.hasMaleToilet)***REMOVED***>
+          <i className="em-svg em-man-raising-hand" />
+          Has Male toilet
+        </li>
+        <li style=***REMOVED***glanceStyle(utils.hasFemaleToilet)***REMOVED***>
+          <i className="em-svg em-woman-raising-hand" />
+          Has Female toilet
+        </li>
+        <li style=***REMOVED***glanceStyle(utils.hasHandicappedToilet)***REMOVED***>
+          <i className="em-svg em-wheelchair" />
+          Is handicap accessible (Add in seperate or not seperate)
+        </li>
+        <li style=***REMOVED***glanceStyle(utils.toiletHasWaterCooler)***REMOVED***>
+          <i class="em-svg em-potable_water" />
+          Has water cooler
+        </li>
+        <li style=***REMOVED***glanceStyle(utils.toiletHasShowerHeads)***REMOVED***>
+          <i class="em-svg em-shower" />
+          Has shower heads
+        </li>
+        <li style=***REMOVED***glanceStyle(utils.toiletHasHose)***REMOVED***>
+          <i class="em-svg em-sweat_drops" />
+          Has hose
+        </li>
       </ul>
     </Layout>
   )
