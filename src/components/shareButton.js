@@ -30,11 +30,11 @@ class ShareButton extends React.Component ***REMOVED***
         Love/Hate <strong>***REMOVED***this.props.name***REMOVED***</strong>? Share your Let It Go
         experience on social media! <br />
         (psst... try not to look suspicious in the toilet with your phone ok?)
-        <form onSubmit=***REMOVED***this.copyText***REMOVED***>
-          <input ref="input" type="text" value=***REMOVED***this.state.url***REMOVED*** readonly />
-          <input type="submit" value="Copy" />
-        </form>
         <div style=***REMOVED******REMOVED*** textAlign: "center" ***REMOVED******REMOVED***>
+          <form onSubmit=***REMOVED***this.copyText***REMOVED***>
+            <input ref="input" type="text" value=***REMOVED***this.state.url***REMOVED*** readonly />
+            <input type="submit" value="Copy" />
+          </form>
           <iframe
             src=***REMOVED***`https://www.facebook.com/plugins/share_button.php?href=$***REMOVED***
               this.state.url
@@ -53,9 +53,11 @@ class ShareButton extends React.Component ***REMOVED***
             allowtransparency="true"
             frameborder="0"
             scrolling="no"
-            src="http://platform.twitter.com/widgets/tweet_button.html"
-            style=***REMOVED******REMOVED***width:'60px', height:'20px'***REMOVED******REMOVED***
-            title='tweet'
+            src=***REMOVED***`http://platform.twitter.com/widgets/tweet_button.html?url=$***REMOVED***
+              this.state.url
+            ***REMOVED***`***REMOVED***
+            style=***REMOVED******REMOVED*** width: "60px", height: "20px" ***REMOVED******REMOVED***
+            title="tweet"
           />
         </div>
       </div>
