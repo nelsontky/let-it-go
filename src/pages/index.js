@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "../components/layout"
 import TypesHelp from "../components/typesHelp"
 import FilterHelp from "../components/filterHelp"
+import LocationHelp from "../components/locationHelp"
 import ***REMOVED*** graphql ***REMOVED*** from "gatsby"
 import ***REMOVED*** Link ***REMOVED*** from "gatsby"
 import * as utils from "../utils/utils"
@@ -138,7 +139,6 @@ export default class App extends React.Component ***REMOVED***
 
   render() ***REMOVED***
     // console.log(this.state)
-    let distance
     const iconStyle = ***REMOVED*** fontSize: "calc(0.6em + 0.5vw)" ***REMOVED***
 
     return (
@@ -230,12 +230,7 @@ export default class App extends React.Component ***REMOVED***
         )***REMOVED***
 
         ***REMOVED***/* Location not available message */***REMOVED***
-        ***REMOVED***!isLocationAvailable && (
-          <p>
-            Location services not working! (Add help popup, convert to
-            component)
-          </p>
-        )***REMOVED***
+        ***REMOVED***!isLocationAvailable && <LocationHelp />***REMOVED***
 
         ***REMOVED***/* Start of table */***REMOVED***
         <table style=***REMOVED******REMOVED*** tableLayout: "fixed" ***REMOVED******REMOVED***>

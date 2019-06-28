@@ -1,5 +1,5 @@
 import React from "react"
-// https://i.imgur.com/Rw0L7jC.png
+import LocationHelp from './locationHelp'
 
 let isLocationAvailable = true
 
@@ -104,7 +104,7 @@ class Map extends React.Component ***REMOVED***
   render() ***REMOVED***
     return (
       <div>
-        ***REMOVED***!isLocationAvailable && <p>Location services not working! (Add help popup, convert to component)</p>***REMOVED***
+        ***REMOVED***!isLocationAvailable && <LocationHelp />***REMOVED***
         <div id="map" style=***REMOVED******REMOVED*** width: "100%", height: 300 ***REMOVED******REMOVED*** />
       </div>
     )
