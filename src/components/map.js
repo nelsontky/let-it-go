@@ -23,15 +23,14 @@ class Map extends React.Component ***REMOVED***
         ***REMOVED***,
         () => ***REMOVED***
           isLocationAvailable = false
-          this.forceUpdate()
         ***REMOVED***,
         ***REMOVED*** enableHighAccuracy: true ***REMOVED***
       )
     ***REMOVED*** else ***REMOVED***
       // Browser doesn't support Geolocation
       isLocationAvailable = false
-      this.forceUpdate()
     ***REMOVED***
+    this.forceUpdate()
   ***REMOVED***
 
   componentDidMount() ***REMOVED***

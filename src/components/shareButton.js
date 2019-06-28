@@ -68,7 +68,7 @@ class ShareButton extends React.Component ***REMOVED***
       <Tippy
         content=***REMOVED***content***REMOVED***
         trigger="click"
-        placement="right"
+        placement="bottom"
         interactive=***REMOVED***true***REMOVED***
         arrow=***REMOVED***true***REMOVED***
       >
