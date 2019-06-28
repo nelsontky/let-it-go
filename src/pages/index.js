@@ -61,7 +61,7 @@ export default class App extends React.Component ***REMOVED***
 
   handleFilterChange(event) ***REMOVED***
     this.setState(***REMOVED***
-      [event.target.name]: !this.state[event.target.name]
+      [event.target.name]: !this.state[event.target.name],
     ***REMOVED***)
   ***REMOVED***
 
@@ -100,12 +100,14 @@ export default class App extends React.Component ***REMOVED***
   ***REMOVED***
 
   isShown(toilet) ***REMOVED***
-    return (!this.state.maleChecked || utils.hasMaleToilet(toilet)) &&
+    return (
+      (!this.state.maleChecked || utils.hasMaleToilet(toilet)) &&
       (!this.state.femaleChecked || utils.hasFemaleToilet(toilet)) &&
       (!this.state.handicappedChecked || utils.hasHandicappedToilet(toilet)) &&
       (!this.state.showerHeadsChecked || utils.toiletHasShowerHeads(toilet)) &&
       (!this.state.hoseChecked || utils.toiletHasHose(toilet)) &&
       (!this.state.waterCoolerChecked || utils.toiletHasWaterCooler(toilet))
+    )
   ***REMOVED***
 
   updatePosition() ***REMOVED***
@@ -136,6 +138,7 @@ export default class App extends React.Component ***REMOVED***
 
   render() ***REMOVED***
     // console.log(this.state)
+    let distance
     const iconStyle = ***REMOVED*** fontSize: "calc(0.6em + 0.5vw)" ***REMOVED***
 
     return (
@@ -159,7 +162,10 @@ export default class App extends React.Component ***REMOVED***
         </button>
         ***REMOVED***!this.state.isFilterHidden && (
           <div>
-            <p>Show only<FilterHelp />:</p>
+            <p>
+              Show only
+              <FilterHelp />:
+            </p>
             <label>
               <input
                 name="maleChecked"
@@ -235,9 +241,15 @@ export default class App extends React.Component ***REMOVED***
         <table style=***REMOVED******REMOVED*** tableLayout: "fixed" ***REMOVED******REMOVED***>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Types<TypesHelp /></th>
-              <th>Distance (m)</th>
+              <th>
+                Name
+                <br />
+                <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>Distance</span>
+              </th>
+              <th style=***REMOVED******REMOVED*** textAlign: "center" ***REMOVED******REMOVED***>
+                Types
+                <TypesHelp />
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -248,6 +260,17 @@ export default class App extends React.Component ***REMOVED***
                   <Link to=***REMOVED***"/" + toilet.name.replace(/\s/g, "")***REMOVED***>
                     ***REMOVED***toilet.name***REMOVED***
                   </Link>
+                  <br />
+                  <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
+                    ***REMOVED***utils.appendMetres(
+                      utils.latLonToMetres(
+                        this.state.myLat,
+                        this.state.myLon,
+                        toilet.lat,
+                        toilet.lon
+                      )
+                    )***REMOVED***
+                  </span>
                 </td>
                 ***REMOVED***/* Types */***REMOVED***
                 <td style=***REMOVED******REMOVED*** textAlign: "center" ***REMOVED******REMOVED***>
@@ -266,17 +289,6 @@ export default class App extends React.Component ***REMOVED***
                   ***REMOVED***utils.hasHandicappedToilet(toilet) && (
                     <i className="em-svg em-wheelchair" style=***REMOVED***iconStyle***REMOVED*** />
                   )***REMOVED***
-                </td>
-                ***REMOVED***/* Distance */***REMOVED***
-                <td>
-                  <span>
-                    ***REMOVED***utils.latLonToMetres(
-                      this.state.myLat,
-                      this.state.myLon,
-                      toilet.lat,
-                      toilet.lon
-                    )***REMOVED***
-                  </span>
                 </td>
               </tr>
             ))***REMOVED***

@@ -16,6 +16,10 @@ function latLonToMetres(lat1, lon1, lat2, lon2) ***REMOVED***
   return Math.round(d)
 ***REMOVED***
 
+function appendMetres(distance) ***REMOVED***
+  return Number.isInteger(distance) ? distance + "m" : distance
+***REMOVED***
+
 function hasMaleToilet(toilet) ***REMOVED***
   return toilet.paranoma.maleYaw != null
 ***REMOVED***
@@ -48,4 +52,5 @@ export ***REMOVED***
   toiletHasHose,
   toiletHasShowerHeads,
   toiletHasWaterCooler,
+  appendMetres
 ***REMOVED***
