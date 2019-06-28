@@ -50,7 +50,7 @@ class ShareButton extends React.Component ***REMOVED***
           />
           <iframe
             height="20"
-            width="60"
+            width="62"
             style=***REMOVED******REMOVED*** border: "none", overflow: "hidden" ***REMOVED******REMOVED***
             scrolling="no"
             frameborder="0"
