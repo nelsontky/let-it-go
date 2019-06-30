@@ -57,11 +57,11 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
           Has water cooler
         </li>
         <li style=***REMOVED***glanceStyle(utils.toiletHasShowerHeads)***REMOVED***>
-          <i class="em-svg em-shower" />
+          <i className="em-svg em-shower" />
           Has shower heads
         </li>
         <li style=***REMOVED***glanceStyle(utils.toiletHasHose)***REMOVED***>
-          <i class="em-svg em-sweat_drops" />
+          <i className="em-svg em-sweat_drops" />
           Has hose
         </li>
       </ul>
