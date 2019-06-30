@@ -16,6 +16,7 @@
   "dependencies": ***REMOVED***
     "@tippy.js/react": "^2.2.2",
     "firebase": "^6.2.4",
+    "firebaseui": "^4.0.0",
     "gatsby": "^2.7.5",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-typography": "^2.2.13",

@@ -5,6 +5,7 @@ import ShareButton from "../components/shareButton"
 import * as utils from "../utils/utils"
 import Map from "../components/map"
 import Paranoma from "../components/paranoma"
+import Reviews from "../components/reviews"
 
 export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
   const name = data.toilets.name
@@ -53,7 +54,7 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
           Is handicap accessible (Add in seperate or not seperate)
         </li>
         <li style=***REMOVED***glanceStyle(utils.toiletHasWaterCooler)***REMOVED***>
-          <i class="em-svg em-potable_water" />
+          <i className="em-svg em-potable_water" />
           Has water cooler
         </li>
         <li style=***REMOVED***glanceStyle(utils.toiletHasShowerHeads)***REMOVED***>
@@ -65,6 +66,7 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
           Has hose
         </li>
       </ul>
+      <Reviews />
     </Layout>
   )
 ***REMOVED***

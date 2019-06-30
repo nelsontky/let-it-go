@@ -32,7 +32,7 @@ class ShareButton extends React.Component ***REMOVED***
         (psst... try not to look suspicious in the toilet with your phone ok?)
         <div style=***REMOVED******REMOVED*** textAlign: "center" ***REMOVED******REMOVED***>
           <form onSubmit=***REMOVED***this.copyText***REMOVED***>
-            <input ref="input" type="text" value=***REMOVED***this.state.url***REMOVED*** readonly />
+            <input ref="input" type="text" value=***REMOVED***this.state.url***REMOVED*** readOnly />
             <input type="submit" value="Copy" />
           </form>
           <iframe
@@ -43,8 +43,8 @@ class ShareButton extends React.Component ***REMOVED***
             height="20"
             style=***REMOVED******REMOVED*** border: "none", overflow: "hidden" ***REMOVED******REMOVED***
             scrolling="no"
-            frameborder="0"
-            allowTransparency="true"
+            frameBorder="0"
+            allowtransparency="true"
             allow="encrypted-media"
             title="fb"
           />
@@ -53,8 +53,8 @@ class ShareButton extends React.Component ***REMOVED***
             width="62"
             style=***REMOVED******REMOVED*** border: "none", overflow: "hidden" ***REMOVED******REMOVED***
             scrolling="no"
-            frameborder="0"
-            allowTransparency="true"
+            frameBorder="0"
+            allowtransparency="true"
             allow="encrypted-media"
             src=***REMOVED***`https://platform.twitter.com/widgets/tweet_button.html?url=$***REMOVED***
               this.state.url
