@@ -2,9 +2,49 @@ import React from "react"
 import Firebase from "../utils/firebase"
 import ***REMOVED*** Helmet ***REMOVED*** from "react-helmet"
 
+class ReviewText extends React.Component ***REMOVED***
+  constructor(props) ***REMOVED***
+    super(props)
+
+    this.state = ***REMOVED***
+      review: this.props.review.slice(0, 80),
+      isTooLong: this.props.review.length > 80,
+    ***REMOVED***
+  ***REMOVED***
+
+  onClick = () => ***REMOVED***
+    if (this.state.review.length > 80) ***REMOVED***
+      this.setState(***REMOVED***
+        review: this.props.review.slice(0, 80),
+      ***REMOVED***)
+    ***REMOVED*** else ***REMOVED***
+      this.setState(***REMOVED***
+        review: this.props.review,
+      ***REMOVED***)
+    ***REMOVED***
+  ***REMOVED***
+
+  render() ***REMOVED***
+    return (
+      <div>
+        ***REMOVED***this.props.review.length > 80 && this.state.review.length <= 80
+          ? this.state.review + "..."
+          : this.state.review***REMOVED***
+        ***REMOVED***this.state.isTooLong && (
+          <div>
+            <a style=***REMOVED******REMOVED*** fontSize: "60%" ***REMOVED******REMOVED*** onClick=***REMOVED***this.onClick***REMOVED***>
+              ***REMOVED***this.state.review.length > 80 ? "Show less" : "Show more"***REMOVED***
+            </a>
+          </div>
+        )***REMOVED***
+      </div>
+    )
+  ***REMOVED***
+***REMOVED***
+
 class Reviews extends React.Component ***REMOVED***
-  constructor() ***REMOVED***
-    super()
+  constructor(props) ***REMOVED***
+    super(props)
     this.state = ***REMOVED***
       reviews: [],
       isSignedIn: false,
@@ -24,7 +64,7 @@ class Reviews extends React.Component ***REMOVED***
 
     this.db
       .collection("toilets")
-      .doc("COM1 Level 1 Main Entrance")
+      .doc(this.props.name)
       .onSnapshot(doc => ***REMOVED***
         this.setState(***REMOVED***
           reviews: doc.data().reviews,
@@ -56,12 +96,13 @@ class Reviews extends React.Component ***REMOVED***
     event.preventDefault()
     this.db
       .collection("toilets")
-      .doc("COM1 Level 1 Main Entrance")
+      .doc(this.props.name)
       .set(
         ***REMOVED***
           reviews: this.firebase.firebase.firestore.FieldValue.arrayUnion(***REMOVED***
             name: this.auth.currentUser.displayName,
             review: this.state.myReview,
+            date: new Date(),
           ***REMOVED***),
         ***REMOVED***,
         ***REMOVED*** merge: true ***REMOVED***
@@ -116,20 +157,48 @@ class Reviews extends React.Component ***REMOVED***
                   onChange=***REMOVED***this.handleChange***REMOVED***
                 />
               </label>
-              <input type="submit" value="Submit" />
+              <input
+                type="submit"
+                value="Submit"
+                disabled=***REMOVED***this.state.myReview.trim() === ""***REMOVED***
+              />
             </form>
           </div>
         )***REMOVED***
-        ***REMOVED***this.state.reviews.length === 0 ? (
-          <p>No reviews (yet!)</p>
-        ) : (
-          this.state.reviews.map(x => (
-            <div>
-              <p style=***REMOVED******REMOVED*** color: "blue", fontSize: "80%" ***REMOVED******REMOVED***>***REMOVED***x.name + ": "***REMOVED***</p>
-              <p>***REMOVED***x.review***REMOVED***</p>
-            </div>
-          ))
-        )***REMOVED***
+        <table style=***REMOVED******REMOVED*** tableLayout: "fixed" ***REMOVED******REMOVED***>
+          <tbody>
+            ***REMOVED***this.state.reviews.length === 0 ? (
+              <tr key=***REMOVED***1***REMOVED***>
+                <td>
+                  <p>No reviews (yet!)</p>
+                </td>
+              </tr>
+            ) : (
+              this.state.reviews.map((x, i) => ***REMOVED***
+                return (
+                  <tr key=***REMOVED***i***REMOVED***>
+                    <td>
+                      <strong style=***REMOVED******REMOVED*** color: "blue", fontSize: "80%" ***REMOVED******REMOVED***>
+                        ***REMOVED***x.name***REMOVED***
+                      </strong>
+                      <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
+                        ***REMOVED***" • " + x.date.toDate().toLocaleString('default', ***REMOVED***
+                          day: 'numeric',
+                          month: 'long',
+                          year: 'numeric',
+                          hour: 'numeric',
+                          minute: 'numeric',
+                        ***REMOVED***)***REMOVED***
+                      </span>
+                      <br />
+                      <ReviewText review=***REMOVED***x.review***REMOVED*** />
+                    </td>
+                  </tr>
+                )
+              ***REMOVED***).reverse()
+            )***REMOVED***
+          </tbody>
+        </table>
       </div>
     )
   ***REMOVED***

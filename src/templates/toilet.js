@@ -29,7 +29,7 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
     <Layout main=***REMOVED***false***REMOVED***>
       <h3>***REMOVED***name***REMOVED***</h3>
       <ShareButton name=***REMOVED***name***REMOVED*** />
-      <Map lat=***REMOVED***lat***REMOVED*** lon=***REMOVED***lon***REMOVED*** />
+      ***REMOVED***/*<Map lat=***REMOVED***lat***REMOVED*** lon=***REMOVED***lon***REMOVED*** />*/***REMOVED***
       <Paranoma
         name=***REMOVED***name***REMOVED***
         paranomaUrl=***REMOVED***paranomaUrl***REMOVED***
@@ -66,7 +66,7 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
           Has hose
         </li>
       </ul>
-      <Reviews />
+      <Reviews name=***REMOVED***name***REMOVED*** />
     </Layout>
   )
 ***REMOVED***
