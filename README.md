@@ -24,6 +24,7 @@ Never fear again when you are in a foreign part of NUS, for now you can finally 
 #### To be implemented
 * Document **ALL** toilets in NUS.
 * Paginate main list of toilets.
+* Persistance of options chosen (such as filters and sorting) upon navigation back to main page.
 * Refine review system:
   * Paginate reviews, lazily load each page of reviews.
   * Implement star ratings.
