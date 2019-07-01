@@ -93,7 +93,6 @@ class Reviews extends React.Component ***REMOVED***
       signInOptions: [
         this.firebase.firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       ],
-      signInFlow: "popup",
       callbacks: ***REMOVED***
         // Avoid redirects after sign-in.
         signInSuccessWithAuthResult: () => false,
