@@ -43,7 +43,7 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
       </Helmet>
       <h3>***REMOVED***name***REMOVED***</h3>
       <ShareButton name=***REMOVED***name***REMOVED*** />
-      ***REMOVED***/*<Map lat=***REMOVED***lat***REMOVED*** lon=***REMOVED***lon***REMOVED*** />*/***REMOVED***
+      <Map lat=***REMOVED***lat***REMOVED*** lon=***REMOVED***lon***REMOVED*** />
       <Paranoma
         name=***REMOVED***name***REMOVED***
         paranomaUrl=***REMOVED***paranomaUrl***REMOVED***

@@ -6,16 +6,18 @@ class ReviewText extends React.Component ***REMOVED***
   constructor(props) ***REMOVED***
     super(props)
 
+    this.len = 100
+
     this.state = ***REMOVED***
-      review: this.props.review.slice(0, 80),
-      isTooLong: this.props.review.length > 80,
+      review: this.props.review.slice(0, this.len),
+      isTooLong: this.props.review.length > this.len,
     ***REMOVED***
   ***REMOVED***
 
   onClick = () => ***REMOVED***
-    if (this.state.review.length > 80) ***REMOVED***
+    if (this.state.review.length > this.len) ***REMOVED***
       this.setState(***REMOVED***
-        review: this.props.review.slice(0, 80),
+        review: this.props.review.slice(0, this.len),
       ***REMOVED***)
     ***REMOVED*** else ***REMOVED***
       this.setState(***REMOVED***
@@ -27,7 +29,7 @@ class ReviewText extends React.Component ***REMOVED***
   render() ***REMOVED***
     return (
       <div>
-        ***REMOVED***this.props.review.length > 80 && this.state.review.length <= 80
+        ***REMOVED***this.props.review.length > this.len && this.state.review.length <= this.len
           ? this.state.review + "..."
           : this.state.review***REMOVED***
         ***REMOVED***this.state.isTooLong && (
@@ -46,7 +48,7 @@ class ReviewText extends React.Component ***REMOVED***
               ***REMOVED******REMOVED***
               onClick=***REMOVED***this.onClick***REMOVED***
             >
-              ***REMOVED***this.state.review.length > 80 ? "Show less" : "Show more"***REMOVED***
+              ***REMOVED***this.state.review.length > this.len ? "Show less" : "Show more"***REMOVED***
             </button>
           </div>
         )***REMOVED***
