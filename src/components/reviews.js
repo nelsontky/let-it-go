@@ -2,6 +2,20 @@ import React from "react"
 import Firebase from "../utils/firebase"
 import ***REMOVED*** Helmet ***REMOVED*** from "react-helmet"
 
+function buttonToLinkStyle(color, size) ***REMOVED***
+  return ***REMOVED***
+    backgroundColor: "transparent",
+    border: "none",
+    cursor: "pointer",
+    textDecoration: "underline",
+    display: "inline",
+    margin: "0",
+    padding: "0",
+    color: color,
+    fontSize: size,
+  ***REMOVED***
+***REMOVED***
+
 class ReviewText extends React.Component ***REMOVED***
   constructor(props) ***REMOVED***
     super(props)
@@ -29,23 +43,14 @@ class ReviewText extends React.Component ***REMOVED***
   render() ***REMOVED***
     return (
       <div>
-        ***REMOVED***this.props.review.length > this.len && this.state.review.length <= this.len
+        ***REMOVED***this.props.review.length > this.len &&
+        this.state.review.length <= this.len
           ? this.state.review + "..."
           : this.state.review***REMOVED***
         ***REMOVED***this.state.isTooLong && (
           <div>
             <button
-              style=***REMOVED******REMOVED***
-                backgroundColor: "transparent",
-                border: "none",
-                cursor: "pointer",
-                textDecoration: "underline",
-                display: "inline",
-                margin: "0",
-                padding: "0",
-                color: "#1ca086",
-                fontSize: "60%",
-              ***REMOVED******REMOVED***
+              style=***REMOVED***buttonToLinkStyle("#1ca086", "60%")***REMOVED***
               onClick=***REMOVED***this.onClick***REMOVED***
             >
               ***REMOVED***this.state.review.length > this.len ? "Show less" : "Show more"***REMOVED***
@@ -68,6 +73,7 @@ class Reviews extends React.Component ***REMOVED***
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   ***REMOVED***
 
   componentDidMount() ***REMOVED***
@@ -110,6 +116,7 @@ class Reviews extends React.Component ***REMOVED***
   ***REMOVED***
 
   handleSubmit(event) ***REMOVED***
+    console.log(this.firebase.firebase.firestore.FieldValue)
     event.preventDefault()
     this.db
       .collection("toilets")
@@ -120,6 +127,7 @@ class Reviews extends React.Component ***REMOVED***
             name: this.auth.currentUser.displayName,
             review: this.state.myReview,
             date: new Date(),
+            uid: this.auth.currentUser.uid,
           ***REMOVED***),
         ***REMOVED***,
         ***REMOVED*** merge: true ***REMOVED***
@@ -129,6 +137,8 @@ class Reviews extends React.Component ***REMOVED***
       myReview: "",
     ***REMOVED***)
   ***REMOVED***
+
+  handleDelete() ***REMOVED******REMOVED***
 
   render() ***REMOVED***
     return (
@@ -167,11 +177,11 @@ class Reviews extends React.Component ***REMOVED***
             </p>
             <form onSubmit=***REMOVED***this.handleSubmit***REMOVED***>
               <label>
-                Review:
                 <textarea
                   style=***REMOVED******REMOVED*** width: "100%", resize: "none", height: "75px" ***REMOVED******REMOVED***
                   value=***REMOVED***this.state.myReview***REMOVED***
                   onChange=***REMOVED***this.handleChange***REMOVED***
+                  placeholder="Write a review..."
                 />
               </label>
               <input
@@ -209,6 +219,15 @@ class Reviews extends React.Component ***REMOVED***
                               minute: "numeric",
                             ***REMOVED***)***REMOVED***
                         </span>
+                        ***REMOVED***this.state.isSignedIn &&
+                          x.uid === this.auth.currentUser.uid && (
+                            <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
+                              ***REMOVED***" • "***REMOVED***
+                              <button style=***REMOVED***buttonToLinkStyle("red", "100%")***REMOVED***>
+                                Delete
+                              </button>
+                            </span>
+                          )***REMOVED***
                         <br />
                         <ReviewText review=***REMOVED***x.review***REMOVED*** />
                       </td>

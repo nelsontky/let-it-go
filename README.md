@@ -9,8 +9,13 @@ Never fear again when you are in a foreign part of NUS, for now you can finally 
 
 ## Screenshots
 Demo video: https://www.youtube.com/watch?v=W06EW9-r1iY
+#### Webapp:
 ![Main Screen](https://i.imgur.com/U9En22F.png)
 ![Toilets Page](https://i.imgur.com/KROzJDB.png)
+#### iOS app:
+![Main Screen](https://i.imgur.com/0NGHavv.jpg)
+![Toilets Page](https://i.imgur.com/knArjQZ.jpg)
+![Toilets Page](https://i.imgur.com/nIN5mz7.jpg)
 
 ## Features
 #### Implemented

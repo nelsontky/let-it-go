@@ -150,7 +150,7 @@ export default class App extends React.Component ***REMOVED***
         ***REMOVED***/* Sorting dropdown */***REMOVED***
         <div style=***REMOVED******REMOVED*** float: "right" ***REMOVED******REMOVED***>
           <label>
-            Sort by:
+            Sort by: ***REMOVED***" "***REMOVED***
             <select value=***REMOVED***this.state.sortBy***REMOVED*** onChange=***REMOVED***this.handleChange***REMOVED***>
               <option value="name">Name</option>
               ***REMOVED***isLocationAvailable && (
