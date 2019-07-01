@@ -26,7 +26,8 @@
     "react-helmet": "^5.2.1",
     "react-typography": "^0.16.19",
     "typography": "^0.16.19",
-    "typography-theme-fairy-gates": "^0.16.19"
+    "typography-theme-fairy-gates": "^0.16.19",
+    "uniqid": "^5.0.3"
   ***REMOVED***,
   "devDependencies": ***REMOVED***
     "gh-pages": "^2.0.1",

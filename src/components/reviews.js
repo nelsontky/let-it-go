@@ -2,6 +2,8 @@ import React from "react"
 import Firebase from "../utils/firebase"
 import ***REMOVED*** Helmet ***REMOVED*** from "react-helmet"
 
+const uniqid = require("uniqid")
+
 function buttonToLinkStyle(color, size) ***REMOVED***
   return ***REMOVED***
     backgroundColor: "transparent",
@@ -69,11 +71,13 @@ class Reviews extends React.Component ***REMOVED***
       reviews: [],
       isSignedIn: false,
       myReview: "",
+      reviewsLoading: true,
     ***REMOVED***
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
+    this.updateReviews = this.updateReviews.bind(this)
   ***REMOVED***
 
   componentDidMount() ***REMOVED***
@@ -86,12 +90,13 @@ class Reviews extends React.Component ***REMOVED***
       this.firebase.ui = new firebaseui.auth.AuthUI(this.auth)
     ***REMOVED***
 
-    this.db
+    this.snapshot = this.db
       .collection("toilets")
       .doc(this.props.name)
       .onSnapshot(doc => ***REMOVED***
         this.setState(***REMOVED***
           reviews: doc.data().reviews,
+          reviewsLoading: false,
         ***REMOVED***)
       ***REMOVED***)
 
@@ -106,9 +111,24 @@ class Reviews extends React.Component ***REMOVED***
     ***REMOVED***
     this.firebase.ui.start("#firebaseui-auth-container", this.uiConfig)
 
-    this.auth.onAuthStateChanged(user => ***REMOVED***
+    this.stopAuthListener = this.auth.onAuthStateChanged(user => ***REMOVED***
       this.setState(***REMOVED*** isSignedIn: !!user ***REMOVED***)
     ***REMOVED***)
+
+    this.updateReviews()
+  ***REMOVED***
+
+  updateReviews() ***REMOVED***
+    this.db
+      .collection("toilets")
+      .doc(this.props.name)
+      .get()
+      .then(doc => ***REMOVED***
+        this.setState(***REMOVED***
+          reviews: doc.data().reviews,
+          reviewsLoading: false,
+        ***REMOVED***)
+      ***REMOVED***)
   ***REMOVED***
 
   handleChange(event) ***REMOVED***
@@ -116,14 +136,15 @@ class Reviews extends React.Component ***REMOVED***
   ***REMOVED***
 
   handleSubmit(event) ***REMOVED***
-    console.log(this.firebase.firebase.firestore.FieldValue)
     event.preventDefault()
+
     this.db
       .collection("toilets")
       .doc(this.props.name)
       .set(
         ***REMOVED***
           reviews: this.firebase.firebase.firestore.FieldValue.arrayUnion(***REMOVED***
+            id: uniqid(),
             name: this.auth.currentUser.displayName,
             review: this.state.myReview,
             date: new Date(),
@@ -138,7 +159,29 @@ class Reviews extends React.Component ***REMOVED***
     ***REMOVED***)
   ***REMOVED***
 
-  handleDelete() ***REMOVED******REMOVED***
+  handleDelete(id) ***REMOVED***
+    if (
+      window.confirm(
+        "Are you sure you want to delete your review? Such an action is irreversible!"
+      )
+    ) ***REMOVED***
+      this.db
+        .collection("toilets")
+        .doc(this.props.name)
+        .set(
+          ***REMOVED***
+            reviews: this.state.reviews.filter(x => x.id !== id),
+          ***REMOVED***,
+          ***REMOVED*** merge: true ***REMOVED***
+        )
+        .then(() => window.location.reload())
+    ***REMOVED***
+  ***REMOVED***
+
+  componentWillUnmount() ***REMOVED***
+    this.snapshot()
+    this.stopAuthListener()
+  ***REMOVED***
 
   render() ***REMOVED***
     return (
@@ -161,7 +204,7 @@ class Reviews extends React.Component ***REMOVED***
             </p>
           </div>
         )***REMOVED***
-        ***REMOVED***this.state.isSignedIn && (
+        ***REMOVED***this.state.isSignedIn && !this.state.reviewsLoading && (
           <div>
             <p>
               Welcome ***REMOVED***this.auth.currentUser.displayName***REMOVED***! You are now
@@ -197,7 +240,11 @@ class Reviews extends React.Component ***REMOVED***
             ***REMOVED***this.state.reviews.length === 0 ? (
               <tr key=***REMOVED***1***REMOVED***>
                 <td>
-                  <p>No reviews (yet!)</p>
+                  ***REMOVED***!this.state.reviewsLoading ? (
+                    <p>No reviews (yet!)</p>
+                  ) : (
+                    <p>Reviews are loading...</p>
+                  )***REMOVED***
                 </td>
               </tr>
             ) : (
@@ -223,7 +270,10 @@ class Reviews extends React.Component ***REMOVED***
                           x.uid === this.auth.currentUser.uid && (
                             <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
                               ***REMOVED***" • "***REMOVED***
-                              <button style=***REMOVED***buttonToLinkStyle("red", "100%")***REMOVED***>
+                              <button
+                                onClick=***REMOVED***() => this.handleDelete(x.id)***REMOVED***
+                                style=***REMOVED***buttonToLinkStyle("red", "100%")***REMOVED***
+                              >
                                 Delete
                               </button>
                             </span>
