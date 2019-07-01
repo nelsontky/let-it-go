@@ -12,7 +12,7 @@ const content = (
         <i className="em-svg em-woman-raising-hand" />: Has female toilet
       </li>
       <li>
-        <i className="em-svg em-wheelchair" />: Is wheelchair accessible
+        <i className="em-svg em-wheelchair" />: Is handicapped accessible
         (Includes seperate handicapped toilets or those inside toilets as a
         larger cubicle)
       </li>

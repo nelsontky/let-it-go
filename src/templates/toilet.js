@@ -5,6 +5,7 @@ import ShareButton from "../components/shareButton"
 import * as utils from "../utils/utils"
 import Map from "../components/map"
 import Paranoma from "../components/paranoma"
+import ***REMOVED*** Helmet ***REMOVED*** from "react-helmet"
 import Reviews from "../components/reviews"
 
 export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
@@ -25,8 +26,21 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
     ***REMOVED***
   ***REMOVED***
 
+  function handicappedText() ***REMOVED***
+    if (!utils.hasHandicappedToilet(data.toilets)) ***REMOVED***
+      return "Is handicapped accessible"
+    ***REMOVED*** else if (!utils.hasSeperateHandicappedToilet(data.toilets))
+      return "Is handicapped accessible (Handicapped cubicle inside toilet)"
+    else ***REMOVED***
+      return "Is handicapped accessible (Has seperate handicapped toilet)"
+    ***REMOVED***
+  ***REMOVED***
+
   return (
     <Layout main=***REMOVED***false***REMOVED***>
+      <Helmet>
+        <title>***REMOVED***name***REMOVED***</title>
+      </Helmet>
       <h3>***REMOVED***name***REMOVED***</h3>
       <ShareButton name=***REMOVED***name***REMOVED*** />
       ***REMOVED***/*<Map lat=***REMOVED***lat***REMOVED*** lon=***REMOVED***lon***REMOVED*** />*/***REMOVED***
@@ -51,7 +65,7 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
         </li>
         <li style=***REMOVED***glanceStyle(utils.hasHandicappedToilet)***REMOVED***>
           <i className="em-svg em-wheelchair" />
-          Is handicap accessible (Add in seperate or not seperate)
+          ***REMOVED***handicappedText()***REMOVED***
         </li>
         <li style=***REMOVED***glanceStyle(utils.toiletHasWaterCooler)***REMOVED***>
           <i className="em-svg em-potable_water" />
@@ -88,6 +102,7 @@ export const query = graphql`
       facilities ***REMOVED***
         hose
         showerHeads
+        handicapped
       ***REMOVED***
     ***REMOVED***
   ***REMOVED***

@@ -5,6 +5,8 @@ export default function HTML(props) ***REMOVED***
   return (
     <html ***REMOVED***...props.htmlAttributes***REMOVED***>
       <head>
+        <link rel="shortcut icon" href="https://raw.githubusercontent.com/nelsontky/let-it-go/master/assets/icons/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="https://raw.githubusercontent.com/nelsontky/let-it-go/master/assets/icons/favicon.ico" type="image/x-icon" />
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm31tTHPuaSkBR1Ff7pYAavUX6K1DlZ5g&callback=initMap"></script>
         <script type="text/javascript" src="https://cdn.pannellum.org/2.4/pannellum.js"/>
         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"></link>
