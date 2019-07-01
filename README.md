@@ -18,8 +18,8 @@ Never fear again when you are in a foreign part of NUS, for now you can finally 
 * 180 degree photos of the vicinity of each toilet to facilitate recognition and navigation to a toilet.
 * Detailed information about each toilet such as the availability of facilities like wheelchair accessible cubicles or presense of shower heads.
 * Ability to filter/sort toilets by features such as proximity (duh!) and gender.
-* Rudimentary review system that is linked to Google account. Review deletion/editing is still not possible and current review system is just a VERY basic comment system.
-* A native iOS application
+* Rudimentary review system that is linked to Google account. Review deletion is still not possible and current review system is just a VERY basic comment system.
+* A native iOS application.
 
 #### To be implemented
 * Document **ALL** toilets in NUS.
