@@ -8,6 +8,7 @@ Let It Go is a web app that allows you to locate toilets in NUS nearest to you i
 Never fear again when you are in a foreign part of NUS, for now you can finally release your faeces in peace!
 
 ## Screenshots
+Demo video: https://www.youtube.com/watch?v=W06EW9-r1iY
 ![Main Screen](https://i.imgur.com/U9En22F.png)
 ![Toilets Page](https://i.imgur.com/KROzJDB.png)
 
