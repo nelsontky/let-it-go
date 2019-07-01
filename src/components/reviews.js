@@ -32,9 +32,22 @@ class ReviewText extends React.Component ***REMOVED***
           : this.state.review***REMOVED***
         ***REMOVED***this.state.isTooLong && (
           <div>
-            <a style=***REMOVED******REMOVED*** fontSize: "60%" ***REMOVED******REMOVED*** onClick=***REMOVED***this.onClick***REMOVED***>
+            <button
+              style=***REMOVED******REMOVED***
+                backgroundColor: "transparent",
+                border: "none",
+                cursor: "pointer",
+                textDecoration: "underline",
+                display: "inline",
+                margin: "0",
+                padding: "0",
+                color: "#1ca086",
+                fontSize: "60%",
+              ***REMOVED******REMOVED***
+              onClick=***REMOVED***this.onClick***REMOVED***
+            >
               ***REMOVED***this.state.review.length > 80 ? "Show less" : "Show more"***REMOVED***
-            </a>
+            </button>
           </div>
         )***REMOVED***
       </div>
@@ -174,28 +187,31 @@ class Reviews extends React.Component ***REMOVED***
                 </td>
               </tr>
             ) : (
-              this.state.reviews.map((x, i) => ***REMOVED***
-                return (
-                  <tr key=***REMOVED***i***REMOVED***>
-                    <td>
-                      <strong style=***REMOVED******REMOVED*** color: "blue", fontSize: "80%" ***REMOVED******REMOVED***>
-                        ***REMOVED***x.name***REMOVED***
-                      </strong>
-                      <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
-                        ***REMOVED***" • " + x.date.toDate().toLocaleString('default', ***REMOVED***
-                          day: 'numeric',
-                          month: 'long',
-                          year: 'numeric',
-                          hour: 'numeric',
-                          minute: 'numeric',
-                        ***REMOVED***)***REMOVED***
-                      </span>
-                      <br />
-                      <ReviewText review=***REMOVED***x.review***REMOVED*** />
-                    </td>
-                  </tr>
-                )
-              ***REMOVED***).reverse()
+              this.state.reviews
+                .map((x, i) => ***REMOVED***
+                  return (
+                    <tr key=***REMOVED***i***REMOVED***>
+                      <td>
+                        <strong style=***REMOVED******REMOVED*** color: "blue", fontSize: "80%" ***REMOVED******REMOVED***>
+                          ***REMOVED***x.name***REMOVED***
+                        </strong>
+                        <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
+                          ***REMOVED***" • " +
+                            x.date.toDate().toLocaleString("default", ***REMOVED***
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                              hour: "numeric",
+                              minute: "numeric",
+                            ***REMOVED***)***REMOVED***
+                        </span>
+                        <br />
+                        <ReviewText review=***REMOVED***x.review***REMOVED*** />
+                      </td>
+                    </tr>
+                  )
+                ***REMOVED***)
+                .reverse()
             )***REMOVED***
           </tbody>
         </table>
