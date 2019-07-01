@@ -1,5 +1,4 @@
 var firebase = require("firebase/app")
-var firebaseui = require("firebaseui")
 require("firebase/auth")
 require("firebase/firestore")
 
@@ -24,7 +23,6 @@ class Firebase ***REMOVED***
     this.db = firebase.firestore()
     this.auth = firebase.auth()
     this.firebase = firebase
-    this.ui = new firebaseui.auth.AuthUI(firebase.auth());
     instance = this
   ***REMOVED***
 ***REMOVED***

@@ -73,7 +73,10 @@ class Reviews extends React.Component ***REMOVED***
 
     this.db = this.firebase.db
     this.auth = this.firebase.auth
-    this.ui = this.firebase.ui
+    if (this.firebase.ui == null) ***REMOVED***
+      const firebaseui = require("firebaseui")
+      this.firebase.ui = new firebaseui.auth.AuthUI(this.auth)
+    ***REMOVED***
 
     this.db
       .collection("toilets")
@@ -94,7 +97,7 @@ class Reviews extends React.Component ***REMOVED***
         signInSuccessWithAuthResult: () => false,
       ***REMOVED***,
     ***REMOVED***
-    this.ui.start("#firebaseui-auth-container", this.uiConfig)
+    this.firebase.ui.start("#firebaseui-auth-container", this.uiConfig)
 
     this.auth.onAuthStateChanged(user => ***REMOVED***
       this.setState(***REMOVED*** isSignedIn: !!user ***REMOVED***)
