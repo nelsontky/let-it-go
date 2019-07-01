@@ -29,6 +29,10 @@ function hasFemaleToilet(toilet) ***REMOVED***
 ***REMOVED***
 
 function hasHandicappedToilet(toilet) ***REMOVED***
+  return toilet.facilities.handicapped;
+***REMOVED***
+
+function hasSeperateHandicappedToilet(toilet) ***REMOVED***
   return toilet.paranoma.handicappedYaw != null
 ***REMOVED***
 
@@ -49,6 +53,7 @@ export ***REMOVED***
   hasMaleToilet,
   hasFemaleToilet,
   hasHandicappedToilet,
+  hasSeperateHandicappedToilet,
   toiletHasHose,
   toiletHasShowerHeads,
   toiletHasWaterCooler,

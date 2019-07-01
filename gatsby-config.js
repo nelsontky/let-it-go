@@ -37,6 +37,7 @@ module.exports = ***REMOVED***
                 facilities: ***REMOVED***
                   hose: doc.facilities.hose,
                   showerHeads: doc.facilities.showerHeads,
+                  handicapped: doc.facilities.handicapped,
                 ***REMOVED***,
               ***REMOVED***
             ***REMOVED***,

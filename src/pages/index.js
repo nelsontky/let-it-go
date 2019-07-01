@@ -6,6 +6,7 @@ import LocationHelp from "../components/locationHelp"
 import ***REMOVED*** graphql ***REMOVED*** from "gatsby"
 import ***REMOVED*** Link ***REMOVED*** from "gatsby"
 import * as utils from "../utils/utils"
+import ***REMOVED*** Helmet ***REMOVED*** from "react-helmet"
 
 let isLocationAvailable = false
 
@@ -143,6 +144,9 @@ export default class App extends React.Component ***REMOVED***
 
     return (
       <Layout main=***REMOVED***true***REMOVED***>
+        <Helmet>
+          <title>Let It Go</title>
+        </Helmet>
         ***REMOVED***/* Sorting dropdown */***REMOVED***
         <div style=***REMOVED******REMOVED*** float: "right" ***REMOVED******REMOVED***>
           <label>
@@ -158,7 +162,7 @@ export default class App extends React.Component ***REMOVED***
 
         ***REMOVED***/* Filtering */***REMOVED***
         <button onClick=***REMOVED***this.handleClick***REMOVED***>
-          ***REMOVED***this.state.isFilterHidden ? 'Filter' : "Hide"***REMOVED***
+          ***REMOVED***this.state.isFilterHidden ? "Filter" : "Hide"***REMOVED***
         </button>
         ***REMOVED***!this.state.isFilterHidden && (
           <div>
@@ -193,7 +197,7 @@ export default class App extends React.Component ***REMOVED***
                 checked=***REMOVED***this.state.handicappedChecked***REMOVED***
                 onChange=***REMOVED***this.handleFilterChange***REMOVED***
               />
-              Wheelchair accessible
+              Handicapped accessible
             </label>
             <br />
             <label>
@@ -239,9 +243,7 @@ export default class App extends React.Component ***REMOVED***
               <th>
                 Name
                 ***REMOVED***isLocationAvailable && (
-                    <div style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
-                      Distance
-                  </div>
+                  <div style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>Distance</div>
                 )***REMOVED***
               </th>
               <th style=***REMOVED******REMOVED*** textAlign: "center" ***REMOVED******REMOVED***>
@@ -307,6 +309,7 @@ export const query = graphql`
         facilities ***REMOVED***
           hose
           showerHeads
+          handicapped
         ***REMOVED***
         paranoma ***REMOVED***
           femaleYaw
