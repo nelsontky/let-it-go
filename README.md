@@ -39,5 +39,5 @@ Never fear again when you are in a foreign part of NUS, for now you can finally 
 ## Built with
 * [GatsbyJS](https://www.gatsbyjs.org/)
 * [Firebase](https://firebase.google.com/)
-* React native
+* [React Native](https://facebook.github.io/react-native/)
 * And lots and lots of love 💕💕💕
