@@ -31,7 +31,7 @@ class ReviewText extends React.Component ***REMOVED***
 
   render() ***REMOVED***
     return (
-      <div>
+      <div key=***REMOVED***this.props.review***REMOVED***>
         ***REMOVED***this.props.review.length > this.len &&
         this.state.review.length <= this.len
           ? this.state.review + "..."
@@ -75,16 +75,6 @@ class Reviews extends React.Component ***REMOVED***
       const firebaseui = require("firebaseui")
       this.firebase.ui = new firebaseui.auth.AuthUI(this.auth)
     ***REMOVED***
-
-    // this.snapshot = this.db
-    //   .collection("reviews")
-    //   .doc(this.props.name)
-    //   .onSnapshot(doc => ***REMOVED***
-    //     this.setState(***REMOVED***
-    //       reviews: doc.data().reviews,
-    //       reviewsLoading: false,
-    //     ***REMOVED***)
-    //   ***REMOVED***)
 
     this.snapshot = this.db
       .collection("reviews")
@@ -141,7 +131,7 @@ class Reviews extends React.Component ***REMOVED***
           ***REMOVED***),
         ***REMOVED***,
         ***REMOVED*** merge: true ***REMOVED***
-      ).then(() => window.location.reload())
+      )
 
     this.setState(***REMOVED***
       myReview: "",
@@ -149,21 +139,17 @@ class Reviews extends React.Component ***REMOVED***
   ***REMOVED***
 
   handleDelete(id) ***REMOVED***
-    if (
-      window.confirm(`Are you sure you want to delete your review?`)
-    ) ***REMOVED***
+    if (window.confirm(`Are you sure you want to delete your review?`)) ***REMOVED***
       this.db
         .collection("reviews")
         .doc(this.props.name)
         .collection("users")
         .doc(this.auth.currentUser.uid)
-        .set(
-          ***REMOVED***
-            userReviews: this.state.reviews.filter(x => x.id !== id),
-          ***REMOVED***,
-          ***REMOVED*** merge: true ***REMOVED***
-        )
-        .then(() => window.location.reload())
+        .set(***REMOVED***
+          userReviews: this.state.reviews.filter(
+            x => x.uid === this.auth.currentUser.uid && x.id !== id
+          ),
+        ***REMOVED***)
     ***REMOVED***
   ***REMOVED***
 
@@ -267,7 +253,7 @@ class Reviews extends React.Component ***REMOVED***
                           </span>
                         )***REMOVED***
                       <br />
-                      <ReviewText review=***REMOVED***x.review***REMOVED*** />
+                      <ReviewText key=***REMOVED***x.id***REMOVED*** review=***REMOVED***x.review***REMOVED*** />
                     </td>
                   </tr>
                 )

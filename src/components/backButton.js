@@ -17,7 +17,6 @@ class BackButton extends React.Component ***REMOVED***
     if (this.state.localWindow == null) ***REMOVED***
       return <Link to=***REMOVED***"/"***REMOVED***>Back</Link>
     ***REMOVED*** else ***REMOVED***
-      console.log(this.state.localWindow.history)
       return this.state.localWindow.history.state == null ? (
         <Link to=***REMOVED***"/"***REMOVED***>Back</Link>
       ) : (
