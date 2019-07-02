@@ -1,41 +1,51 @@
 import React from "react"
 import LocationHelp from "./locationHelp"
 
-let isLocationAvailable = true
-
 class Map extends React.Component ***REMOVED***
+  constructor(props) ***REMOVED***
+    super(props)
+
+    this.state = ***REMOVED***
+      isLocationAvailable: false,
+    ***REMOVED***
+  ***REMOVED***
   componentWillUnmount() ***REMOVED***
-    clearInterval(this.timerID)
+    navigator.geolocation.clearWatch(this.id)
   ***REMOVED***
 
-  getGeoLocation() ***REMOVED***
+  watchLocation() ***REMOVED***
     if (navigator.geolocation) ***REMOVED***
-      navigator.geolocation.getCurrentPosition(
+      this.id = navigator.geolocation.watchPosition(
         position => ***REMOVED***
           this.locationMarker.setPosition(***REMOVED***
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           ***REMOVED***)
-          isLocationAvailable = true
+          this.setState(***REMOVED***
+            isLocationAvailable: true,
+          ***REMOVED***)
 
           this.accuracyRadius.setCenter(this.locationMarker.getPosition())
           this.accuracyRadius.setRadius(position.coords.accuracy)
         ***REMOVED***,
         () => ***REMOVED***
-          isLocationAvailable = false
+          this.setState(***REMOVED***
+            isLocationAvailable: false,
+          ***REMOVED***)
         ***REMOVED***,
         ***REMOVED*** enableHighAccuracy: true ***REMOVED***
       )
     ***REMOVED*** else ***REMOVED***
       // Browser doesn't support Geolocation
-      isLocationAvailable = false
+      this.setState(***REMOVED***
+        isLocationAvailable: false,
+      ***REMOVED***)
     ***REMOVED***
-    this.forceUpdate()
   ***REMOVED***
 
   componentDidMount() ***REMOVED***
-    this.timerID = setInterval(() => this.getGeoLocation(), 1000)
-
+    this.watchLocation()
+    
     this.map = new window.google.maps.Map(document.getElementById("map"), ***REMOVED***
       center: ***REMOVED*** lat: this.props.lat, lng: this.props.lon ***REMOVED***,
       zoom: 17,
@@ -85,7 +95,6 @@ class Map extends React.Component ***REMOVED***
 
       // Setup the click event listeners
       controlUI.addEventListener("click", function() ***REMOVED***
-        self.getGeoLocation()
         map.setCenter(self.locationMarker.getPosition())
       ***REMOVED***)
     ***REMOVED***
@@ -103,7 +112,7 @@ class Map extends React.Component ***REMOVED***
   render() ***REMOVED***
     return (
       <div>
-        ***REMOVED***!isLocationAvailable && <LocationHelp />***REMOVED***
+        ***REMOVED***!this.state.isLocationAvailable && <LocationHelp />***REMOVED***
         <div id="map" style=***REMOVED******REMOVED*** width: "100%", height: 300 ***REMOVED******REMOVED*** />
       </div>
     )

@@ -77,7 +77,6 @@ class Reviews extends React.Component ***REMOVED***
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
-    this.updateReviews = this.updateReviews.bind(this)
   ***REMOVED***
 
   componentDidMount() ***REMOVED***
@@ -114,21 +113,6 @@ class Reviews extends React.Component ***REMOVED***
     this.stopAuthListener = this.auth.onAuthStateChanged(user => ***REMOVED***
       this.setState(***REMOVED*** isSignedIn: !!user ***REMOVED***)
     ***REMOVED***)
-
-    this.updateReviews()
-  ***REMOVED***
-
-  updateReviews() ***REMOVED***
-    this.db
-      .collection("toilets")
-      .doc(this.props.name)
-      .get()
-      .then(doc => ***REMOVED***
-        this.setState(***REMOVED***
-          reviews: doc.data().reviews,
-          reviewsLoading: false,
-        ***REMOVED***)
-      ***REMOVED***)
   ***REMOVED***
 
   handleChange(event) ***REMOVED***

@@ -8,12 +8,11 @@ import ***REMOVED*** Link ***REMOVED*** from "gatsby"
 import * as utils from "../utils/utils"
 import ***REMOVED*** Helmet ***REMOVED*** from "react-helmet"
 
-let isLocationAvailable = false
-
 export default class App extends React.Component ***REMOVED***
   constructor(props) ***REMOVED***
     super(props)
     this.state = ***REMOVED***
+      isLocationAvailable: false,
       toilets: this.props.data.allToilets.nodes.slice(0),
       myLat: null,
       myLon: null,
@@ -30,7 +29,7 @@ export default class App extends React.Component ***REMOVED***
     this.sortByDistance = this.sortByDistance.bind(this)
     this.compareDistance = this.compareDistance.bind(this)
     this.sortByName = this.sortByName.bind(this)
-    this.updatePosition = this.updatePosition.bind(this)
+    this.getLocation = this.getLocation.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleFilterChange = this.handleFilterChange.bind(this)
@@ -38,8 +37,7 @@ export default class App extends React.Component ***REMOVED***
   ***REMOVED***
 
   componentDidMount() ***REMOVED***
-    isLocationAvailable = false
-    this.updatePosition()
+    this.getLocation()
   ***REMOVED***
 
   handleChange(event) ***REMOVED***
@@ -112,7 +110,7 @@ export default class App extends React.Component ***REMOVED***
     )
   ***REMOVED***
 
-  updatePosition() ***REMOVED***
+  getLocation() ***REMOVED***
     if (navigator.geolocation) ***REMOVED***
       navigator.geolocation.getCurrentPosition(
         pos => ***REMOVED***
@@ -120,22 +118,24 @@ export default class App extends React.Component ***REMOVED***
             myLat: pos.coords.latitude,
             myLon: pos.coords.longitude,
             sortBy: `distance`,
+            isLocationAvailable: true,
           ***REMOVED***)
-          isLocationAvailable = true
           this.sortByDistance()
         ***REMOVED***,
         () => ***REMOVED***
           // Geolocation permissions denied
-          isLocationAvailable = false
+          this.setState(***REMOVED***
+            isLocationAvailable: false,
+          ***REMOVED***)
         ***REMOVED***,
         ***REMOVED*** enableHighAccuracy: true ***REMOVED***
       )
     ***REMOVED*** else ***REMOVED***
       // Browser doesn't support Geolocation
-      isLocationAvailable = false
+      this.setState(***REMOVED***
+        isLocationAvailable: false,
+      ***REMOVED***)
     ***REMOVED***
-
-    this.forceUpdate()
   ***REMOVED***
 
   render() ***REMOVED***
@@ -150,10 +150,10 @@ export default class App extends React.Component ***REMOVED***
         ***REMOVED***/* Sorting dropdown */***REMOVED***
         <div style=***REMOVED******REMOVED*** float: "right" ***REMOVED******REMOVED***>
           <label>
-            Sort by: ***REMOVED***" "***REMOVED***
+            Sort by:***REMOVED***" "***REMOVED***
             <select value=***REMOVED***this.state.sortBy***REMOVED*** onChange=***REMOVED***this.handleChange***REMOVED***>
               <option value="name">Name</option>
-              ***REMOVED***isLocationAvailable && (
+              ***REMOVED***this.state.isLocationAvailable && (
                 <option value="distance">Distance</option>
               )***REMOVED***
             </select>
@@ -234,7 +234,7 @@ export default class App extends React.Component ***REMOVED***
         )***REMOVED***
 
         ***REMOVED***/* Location not available message */***REMOVED***
-        ***REMOVED***!isLocationAvailable && <LocationHelp />***REMOVED***
+        ***REMOVED***!this.state.isLocationAvailable && <LocationHelp />***REMOVED***
 
         ***REMOVED***/* Start of table */***REMOVED***
         <table style=***REMOVED******REMOVED*** tableLayout: "fixed" ***REMOVED******REMOVED***>
@@ -242,7 +242,7 @@ export default class App extends React.Component ***REMOVED***
             <tr>
               <th>
                 Name
-                ***REMOVED***isLocationAvailable && (
+                ***REMOVED***this.state.isLocationAvailable && (
                   <div style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>Distance</div>
                 )***REMOVED***
               </th>
@@ -261,7 +261,7 @@ export default class App extends React.Component ***REMOVED***
                     ***REMOVED***toilet.name***REMOVED***
                   </Link>
                   <br />
-                  ***REMOVED***isLocationAvailable && (
+                  ***REMOVED***this.state.isLocationAvailable && (
                     <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
                       ***REMOVED***utils.appendMetres(
                         utils.latLonToMetres(
