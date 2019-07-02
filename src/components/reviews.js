@@ -1,22 +1,9 @@
 import React from "react"
 import Firebase from "../utils/firebase"
+import * as utils from "../utils/utils"
 import ***REMOVED*** Helmet ***REMOVED*** from "react-helmet"
 
 const uniqid = require("uniqid")
-
-function buttonToLinkStyle(color, size) ***REMOVED***
-  return ***REMOVED***
-    backgroundColor: "transparent",
-    border: "none",
-    cursor: "pointer",
-    textDecoration: "underline",
-    display: "inline",
-    margin: "0",
-    padding: "0",
-    color: color,
-    fontSize: size,
-  ***REMOVED***
-***REMOVED***
 
 class ReviewText extends React.Component ***REMOVED***
   constructor(props) ***REMOVED***
@@ -52,7 +39,7 @@ class ReviewText extends React.Component ***REMOVED***
         ***REMOVED***this.state.isTooLong && (
           <div>
             <button
-              style=***REMOVED***buttonToLinkStyle("#1ca086", "60%")***REMOVED***
+              style=***REMOVED***utils.buttonToLinkStyle("#1ca086", "60%")***REMOVED***
               onClick=***REMOVED***this.onClick***REMOVED***
             >
               ***REMOVED***this.state.review.length > this.len ? "Show less" : "Show more"***REMOVED***
@@ -89,12 +76,28 @@ class Reviews extends React.Component ***REMOVED***
       this.firebase.ui = new firebaseui.auth.AuthUI(this.auth)
     ***REMOVED***
 
+    // this.snapshot = this.db
+    //   .collection("reviews")
+    //   .doc(this.props.name)
+    //   .onSnapshot(doc => ***REMOVED***
+    //     this.setState(***REMOVED***
+    //       reviews: doc.data().reviews,
+    //       reviewsLoading: false,
+    //     ***REMOVED***)
+    //   ***REMOVED***)
+
     this.snapshot = this.db
-      .collection("toilets")
+      .collection("reviews")
       .doc(this.props.name)
-      .onSnapshot(doc => ***REMOVED***
+      .collection("users")
+      .onSnapshot(querySnapshot => ***REMOVED***
+        let reviews = []
+        querySnapshot.forEach(doc => ***REMOVED***
+          reviews = doc.data().userReviews.concat(reviews)
+        ***REMOVED***)
+        reviews.sort((a, b) => b.date.toDate() - a.date.toDate())
         this.setState(***REMOVED***
-          reviews: doc.data().reviews,
+          reviews,
           reviewsLoading: false,
         ***REMOVED***)
       ***REMOVED***)
@@ -123,11 +126,13 @@ class Reviews extends React.Component ***REMOVED***
     event.preventDefault()
 
     this.db
-      .collection("toilets")
+      .collection("reviews")
       .doc(this.props.name)
+      .collection("users")
+      .doc(this.auth.currentUser.uid)
       .set(
         ***REMOVED***
-          reviews: this.firebase.firebase.firestore.FieldValue.arrayUnion(***REMOVED***
+          userReviews: this.firebase.firebase.firestore.FieldValue.arrayUnion(***REMOVED***
             id: uniqid(),
             name: this.auth.currentUser.displayName,
             review: this.state.myReview,
@@ -136,7 +141,7 @@ class Reviews extends React.Component ***REMOVED***
           ***REMOVED***),
         ***REMOVED***,
         ***REMOVED*** merge: true ***REMOVED***
-      )
+      ).then(() => window.location.reload())
 
     this.setState(***REMOVED***
       myReview: "",
@@ -145,16 +150,16 @@ class Reviews extends React.Component ***REMOVED***
 
   handleDelete(id) ***REMOVED***
     if (
-      window.confirm(
-        "Are you sure you want to delete your review? Such an action is irreversible!"
-      )
+      window.confirm(`Are you sure you want to delete your review?`)
     ) ***REMOVED***
       this.db
-        .collection("toilets")
+        .collection("reviews")
         .doc(this.props.name)
+        .collection("users")
+        .doc(this.auth.currentUser.uid)
         .set(
           ***REMOVED***
-            reviews: this.state.reviews.filter(x => x.id !== id),
+            userReviews: this.state.reviews.filter(x => x.id !== id),
           ***REMOVED***,
           ***REMOVED*** merge: true ***REMOVED***
         )
@@ -232,43 +237,41 @@ class Reviews extends React.Component ***REMOVED***
                 </td>
               </tr>
             ) : (
-              this.state.reviews
-                .map((x, i) => ***REMOVED***
-                  return (
-                    <tr key=***REMOVED***i***REMOVED***>
-                      <td>
-                        <strong style=***REMOVED******REMOVED*** color: "blue", fontSize: "80%" ***REMOVED******REMOVED***>
-                          ***REMOVED***x.name***REMOVED***
-                        </strong>
-                        <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
-                          ***REMOVED***" • " +
-                            x.date.toDate().toLocaleString("default", ***REMOVED***
-                              day: "numeric",
-                              month: "long",
-                              year: "numeric",
-                              hour: "numeric",
-                              minute: "numeric",
-                            ***REMOVED***)***REMOVED***
-                        </span>
-                        ***REMOVED***this.state.isSignedIn &&
-                          x.uid === this.auth.currentUser.uid && (
-                            <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
-                              ***REMOVED***" • "***REMOVED***
-                              <button
-                                onClick=***REMOVED***() => this.handleDelete(x.id)***REMOVED***
-                                style=***REMOVED***buttonToLinkStyle("red", "100%")***REMOVED***
-                              >
-                                Delete
-                              </button>
-                            </span>
-                          )***REMOVED***
-                        <br />
-                        <ReviewText review=***REMOVED***x.review***REMOVED*** />
-                      </td>
-                    </tr>
-                  )
-                ***REMOVED***)
-                .reverse()
+              this.state.reviews.map((x, i) => ***REMOVED***
+                return (
+                  <tr key=***REMOVED***i***REMOVED***>
+                    <td>
+                      <strong style=***REMOVED******REMOVED*** color: "blue", fontSize: "80%" ***REMOVED******REMOVED***>
+                        ***REMOVED***x.name***REMOVED***
+                      </strong>
+                      <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
+                        ***REMOVED***" • " +
+                          x.date.toDate().toLocaleString("default", ***REMOVED***
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                            hour: "numeric",
+                            minute: "numeric",
+                          ***REMOVED***)***REMOVED***
+                      </span>
+                      ***REMOVED***this.state.isSignedIn &&
+                        x.uid === this.auth.currentUser.uid && (
+                          <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
+                            ***REMOVED***" • "***REMOVED***
+                            <button
+                              onClick=***REMOVED***() => this.handleDelete(x.id)***REMOVED***
+                              style=***REMOVED***utils.buttonToLinkStyle("red", "100%")***REMOVED***
+                            >
+                              Delete
+                            </button>
+                          </span>
+                        )***REMOVED***
+                      <br />
+                      <ReviewText review=***REMOVED***x.review***REMOVED*** />
+                    </td>
+                  </tr>
+                )
+              ***REMOVED***)
             )***REMOVED***
           </tbody>
         </table>

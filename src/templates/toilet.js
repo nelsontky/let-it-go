@@ -7,6 +7,7 @@ import Map from "../components/map"
 import Paranoma from "../components/paranoma"
 import ***REMOVED*** Helmet ***REMOVED*** from "react-helmet"
 import Reviews from "../components/reviews"
+import ***REMOVED*** Link ***REMOVED*** from "gatsby"
 
 export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
   const name = data.toilets.name
@@ -41,6 +42,16 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
       <Helmet>
         <title>***REMOVED***name***REMOVED***</title>
       </Helmet>
+      ***REMOVED***window.history.state == null ? (
+        <Link to=***REMOVED***"/"***REMOVED***>Back</Link>
+      ) : (
+        <button
+          style=***REMOVED***utils.buttonToLinkStyle("#1ca086", "100%")***REMOVED***
+          onClick=***REMOVED***() => window.history.back()***REMOVED***
+        >
+          Back
+        </button>
+      )***REMOVED***
       <h3>***REMOVED***name***REMOVED***</h3>
       <ShareButton name=***REMOVED***name***REMOVED*** />
       <Map lat=***REMOVED***lat***REMOVED*** lon=***REMOVED***lon***REMOVED*** />

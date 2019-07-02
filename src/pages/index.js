@@ -147,6 +147,7 @@ export default class App extends React.Component ***REMOVED***
         <Helmet>
           <title>Let It Go</title>
         </Helmet>
+        <h1>Let It Go</h1>
         ***REMOVED***/* Sorting dropdown */***REMOVED***
         <div style=***REMOVED******REMOVED*** float: "right" ***REMOVED******REMOVED***>
           <label>

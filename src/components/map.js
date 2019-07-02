@@ -8,6 +8,8 @@ class Map extends React.Component ***REMOVED***
     this.state = ***REMOVED***
       isLocationAvailable: false,
     ***REMOVED***
+
+    this.watchLocation = this.watchLocation.bind(this)
   ***REMOVED***
   componentWillUnmount() ***REMOVED***
     navigator.geolocation.clearWatch(this.id)
@@ -45,7 +47,7 @@ class Map extends React.Component ***REMOVED***
 
   componentDidMount() ***REMOVED***
     this.watchLocation()
-    
+
     this.map = new window.google.maps.Map(document.getElementById("map"), ***REMOVED***
       center: ***REMOVED*** lat: this.props.lat, lng: this.props.lon ***REMOVED***,
       zoom: 17,

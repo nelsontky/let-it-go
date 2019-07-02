@@ -48,6 +48,20 @@ function toiletHasWaterCooler(toilet) ***REMOVED***
   return toilet.paranoma.waterCoolerYaw != null
 ***REMOVED***
 
+function buttonToLinkStyle(color, size) ***REMOVED***
+  return ***REMOVED***
+    backgroundColor: "transparent",
+    border: "none",
+    cursor: "pointer",
+    textDecoration: "underline",
+    display: "inline",
+    margin: "0",
+    padding: "0",
+    color: color,
+    fontSize: size,
+  ***REMOVED***
+***REMOVED***
+
 export ***REMOVED***
   latLonToMetres,
   hasMaleToilet,
@@ -57,5 +71,6 @@ export ***REMOVED***
   toiletHasHose,
   toiletHasShowerHeads,
   toiletHasWaterCooler,
-  appendMetres
+  appendMetres,
+  buttonToLinkStyle
 ***REMOVED***
