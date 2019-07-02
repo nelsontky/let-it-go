@@ -1,19 +1,19 @@
-***REMOVED***
+{
   "name": "gatsby-starter-hello-world",
   "private": true,
   "description": "A simplified bare-bones starter for Gatsby",
   "version": "0.1.0",
   "license": "MIT",
-  "scripts": ***REMOVED***
+  "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.***REMOVED***js,jsx***REMOVED***",
+    "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
-  ***REMOVED***,
-  "dependencies": ***REMOVED***
+  },
+  "dependencies": {
     "@tippy.js/react": "^2.2.2",
     "firebase": "^6.2.4",
     "firebaseui": "^4.0.0",
@@ -28,16 +28,16 @@
     "typography": "^0.16.19",
     "typography-theme-fairy-gates": "^0.16.19",
     "uniqid": "^5.0.3"
-  ***REMOVED***,
-  "devDependencies": ***REMOVED***
+  },
+  "devDependencies": {
     "gh-pages": "^2.0.1",
     "prettier": "^1.17.1"
-  ***REMOVED***,
-  "repository": ***REMOVED***
+  },
+  "repository": {
     "type": "git",
     "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
-  ***REMOVED***,
-  "bugs": ***REMOVED***
+  },
+  "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
-  ***REMOVED***
-***REMOVED***
+  }
+}

@@ -1,48 +1,48 @@
 import React from "react"
-import ***REMOVED*** Helmet ***REMOVED*** from "react-helmet"
+import { Helmet } from "react-helmet"
 
-class Paranoma extends React.Component ***REMOVED***
-  componentDidMount() ***REMOVED***
+class Paranoma extends React.Component {
+  componentDidMount() {
     // Determine hotspots
     const hotSpots = []
 
-    if (this.props.maleYaw !== null) ***REMOVED***
-      hotSpots.push(***REMOVED***
+    if (this.props.maleYaw !== null) {
+      hotSpots.push({
         pitch: 0,
         yaw: this.props.maleYaw,
         type: "info",
         text: "Male"
-      ***REMOVED***)
-    ***REMOVED***
+      })
+    }
 
-    if (this.props.femaleYaw !== null) ***REMOVED***
-      hotSpots.push(***REMOVED***
+    if (this.props.femaleYaw !== null) {
+      hotSpots.push({
         pitch: 0,
         yaw: this.props.femaleYaw,
         type: "info",
         text: "Female"
-      ***REMOVED***)
-    ***REMOVED***
+      })
+    }
 
-    if (this.props.handicappedYaw !== null) ***REMOVED***
-      hotSpots.push(***REMOVED***
+    if (this.props.handicappedYaw !== null) {
+      hotSpots.push({
         pitch: 0,
         yaw: this.props.handicappedYaw,
         type: "info",
         text: "Handicapped"
-      ***REMOVED***)
-    ***REMOVED***
+      })
+    }
 
-    if (this.props.waterCoolerYaw !== null) ***REMOVED***
-      hotSpots.push(***REMOVED***
+    if (this.props.waterCoolerYaw !== null) {
+      hotSpots.push({
         pitch: 0,
         yaw: this.props.waterCoolerYaw,
         type: "info",
         text: "Water Cooler",
-      ***REMOVED***)
-    ***REMOVED***
+      })
+    }
 
-    window.pannellum.viewer("panorama", ***REMOVED***
+    window.pannellum.viewer("panorama", {
       type: "equirectangular",
       panorama: this.props.paranomaUrl,
       yaw: this.props.startingYaw,
@@ -51,10 +51,10 @@ class Paranoma extends React.Component ***REMOVED***
       minPitch: 0,
       autoLoad: true,
       hotSpots,
-    ***REMOVED***)
-  ***REMOVED***
+    })
+  }
 
-  render() ***REMOVED***
+  render() {
     return (
       <div>
         <Helmet>
@@ -63,10 +63,10 @@ class Paranoma extends React.Component ***REMOVED***
             href="https://cdn.pannellum.org/2.4/pannellum.css"
           />
         </Helmet>
-        <div id="panorama" style=***REMOVED******REMOVED*** width: "100%", height: 200 ***REMOVED******REMOVED*** />
+        <div id="panorama" style={{ width: "100%", height: 200 }} />
       </div>
     )
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 export default Paranoma

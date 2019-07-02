@@ -1,118 +1,118 @@
 import React from "react"
 import Firebase from "../utils/firebase"
 import * as utils from "../utils/utils"
-import ***REMOVED*** Helmet ***REMOVED*** from "react-helmet"
+import { Helmet } from "react-helmet"
 
 const uniqid = require("uniqid")
 
-class ReviewText extends React.Component ***REMOVED***
-  constructor(props) ***REMOVED***
+class ReviewText extends React.Component {
+  constructor(props) {
     super(props)
 
     this.len = 100
 
-    this.state = ***REMOVED***
+    this.state = {
       review: this.props.review.slice(0, this.len),
       isTooLong: this.props.review.length > this.len,
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  onClick = () => ***REMOVED***
-    if (this.state.review.length > this.len) ***REMOVED***
-      this.setState(***REMOVED***
+  onClick = () => {
+    if (this.state.review.length > this.len) {
+      this.setState({
         review: this.props.review.slice(0, this.len),
-      ***REMOVED***)
-    ***REMOVED*** else ***REMOVED***
-      this.setState(***REMOVED***
+      })
+    } else {
+      this.setState({
         review: this.props.review,
-      ***REMOVED***)
-    ***REMOVED***
-  ***REMOVED***
+      })
+    }
+  }
 
-  render() ***REMOVED***
+  render() {
     return (
-      <div key=***REMOVED***this.props.review***REMOVED***>
-        ***REMOVED***this.props.review.length > this.len &&
+      <div key={this.props.review}>
+        {this.props.review.length > this.len &&
         this.state.review.length <= this.len
           ? this.state.review + "..."
-          : this.state.review***REMOVED***
-        ***REMOVED***this.state.isTooLong && (
+          : this.state.review}
+        {this.state.isTooLong && (
           <div>
             <button
-              style=***REMOVED***utils.buttonToLinkStyle("#1ca086", "60%")***REMOVED***
-              onClick=***REMOVED***this.onClick***REMOVED***
+              style={utils.buttonToLinkStyle("#1ca086", "60%")}
+              onClick={this.onClick}
             >
-              ***REMOVED***this.state.review.length > this.len ? "Show less" : "Show more"***REMOVED***
+              {this.state.review.length > this.len ? "Show less" : "Show more"}
             </button>
           </div>
-        )***REMOVED***
+        )}
       </div>
     )
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-class Reviews extends React.Component ***REMOVED***
-  constructor(props) ***REMOVED***
+class Reviews extends React.Component {
+  constructor(props) {
     super(props)
-    this.state = ***REMOVED***
+    this.state = {
       reviews: [],
       isSignedIn: false,
       myReview: "",
       reviewsLoading: true,
-    ***REMOVED***
+    }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
-  ***REMOVED***
+  }
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     this.firebase = new Firebase()
 
     this.db = this.firebase.db
     this.auth = this.firebase.auth
-    if (this.firebase.ui == null) ***REMOVED***
+    if (this.firebase.ui == null) {
       const firebaseui = require("firebaseui")
       this.firebase.ui = new firebaseui.auth.AuthUI(this.auth)
-    ***REMOVED***
+    }
 
     this.snapshot = this.db
       .collection("reviews")
       .doc(this.props.name)
       .collection("users")
-      .onSnapshot(querySnapshot => ***REMOVED***
+      .onSnapshot(querySnapshot => {
         let reviews = []
-        querySnapshot.forEach(doc => ***REMOVED***
+        querySnapshot.forEach(doc => {
           reviews = doc.data().userReviews.concat(reviews)
-        ***REMOVED***)
+        })
         reviews.sort((a, b) => b.date.toDate() - a.date.toDate())
-        this.setState(***REMOVED***
+        this.setState({
           reviews,
           reviewsLoading: false,
-        ***REMOVED***)
-      ***REMOVED***)
+        })
+      })
 
-    this.uiConfig = ***REMOVED***
+    this.uiConfig = {
       signInOptions: [
         this.firebase.firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       ],
-      callbacks: ***REMOVED***
+      callbacks: {
         // Avoid redirects after sign-in.
         signInSuccessWithAuthResult: () => false,
-      ***REMOVED***,
-    ***REMOVED***
+      },
+    }
     this.firebase.ui.start("#firebaseui-auth-container", this.uiConfig)
 
-    this.stopAuthListener = this.auth.onAuthStateChanged(user => ***REMOVED***
-      this.setState(***REMOVED*** isSignedIn: !!user ***REMOVED***)
-    ***REMOVED***)
-  ***REMOVED***
+    this.stopAuthListener = this.auth.onAuthStateChanged(user => {
+      this.setState({ isSignedIn: !!user })
+    })
+  }
 
-  handleChange(event) ***REMOVED***
-    this.setState(***REMOVED*** myReview: event.target.value ***REMOVED***)
-  ***REMOVED***
+  handleChange(event) {
+    this.setState({ myReview: event.target.value })
+  }
 
-  handleSubmit(event) ***REMOVED***
+  handleSubmit(event) {
     event.preventDefault()
 
     this.db
@@ -121,44 +121,44 @@ class Reviews extends React.Component ***REMOVED***
       .collection("users")
       .doc(this.auth.currentUser.uid)
       .set(
-        ***REMOVED***
-          userReviews: this.firebase.firebase.firestore.FieldValue.arrayUnion(***REMOVED***
+        {
+          userReviews: this.firebase.firebase.firestore.FieldValue.arrayUnion({
             id: uniqid(),
             name: this.auth.currentUser.displayName,
             review: this.state.myReview,
             date: new Date(),
             uid: this.auth.currentUser.uid,
-          ***REMOVED***),
-        ***REMOVED***,
-        ***REMOVED*** merge: true ***REMOVED***
+          }),
+        },
+        { merge: true }
       )
 
-    this.setState(***REMOVED***
+    this.setState({
       myReview: "",
-    ***REMOVED***)
-  ***REMOVED***
+    })
+  }
 
-  handleDelete(id) ***REMOVED***
-    if (window.confirm(`Are you sure you want to delete your review?`)) ***REMOVED***
+  handleDelete(id) {
+    if (window.confirm(`Are you sure you want to delete your review?`)) {
       this.db
         .collection("reviews")
         .doc(this.props.name)
         .collection("users")
         .doc(this.auth.currentUser.uid)
-        .set(***REMOVED***
+        .set({
           userReviews: this.state.reviews.filter(
             x => x.uid === this.auth.currentUser.uid && x.id !== id
           ),
-        ***REMOVED***)
-    ***REMOVED***
-  ***REMOVED***
+        })
+    }
+  }
 
-  componentWillUnmount() ***REMOVED***
+  componentWillUnmount() {
     this.snapshot()
     this.stopAuthListener()
-  ***REMOVED***
+  }
 
-  render() ***REMOVED***
+  render() {
     return (
       <div>
         <Helmet>
@@ -169,101 +169,101 @@ class Reviews extends React.Component ***REMOVED***
           />
         </Helmet>
         <h4>Reviews</h4>
-        ***REMOVED***!this.state.isSignedIn && (
+        {!this.state.isSignedIn && (
           <div>
             <div id="firebaseui-auth-container" />
             <p
-              style=***REMOVED******REMOVED*** fontSize: "0.7em", color: "gray", textAlign: "center" ***REMOVED******REMOVED***
+              style={{ fontSize: "0.7em", color: "gray", textAlign: "center" }}
             >
               Sign in with Google to post a review!
             </p>
           </div>
-        )***REMOVED***
-        ***REMOVED***this.state.isSignedIn && !this.state.reviewsLoading && (
+        )}
+        {this.state.isSignedIn && !this.state.reviewsLoading && (
           <div>
             <p>
-              Welcome ***REMOVED***this.auth.currentUser.displayName***REMOVED***! You are now
-              signed-in!***REMOVED***" "***REMOVED***
+              Welcome {this.auth.currentUser.displayName}! You are now
+              signed-in!{" "}
               <button
-                onClick=***REMOVED***() => ***REMOVED***
+                onClick={() => {
                   this.auth.signOut()
                   window.location.reload()
-                ***REMOVED******REMOVED***
+                }}
               >
                 Sign-out
               </button>
             </p>
-            <form onSubmit=***REMOVED***this.handleSubmit***REMOVED***>
+            <form onSubmit={this.handleSubmit}>
               <label>
                 <textarea
-                  style=***REMOVED******REMOVED*** width: "100%", resize: "none", height: "75px" ***REMOVED******REMOVED***
-                  value=***REMOVED***this.state.myReview***REMOVED***
-                  onChange=***REMOVED***this.handleChange***REMOVED***
+                  style={{ width: "100%", resize: "none", height: "75px" }}
+                  value={this.state.myReview}
+                  onChange={this.handleChange}
                   placeholder="Write a review..."
                 />
               </label>
               <input
                 type="submit"
                 value="Submit"
-                disabled=***REMOVED***this.state.myReview.trim() === ""***REMOVED***
+                disabled={this.state.myReview.trim() === ""}
               />
             </form>
           </div>
-        )***REMOVED***
-        <table style=***REMOVED******REMOVED*** tableLayout: "fixed" ***REMOVED******REMOVED***>
+        )}
+        <table style={{ tableLayout: "fixed" }}>
           <tbody>
-            ***REMOVED***this.state.reviews.length === 0 ? (
-              <tr key=***REMOVED***1***REMOVED***>
+            {this.state.reviews.length === 0 ? (
+              <tr key={1}>
                 <td>
-                  ***REMOVED***!this.state.reviewsLoading ? (
+                  {!this.state.reviewsLoading ? (
                     <p>No reviews (yet!)</p>
                   ) : (
                     <p>Reviews are loading...</p>
-                  )***REMOVED***
+                  )}
                 </td>
               </tr>
             ) : (
-              this.state.reviews.map((x, i) => ***REMOVED***
+              this.state.reviews.map((x, i) => {
                 return (
-                  <tr key=***REMOVED***i***REMOVED***>
+                  <tr key={i}>
                     <td>
-                      <strong style=***REMOVED******REMOVED*** color: "blue", fontSize: "80%" ***REMOVED******REMOVED***>
-                        ***REMOVED***x.name***REMOVED***
+                      <strong style={{ color: "blue", fontSize: "80%" }}>
+                        {x.name}
                       </strong>
-                      <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
-                        ***REMOVED***" • " +
-                          x.date.toDate().toLocaleString("default", ***REMOVED***
+                      <span style={{ color: "gray", fontSize: "80%" }}>
+                        {" • " +
+                          x.date.toDate().toLocaleString("default", {
                             day: "numeric",
                             month: "long",
                             year: "numeric",
                             hour: "numeric",
                             minute: "numeric",
-                          ***REMOVED***)***REMOVED***
+                          })}
                       </span>
-                      ***REMOVED***this.state.isSignedIn &&
+                      {this.state.isSignedIn &&
                         x.uid === this.auth.currentUser.uid && (
-                          <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
-                            ***REMOVED***" • "***REMOVED***
+                          <span style={{ color: "gray", fontSize: "80%" }}>
+                            {" • "}
                             <button
-                              onClick=***REMOVED***() => this.handleDelete(x.id)***REMOVED***
-                              style=***REMOVED***utils.buttonToLinkStyle("red", "100%")***REMOVED***
+                              onClick={() => this.handleDelete(x.id)}
+                              style={utils.buttonToLinkStyle("red", "100%")}
                             >
                               Delete
                             </button>
                           </span>
-                        )***REMOVED***
+                        )}
                       <br />
-                      <ReviewText key=***REMOVED***x.id***REMOVED*** review=***REMOVED***x.review***REMOVED*** />
+                      <ReviewText key={x.id} review={x.review} />
                     </td>
                   </tr>
                 )
-              ***REMOVED***)
-            )***REMOVED***
+              })
+            )}
           </tbody>
         </table>
       </div>
     )
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 export default Reviews

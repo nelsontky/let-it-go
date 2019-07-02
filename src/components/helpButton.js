@@ -3,14 +3,14 @@ import Tippy from "@tippy.js/react"
 
 const HelpButton = props => (
   <Tippy
-    content=***REMOVED***props.content***REMOVED***
-    arrow=***REMOVED***true***REMOVED***
+    content={props.content}
+    arrow={true}
     trigger="click"
     placement="bottom"
-    interactive=***REMOVED***true***REMOVED***
+    interactive={true}
   >
     <img
-      style=***REMOVED******REMOVED*** verticalAlign: "middle" ***REMOVED******REMOVED***
+      style={{ verticalAlign: "middle" }}
       src="https://material.io/tools/icons/static/icons/baseline-help_outline-24px.svg"
       alt=""
     />

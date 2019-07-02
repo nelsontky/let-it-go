@@ -1,18 +1,18 @@
 import React from "react"
 import Tippy from "@tippy.js/react"
 
-class ShareButton extends React.Component ***REMOVED***
-  constructor(props) ***REMOVED***
+class ShareButton extends React.Component {
+  constructor(props) {
     super(props)
-    this.state = ***REMOVED***
-      url: `https://nelsontky.github.io/let-it-go/$***REMOVED***this.props.name.replace(
+    this.state = {
+      url: `https://nelsontky.github.io/let-it-go/${this.props.name.replace(
         /\s/g,
         ""
-      )***REMOVED***`,
-    ***REMOVED***
-  ***REMOVED***
+      )}`,
+    }
+  }
 
-  copyText = event => ***REMOVED***
+  copyText = event => {
     event.preventDefault()
 
     this.refs.input.select()
@@ -20,28 +20,28 @@ class ShareButton extends React.Component ***REMOVED***
     document.execCommand("copy")
 
     return false
-  ***REMOVED***
+  }
 
-  render() ***REMOVED***
+  render() {
     const content = (
-      <div style=***REMOVED******REMOVED*** textAlign: "left" ***REMOVED******REMOVED***>
-        <h4 style=***REMOVED******REMOVED*** color: "white" ***REMOVED******REMOVED***>Share</h4>
-        <hr style=***REMOVED******REMOVED*** border: "1px solid white" ***REMOVED******REMOVED*** />
-        Love/Hate <strong>***REMOVED***this.props.name***REMOVED***</strong>? Share your Let It Go
+      <div style={{ textAlign: "left" }}>
+        <h4 style={{ color: "white" }}>Share</h4>
+        <hr style={{ border: "1px solid white" }} />
+        Love/Hate <strong>{this.props.name}</strong>? Share your Let It Go
         experience on social media! <br />
         (psst... try not to look suspicious in the toilet with your phone ok?)
-        <div style=***REMOVED******REMOVED*** textAlign: "center" ***REMOVED******REMOVED***>
-          <form onSubmit=***REMOVED***this.copyText***REMOVED***>
-            <input ref="input" type="text" value=***REMOVED***this.state.url***REMOVED*** readOnly />
+        <div style={{ textAlign: "center" }}>
+          <form onSubmit={this.copyText}>
+            <input ref="input" type="text" value={this.state.url} readOnly />
             <input type="submit" value="Copy" />
           </form>
           <iframe
-            src=***REMOVED***`https://www.facebook.com/plugins/share_button.php?href=$***REMOVED***
+            src={`https://www.facebook.com/plugins/share_button.php?href=${
               this.state.url
-            ***REMOVED***&layout=button&size=small&width=58&height=20&appId`***REMOVED***
+            }&layout=button&size=small&width=58&height=20&appId`}
             width="60"
             height="20"
-            style=***REMOVED******REMOVED*** border: "none", overflow: "hidden" ***REMOVED******REMOVED***
+            style={{ border: "none", overflow: "hidden" }}
             scrolling="no"
             frameBorder="0"
             allowtransparency="true"
@@ -51,14 +51,14 @@ class ShareButton extends React.Component ***REMOVED***
           <iframe
             height="20"
             width="62"
-            style=***REMOVED******REMOVED*** border: "none", overflow: "hidden" ***REMOVED******REMOVED***
+            style={{ border: "none", overflow: "hidden" }}
             scrolling="no"
             frameBorder="0"
             allowtransparency="true"
             allow="encrypted-media"
-            src=***REMOVED***`https://platform.twitter.com/widgets/tweet_button.html?url=$***REMOVED***
+            src={`https://platform.twitter.com/widgets/tweet_button.html?url=${
               this.state.url
-            ***REMOVED***`***REMOVED***
+            }`}
             title="tweet"
           />
         </div>
@@ -66,20 +66,20 @@ class ShareButton extends React.Component ***REMOVED***
     )
     return (
       <Tippy
-        content=***REMOVED***content***REMOVED***
+        content={content}
         trigger="click"
         placement="bottom"
-        interactive=***REMOVED***true***REMOVED***
-        arrow=***REMOVED***true***REMOVED***
+        interactive={true}
+        arrow={true}
       >
         <img
-          style=***REMOVED******REMOVED*** verticalAlign: "bottom" ***REMOVED******REMOVED***
+          style={{ verticalAlign: "bottom" }}
           src="https://material.io/tools/icons/static/icons/twotone-share-24px.svg"
           alt=""
         />
       </Tippy>
     )
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 export default ShareButton

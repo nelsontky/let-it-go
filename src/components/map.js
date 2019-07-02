@@ -1,82 +1,82 @@
 import React from "react"
 import LocationHelp from "./locationHelp"
 
-class Map extends React.Component ***REMOVED***
-  constructor(props) ***REMOVED***
+class Map extends React.Component {
+  constructor(props) {
     super(props)
 
-    this.state = ***REMOVED***
+    this.state = {
       isLocationAvailable: false,
-    ***REMOVED***
+    }
 
     this.watchLocation = this.watchLocation.bind(this)
-  ***REMOVED***
-  componentWillUnmount() ***REMOVED***
+  }
+  componentWillUnmount() {
     navigator.geolocation.clearWatch(this.id)
-  ***REMOVED***
+  }
 
-  watchLocation() ***REMOVED***
-    if (navigator.geolocation) ***REMOVED***
+  watchLocation() {
+    if (navigator.geolocation) {
       this.id = navigator.geolocation.watchPosition(
-        position => ***REMOVED***
-          this.locationMarker.setPosition(***REMOVED***
+        position => {
+          this.locationMarker.setPosition({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
-          ***REMOVED***)
-          this.setState(***REMOVED***
+          })
+          this.setState({
             isLocationAvailable: true,
-          ***REMOVED***)
+          })
 
           this.accuracyRadius.setCenter(this.locationMarker.getPosition())
           this.accuracyRadius.setRadius(position.coords.accuracy)
-        ***REMOVED***,
-        () => ***REMOVED***
-          this.setState(***REMOVED***
+        },
+        () => {
+          this.setState({
             isLocationAvailable: false,
-          ***REMOVED***)
-        ***REMOVED***,
-        ***REMOVED*** enableHighAccuracy: true ***REMOVED***
+          })
+        },
+        { enableHighAccuracy: true }
       )
-    ***REMOVED*** else ***REMOVED***
+    } else {
       // Browser doesn't support Geolocation
-      this.setState(***REMOVED***
+      this.setState({
         isLocationAvailable: false,
-      ***REMOVED***)
-    ***REMOVED***
-  ***REMOVED***
+      })
+    }
+  }
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     this.watchLocation()
 
-    this.map = new window.google.maps.Map(document.getElementById("map"), ***REMOVED***
-      center: ***REMOVED*** lat: this.props.lat, lng: this.props.lon ***REMOVED***,
+    this.map = new window.google.maps.Map(document.getElementById("map"), {
+      center: { lat: this.props.lat, lng: this.props.lon },
       zoom: 17,
       gestureHandling: "cooperative",
-    ***REMOVED***)
+    })
 
-    new window.google.maps.Marker(***REMOVED***
-      position: ***REMOVED*** lat: this.props.lat, lng: this.props.lon ***REMOVED***,
+    new window.google.maps.Marker({
+      position: { lat: this.props.lat, lng: this.props.lon },
       map: this.map,
-    ***REMOVED***)
+    })
 
-    this.locationMarker = new window.google.maps.Marker(***REMOVED***
+    this.locationMarker = new window.google.maps.Marker({
       map: this.map,
       icon: `https://i.imgur.com/Rw0L7jC.png`,
-      position: ***REMOVED*** lat: this.props.lat, lng: this.props.lon ***REMOVED***,
-    ***REMOVED***)
+      position: { lat: this.props.lat, lng: this.props.lon },
+    })
 
-    this.accuracyRadius = new window.google.maps.Circle(***REMOVED***
+    this.accuracyRadius = new window.google.maps.Circle({
       map: this.map,
-      center: ***REMOVED*** lat: this.props.lat, lng: this.props.lon ***REMOVED***,
+      center: { lat: this.props.lat, lng: this.props.lon },
       radius: 0,
       fillColor: "#00F",
       fillOpacity: 0.2,
       strokeWeight: 0,
-    ***REMOVED***)
+    })
 
     // Location button
     const self = this
-    function CenterControl(controlDiv, map) ***REMOVED***
+    function CenterControl(controlDiv, map) {
       // Set CSS for the control border.
       let controlUI = document.createElement("div")
       controlUI.style.backgroundColor = "#fff"
@@ -96,10 +96,10 @@ class Map extends React.Component ***REMOVED***
       controlUI.appendChild(controlText)
 
       // Setup the click event listeners
-      controlUI.addEventListener("click", function() ***REMOVED***
+      controlUI.addEventListener("click", function() {
         map.setCenter(self.locationMarker.getPosition())
-      ***REMOVED***)
-    ***REMOVED***
+      })
+    }
 
     // Render the button
     let centerControlDiv = document.createElement("div")
@@ -109,16 +109,16 @@ class Map extends React.Component ***REMOVED***
     this.map.controls[window.google.maps.ControlPosition.LEFT_BOTTOM].push(
       centerControlDiv
     )
-  ***REMOVED***
+  }
 
-  render() ***REMOVED***
+  render() {
     return (
       <div>
-        ***REMOVED***!this.state.isLocationAvailable && <LocationHelp />***REMOVED***
-        <div id="map" style=***REMOVED******REMOVED*** width: "100%", height: 300 ***REMOVED******REMOVED*** />
+        {!this.state.isLocationAvailable && <LocationHelp />}
+        <div id="map" style={{ width: "100%", height: 300 }} />
       </div>
     )
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 export default Map

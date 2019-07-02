@@ -2,7 +2,7 @@ import React from "react"
 import HelpButton from "./helpButton"
 
 const content = (
-  <div style=***REMOVED******REMOVED*** textAlign: "left" ***REMOVED******REMOVED***>
+  <div style={{ textAlign: "left" }}>
     Check that you have:
     <ul>
       <li>
@@ -10,9 +10,9 @@ const content = (
         <ul>
           <li>
             <a
-              style=***REMOVED******REMOVED***
+              style={{
                 textShadow: "none",
-              ***REMOVED******REMOVED***
+              }}
               href="https://support.google.com/accounts/answer/3467281"
               rel="noopener noreferrer"
               target="_blank"
@@ -22,7 +22,7 @@ const content = (
           </li>
           <li>
             <a
-              style=***REMOVED******REMOVED*** textShadow: "none" ***REMOVED******REMOVED***
+              style={{ textShadow: "none" }}
               href="https://support.apple.com/en-us/HT207092"
               rel="noopener noreferrer"
               target="_blank"
@@ -51,6 +51,6 @@ const content = (
 
 export default () => (
   <p>
-    Location not detected <HelpButton content=***REMOVED***content***REMOVED*** />
+    Location not detected <HelpButton content={content} />
   </p>
 )

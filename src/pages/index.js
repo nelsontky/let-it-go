@@ -3,15 +3,15 @@ import Layout from "../components/layout"
 import TypesHelp from "../components/typesHelp"
 import FilterHelp from "../components/filterHelp"
 import LocationHelp from "../components/locationHelp"
-import ***REMOVED*** graphql ***REMOVED*** from "gatsby"
-import ***REMOVED*** Link ***REMOVED*** from "gatsby"
+import { graphql } from "gatsby"
+import { Link } from "gatsby"
 import * as utils from "../utils/utils"
-import ***REMOVED*** Helmet ***REMOVED*** from "react-helmet"
+import { Helmet } from "react-helmet"
 
-export default class App extends React.Component ***REMOVED***
-  constructor(props) ***REMOVED***
+export default class App extends React.Component {
+  constructor(props) {
     super(props)
-    this.state = ***REMOVED***
+    this.state = {
       isLocationAvailable: false,
       toilets: this.props.data.allToilets.nodes.slice(0),
       myLat: null,
@@ -24,7 +24,7 @@ export default class App extends React.Component ***REMOVED***
       waterCoolerChecked: false,
       showerHeadsChecked: false,
       hoseChecked: false,
-    ***REMOVED***
+    }
 
     this.sortByDistance = this.sortByDistance.bind(this)
     this.compareDistance = this.compareDistance.bind(this)
@@ -34,47 +34,47 @@ export default class App extends React.Component ***REMOVED***
     this.handleClick = this.handleClick.bind(this)
     this.handleFilterChange = this.handleFilterChange.bind(this)
     this.isShown = this.isShown.bind(this)
-  ***REMOVED***
+  }
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     this.getLocation()
-  ***REMOVED***
+  }
 
-  handleChange(event) ***REMOVED***
-    this.setState(***REMOVED***
+  handleChange(event) {
+    this.setState({
       sortBy: event.target.value,
-    ***REMOVED***)
+    })
 
-    if (event.target.value === "name") ***REMOVED***
+    if (event.target.value === "name") {
       this.sortByName()
-    ***REMOVED*** else ***REMOVED***
+    } else {
       this.sortByDistance()
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
   // Handles click on filter button
-  handleClick() ***REMOVED***
-    this.setState(***REMOVED***
+  handleClick() {
+    this.setState({
       isFilterHidden: !this.state.isFilterHidden,
-    ***REMOVED***)
-  ***REMOVED***
+    })
+  }
 
-  handleFilterChange(event) ***REMOVED***
-    this.setState(***REMOVED***
+  handleFilterChange(event) {
+    this.setState({
       [event.target.name]: !this.state[event.target.name],
-    ***REMOVED***)
-  ***REMOVED***
+    })
+  }
 
-  sortByDistance() ***REMOVED***
+  sortByDistance() {
     let toilets = this.state.toilets.slice(0)
     toilets.sort(this.compareDistance)
 
-    this.setState(***REMOVED***
+    this.setState({
       toilets: toilets,
-    ***REMOVED***)
-  ***REMOVED***
+    })
+  }
 
-  compareDistance(t1, t2) ***REMOVED***
+  compareDistance(t1, t2) {
     const t1ToMe = utils.latLonToMetres(
       t1.lat,
       t1.lon,
@@ -88,18 +88,18 @@ export default class App extends React.Component ***REMOVED***
       this.state.myLon
     )
     return t1ToMe - t2ToMe
-  ***REMOVED***
+  }
 
-  sortByName() ***REMOVED***
+  sortByName() {
     let toilets = this.state.toilets.slice(0)
     toilets.sort((t1, t2) => t1.name.localeCompare(t2.name))
 
-    this.setState(***REMOVED***
+    this.setState({
       toilets: toilets,
-    ***REMOVED***)
-  ***REMOVED***
+    })
+  }
 
-  isShown(toilet) ***REMOVED***
+  isShown(toilet) {
     return (
       (!this.state.maleChecked || utils.hasMaleToilet(toilet)) &&
       (!this.state.femaleChecked || utils.hasFemaleToilet(toilet)) &&
@@ -108,64 +108,64 @@ export default class App extends React.Component ***REMOVED***
       (!this.state.hoseChecked || utils.toiletHasHose(toilet)) &&
       (!this.state.waterCoolerChecked || utils.toiletHasWaterCooler(toilet))
     )
-  ***REMOVED***
+  }
 
-  getLocation() ***REMOVED***
-    if (navigator.geolocation) ***REMOVED***
+  getLocation() {
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        pos => ***REMOVED***
-          this.setState(***REMOVED***
+        pos => {
+          this.setState({
             myLat: pos.coords.latitude,
             myLon: pos.coords.longitude,
             sortBy: `distance`,
             isLocationAvailable: true,
-          ***REMOVED***)
+          })
           this.sortByDistance()
-        ***REMOVED***,
-        () => ***REMOVED***
+        },
+        () => {
           // Geolocation permissions denied
-          this.setState(***REMOVED***
+          this.setState({
             isLocationAvailable: false,
-          ***REMOVED***)
-        ***REMOVED***,
-        ***REMOVED*** enableHighAccuracy: true ***REMOVED***
+          })
+        },
+        { enableHighAccuracy: true }
       )
-    ***REMOVED*** else ***REMOVED***
+    } else {
       // Browser doesn't support Geolocation
-      this.setState(***REMOVED***
+      this.setState({
         isLocationAvailable: false,
-      ***REMOVED***)
-    ***REMOVED***
-  ***REMOVED***
+      })
+    }
+  }
 
-  render() ***REMOVED***
+  render() {
     // console.log(this.state)
-    const iconStyle = ***REMOVED*** fontSize: "calc(0.6em + 0.5vw)" ***REMOVED***
+    const iconStyle = { fontSize: "calc(0.6em + 0.5vw)" }
 
     return (
-      <Layout main=***REMOVED***true***REMOVED***>
+      <Layout main={true}>
         <Helmet>
           <title>Let It Go</title>
         </Helmet>
         <h1>Let It Go</h1>
-        ***REMOVED***/* Sorting dropdown */***REMOVED***
-        <div style=***REMOVED******REMOVED*** float: "right" ***REMOVED******REMOVED***>
+        {/* Sorting dropdown */}
+        <div style={{ float: "right" }}>
           <label>
-            Sort by:***REMOVED***" "***REMOVED***
-            <select value=***REMOVED***this.state.sortBy***REMOVED*** onChange=***REMOVED***this.handleChange***REMOVED***>
+            Sort by:{" "}
+            <select value={this.state.sortBy} onChange={this.handleChange}>
               <option value="name">Name</option>
-              ***REMOVED***this.state.isLocationAvailable && (
+              {this.state.isLocationAvailable && (
                 <option value="distance">Distance</option>
-              )***REMOVED***
+              )}
             </select>
           </label>
         </div>
 
-        ***REMOVED***/* Filtering */***REMOVED***
-        <button onClick=***REMOVED***this.handleClick***REMOVED***>
-          ***REMOVED***this.state.isFilterHidden ? "Filter" : "Hide"***REMOVED***
+        {/* Filtering */}
+        <button onClick={this.handleClick}>
+          {this.state.isFilterHidden ? "Filter" : "Hide"}
         </button>
-        ***REMOVED***!this.state.isFilterHidden && (
+        {!this.state.isFilterHidden && (
           <div>
             <p>
               Show only
@@ -175,8 +175,8 @@ export default class App extends React.Component ***REMOVED***
               <input
                 name="maleChecked"
                 type="checkbox"
-                checked=***REMOVED***this.state.maleChecked***REMOVED***
-                onChange=***REMOVED***this.handleFilterChange***REMOVED***
+                checked={this.state.maleChecked}
+                onChange={this.handleFilterChange}
               />
               Male
             </label>
@@ -185,8 +185,8 @@ export default class App extends React.Component ***REMOVED***
               <input
                 name="femaleChecked"
                 type="checkbox"
-                checked=***REMOVED***this.state.femaleChecked***REMOVED***
-                onChange=***REMOVED***this.handleFilterChange***REMOVED***
+                checked={this.state.femaleChecked}
+                onChange={this.handleFilterChange}
               />
               Female
             </label>
@@ -195,8 +195,8 @@ export default class App extends React.Component ***REMOVED***
               <input
                 name="handicappedChecked"
                 type="checkbox"
-                checked=***REMOVED***this.state.handicappedChecked***REMOVED***
-                onChange=***REMOVED***this.handleFilterChange***REMOVED***
+                checked={this.state.handicappedChecked}
+                onChange={this.handleFilterChange}
               />
               Handicapped accessible
             </label>
@@ -205,8 +205,8 @@ export default class App extends React.Component ***REMOVED***
               <input
                 name="showerHeadsChecked"
                 type="checkbox"
-                checked=***REMOVED***this.state.showerHeadsChecked***REMOVED***
-                onChange=***REMOVED***this.handleFilterChange***REMOVED***
+                checked={this.state.showerHeadsChecked}
+                onChange={this.handleFilterChange}
               />
               Has Shower Heads
             </label>
@@ -215,8 +215,8 @@ export default class App extends React.Component ***REMOVED***
               <input
                 name="hoseChecked"
                 type="checkbox"
-                checked=***REMOVED***this.state.hoseChecked***REMOVED***
-                onChange=***REMOVED***this.handleFilterChange***REMOVED***
+                checked={this.state.hoseChecked}
+                onChange={this.handleFilterChange}
               />
               Has Hoses
             </label>
@@ -225,102 +225,102 @@ export default class App extends React.Component ***REMOVED***
               <input
                 name="waterCoolerChecked"
                 type="checkbox"
-                checked=***REMOVED***this.state.waterCoolerChecked***REMOVED***
-                onChange=***REMOVED***this.handleFilterChange***REMOVED***
+                checked={this.state.waterCoolerChecked}
+                onChange={this.handleFilterChange}
               />
               Has Water Cooler
             </label>
             <br />
           </div>
-        )***REMOVED***
+        )}
 
-        ***REMOVED***/* Location not available message */***REMOVED***
-        ***REMOVED***!this.state.isLocationAvailable && <LocationHelp />***REMOVED***
+        {/* Location not available message */}
+        {!this.state.isLocationAvailable && <LocationHelp />}
 
-        ***REMOVED***/* Start of table */***REMOVED***
-        <table style=***REMOVED******REMOVED*** tableLayout: "fixed" ***REMOVED******REMOVED***>
+        {/* Start of table */}
+        <table style={{ tableLayout: "fixed" }}>
           <thead>
             <tr>
               <th>
                 Name
-                ***REMOVED***this.state.isLocationAvailable && (
-                  <div style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>Distance</div>
-                )***REMOVED***
+                {this.state.isLocationAvailable && (
+                  <div style={{ color: "gray", fontSize: "80%" }}>Distance</div>
+                )}
               </th>
-              <th style=***REMOVED******REMOVED*** textAlign: "center" ***REMOVED******REMOVED***>
+              <th style={{ textAlign: "center" }}>
                 Types
                 <TypesHelp />
               </th>
             </tr>
           </thead>
           <tbody>
-            ***REMOVED***this.state.toilets.filter(this.isShown).map((toilet, index) => (
-              <tr key=***REMOVED***index***REMOVED***>
-                ***REMOVED***/* Name */***REMOVED***
+            {this.state.toilets.filter(this.isShown).map((toilet, index) => (
+              <tr key={index}>
+                {/* Name */}
                 <td>
-                  <Link to=***REMOVED***"/" + toilet.name.replace(/\s/g, "")***REMOVED***>
-                    ***REMOVED***toilet.name***REMOVED***
+                  <Link to={"/" + toilet.name.replace(/\s/g, "")}>
+                    {toilet.name}
                   </Link>
                   <br />
-                  ***REMOVED***this.state.isLocationAvailable && (
-                    <span style=***REMOVED******REMOVED*** color: "gray", fontSize: "80%" ***REMOVED******REMOVED***>
-                      ***REMOVED***utils.appendMetres(
+                  {this.state.isLocationAvailable && (
+                    <span style={{ color: "gray", fontSize: "80%" }}>
+                      {utils.appendMetres(
                         utils.latLonToMetres(
                           this.state.myLat,
                           this.state.myLon,
                           toilet.lat,
                           toilet.lon
                         )
-                      )***REMOVED***
+                      )}
                     </span>
-                  )***REMOVED***
+                  )}
                 </td>
-                ***REMOVED***/* Types */***REMOVED***
-                <td style=***REMOVED******REMOVED*** textAlign: "center" ***REMOVED******REMOVED***>
-                  ***REMOVED***utils.hasMaleToilet(toilet) && (
+                {/* Types */}
+                <td style={{ textAlign: "center" }}>
+                  {utils.hasMaleToilet(toilet) && (
                     <i
                       className="em-svg em-man-raising-hand"
-                      style=***REMOVED***iconStyle***REMOVED***
+                      style={iconStyle}
                     />
-                  )***REMOVED***
-                  ***REMOVED***utils.hasFemaleToilet(toilet) && (
+                  )}
+                  {utils.hasFemaleToilet(toilet) && (
                     <i
                       className="em-svg em-woman-raising-hand"
-                      style=***REMOVED***iconStyle***REMOVED***
+                      style={iconStyle}
                     />
-                  )***REMOVED***
-                  ***REMOVED***utils.hasHandicappedToilet(toilet) && (
-                    <i className="em-svg em-wheelchair" style=***REMOVED***iconStyle***REMOVED*** />
-                  )***REMOVED***
+                  )}
+                  {utils.hasHandicappedToilet(toilet) && (
+                    <i className="em-svg em-wheelchair" style={iconStyle} />
+                  )}
                 </td>
               </tr>
-            ))***REMOVED***
+            ))}
           </tbody>
         </table>
       </Layout>
     )
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 export const query = graphql`
-  query ***REMOVED***
-    allToilets(sort: ***REMOVED*** fields: name ***REMOVED***) ***REMOVED***
-      nodes ***REMOVED***
+  query {
+    allToilets(sort: { fields: name }) {
+      nodes {
         name
-        facilities ***REMOVED***
+        facilities {
           hose
           showerHeads
           handicapped
-        ***REMOVED***
-        paranoma ***REMOVED***
+        }
+        paranoma {
           femaleYaw
           maleYaw
           handicappedYaw
           waterCoolerYaw
-        ***REMOVED***
+        }
         lat
         lon
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
+      }
+    }
+  }
 `

@@ -1,15 +1,15 @@
 import React from "react"
-import ***REMOVED*** graphql ***REMOVED*** from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import BackButton from "../components/backButton"
 import ShareButton from "../components/shareButton"
 import * as utils from "../utils/utils"
 import Map from "../components/map"
 import Paranoma from "../components/paranoma"
-import ***REMOVED*** Helmet ***REMOVED*** from "react-helmet"
+import { Helmet } from "react-helmet"
 import Reviews from "../components/reviews"
 
-export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
+export default ({ data }) => {
   const name = data.toilets.name
   const lat = data.toilets.lat
   const lon = data.toilets.lon
@@ -20,92 +20,92 @@ export default (***REMOVED*** data ***REMOVED***) => ***REMOVED***
   const handicappedYaw = data.toilets.paranoma.handicappedYaw
   const waterCoolerYaw = data.toilets.paranoma.waterCoolerYaw
 
-  function glanceStyle(pred) ***REMOVED***
-    return ***REMOVED***
+  function glanceStyle(pred) {
+    return {
       textDecoration: pred(data.toilets) ? "" : "line-through",
       color: pred(data.toilets) ? "" : "gray",
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
-  function handicappedText() ***REMOVED***
-    if (!utils.hasHandicappedToilet(data.toilets)) ***REMOVED***
+  function handicappedText() {
+    if (!utils.hasHandicappedToilet(data.toilets)) {
       return "Is handicapped accessible"
-    ***REMOVED*** else if (!utils.hasSeperateHandicappedToilet(data.toilets))
+    } else if (!utils.hasSeperateHandicappedToilet(data.toilets))
       return "Is handicapped accessible (Handicapped cubicle inside toilet)"
-    else ***REMOVED***
+    else {
       return "Is handicapped accessible (Has seperate handicapped toilet)"
-    ***REMOVED***
-  ***REMOVED***
+    }
+  }
 
   return (
-    <Layout main=***REMOVED***false***REMOVED***>
+    <Layout main={false}>
       <Helmet>
-        <title>***REMOVED***name***REMOVED***</title>
+        <title>{name}</title>
       </Helmet>
       <BackButton />
-      <h3>***REMOVED***name***REMOVED***</h3>
-      <ShareButton name=***REMOVED***name***REMOVED*** />
-      <Map lat=***REMOVED***lat***REMOVED*** lon=***REMOVED***lon***REMOVED*** />
+      <h3>{name}</h3>
+      <ShareButton name={name} />
+      <Map lat={lat} lon={lon} />
       <Paranoma
-        name=***REMOVED***name***REMOVED***
-        paranomaUrl=***REMOVED***paranomaUrl***REMOVED***
-        startingYaw=***REMOVED***startingYaw***REMOVED***
-        maleYaw=***REMOVED***maleYaw***REMOVED***
-        femaleYaw=***REMOVED***femaleYaw***REMOVED***
-        handicappedYaw=***REMOVED***handicappedYaw***REMOVED***
-        waterCoolerYaw=***REMOVED***waterCoolerYaw***REMOVED***
+        name={name}
+        paranomaUrl={paranomaUrl}
+        startingYaw={startingYaw}
+        maleYaw={maleYaw}
+        femaleYaw={femaleYaw}
+        handicappedYaw={handicappedYaw}
+        waterCoolerYaw={waterCoolerYaw}
       />
       <h4>At a glance</h4>
-      <ul style=***REMOVED******REMOVED*** listStyle: "none" ***REMOVED******REMOVED***>
-        <li style=***REMOVED***glanceStyle(utils.hasMaleToilet)***REMOVED***>
+      <ul style={{ listStyle: "none" }}>
+        <li style={glanceStyle(utils.hasMaleToilet)}>
           <i className="em-svg em-man-raising-hand" />
           Has Male toilet
         </li>
-        <li style=***REMOVED***glanceStyle(utils.hasFemaleToilet)***REMOVED***>
+        <li style={glanceStyle(utils.hasFemaleToilet)}>
           <i className="em-svg em-woman-raising-hand" />
           Has Female toilet
         </li>
-        <li style=***REMOVED***glanceStyle(utils.hasHandicappedToilet)***REMOVED***>
+        <li style={glanceStyle(utils.hasHandicappedToilet)}>
           <i className="em-svg em-wheelchair" />
-          ***REMOVED***handicappedText()***REMOVED***
+          {handicappedText()}
         </li>
-        <li style=***REMOVED***glanceStyle(utils.toiletHasWaterCooler)***REMOVED***>
+        <li style={glanceStyle(utils.toiletHasWaterCooler)}>
           <i className="em-svg em-potable_water" />
           Has water cooler
         </li>
-        <li style=***REMOVED***glanceStyle(utils.toiletHasShowerHeads)***REMOVED***>
+        <li style={glanceStyle(utils.toiletHasShowerHeads)}>
           <i className="em-svg em-shower" />
           Has shower heads
         </li>
-        <li style=***REMOVED***glanceStyle(utils.toiletHasHose)***REMOVED***>
+        <li style={glanceStyle(utils.toiletHasHose)}>
           <i className="em-svg em-sweat_drops" />
           Has hose
         </li>
       </ul>
-      <Reviews name=***REMOVED***name***REMOVED*** />
+      <Reviews name={name} />
     </Layout>
   )
-***REMOVED***
+}
 
 export const query = graphql`
-  query($slug: String!) ***REMOVED***
-    toilets(fields: ***REMOVED*** slug: ***REMOVED*** eq: $slug ***REMOVED*** ***REMOVED***) ***REMOVED***
+  query($slug: String!) {
+    toilets(fields: { slug: { eq: $slug } }) {
       name
       lat
       lon
-      paranoma ***REMOVED***
+      paranoma {
         femaleYaw
         handicappedYaw
         maleYaw
         startingYaw
         waterCoolerYaw
         url
-      ***REMOVED***
-      facilities ***REMOVED***
+      }
+      facilities {
         hose
         showerHeads
         handicapped
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
+      }
+    }
+  }
 `

@@ -1,41 +1,41 @@
 const path = require(`path`)
 
-exports.onCreateNode = (***REMOVED*** node, actions ***REMOVED***) => ***REMOVED***
-  if (node.internal.type == "Toilets") ***REMOVED***
-      const ***REMOVED*** createNodeField ***REMOVED*** = actions
-      const slug = `/$***REMOVED***node.name.replace(/\s/g,'')***REMOVED***/`
-      createNodeField(***REMOVED***
+exports.onCreateNode = ({ node, actions }) => {
+  if (node.internal.type == "Toilets") {
+      const { createNodeField } = actions
+      const slug = `/${node.name.replace(/\s/g,'')}/`
+      createNodeField({
         node,
         name: "slug",
         value: slug
-      ***REMOVED***)
-  ***REMOVED***
-***REMOVED***
+      })
+  }
+}
 
-exports.createPages = (***REMOVED*** graphql, actions ***REMOVED***) => ***REMOVED***
-  const ***REMOVED*** createPage ***REMOVED*** = actions
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
   return graphql(`
-    ***REMOVED***
-      allToilets ***REMOVED***
-        edges ***REMOVED***
-          node ***REMOVED***
-            fields ***REMOVED***
+    {
+      allToilets {
+        edges {
+          node {
+            fields {
               slug
-            ***REMOVED***
-          ***REMOVED***
-        ***REMOVED***
-      ***REMOVED***
-    ***REMOVED***
+            }
+          }
+        }
+      }
+    }
     `
-  ).then(result => ***REMOVED***
-    result.data.allToilets.edges.forEach((***REMOVED*** node ***REMOVED***) => ***REMOVED***
-      createPage(***REMOVED***
+  ).then(result => {
+    result.data.allToilets.edges.forEach(({ node }) => {
+      createPage({
         path: node.fields.slug,
         component: path.resolve("./src/templates/toilet.js"),
-        context: ***REMOVED***
+        context: {
           slug: node.fields.slug
-        ***REMOVED***
-      ***REMOVED***)
-    ***REMOVED***)
-  ***REMOVED***)
-***REMOVED***
+        }
+      })
+    })
+  })
+}

@@ -1,34 +1,34 @@
 import React from "react"
-import ***REMOVED*** Link ***REMOVED*** from "gatsby"
+import { Link } from "gatsby"
 import * as utils from "../utils/utils"
 
-class BackButton extends React.Component ***REMOVED***
-  constructor(props) ***REMOVED***
+class BackButton extends React.Component {
+  constructor(props) {
     super(props)
-    this.state = ***REMOVED*** localWindow: null ***REMOVED***
-  ***REMOVED***
-  componentDidMount() ***REMOVED***
-    this.setState(***REMOVED***
+    this.state = { localWindow: null }
+  }
+  componentDidMount() {
+    this.setState({
       localWindow: window,
-    ***REMOVED***)
-  ***REMOVED***
+    })
+  }
 
-  render() ***REMOVED***
-    if (this.state.localWindow == null) ***REMOVED***
-      return <Link to=***REMOVED***"/"***REMOVED***>Back</Link>
-    ***REMOVED*** else ***REMOVED***
+  render() {
+    if (this.state.localWindow == null) {
+      return <Link to={"/"}>Back</Link>
+    } else {
       return this.state.localWindow.history.state == null ? (
-        <Link to=***REMOVED***"/"***REMOVED***>Back</Link>
+        <Link to={"/"}>Back</Link>
       ) : (
         <button
-          onClick=***REMOVED***() => this.state.localWindow.history.back()***REMOVED***
-          style=***REMOVED***utils.buttonToLinkStyle("#1ca086", "100%")***REMOVED***
+          onClick={() => this.state.localWindow.history.back()}
+          style={utils.buttonToLinkStyle("#1ca086", "100%")}
         >
           Back
         </button>
       )
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
 export default BackButton

@@ -2,7 +2,7 @@ import React from "react"
 import HelpButton from "./helpButton"
 
 const content = (
-  <div style=***REMOVED******REMOVED*** textAlign: "left" ***REMOVED******REMOVED***>
+  <div style={{ textAlign: "left" }}>
     Choosing an option will remove any toilet without the chosen feature from
     the list. Multiple selections will make criteria more stringent.
     <br />
@@ -11,4 +11,4 @@ const content = (
   </div>
 )
 
-export default () => <HelpButton content=***REMOVED***content***REMOVED*** />
+export default () => <HelpButton content={content} />

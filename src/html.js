@@ -1,9 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-export default function HTML(props) ***REMOVED***
+export default function HTML(props) {
   return (
-    <html ***REMOVED***...props.htmlAttributes***REMOVED***>
+    <html {...props.htmlAttributes}>
       <head>
         <link rel="shortcut icon" href="https://raw.githubusercontent.com/nelsontky/let-it-go/master/assets/icons/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="https://raw.githubusercontent.com/nelsontky/let-it-go/master/assets/icons/favicon.ico" type="image/x-icon" />
@@ -16,29 +16,29 @@ export default function HTML(props) ***REMOVED***
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        ***REMOVED***props.headComponents***REMOVED***
+        {props.headComponents}
       </head>
-      <body ***REMOVED***...props.bodyAttributes***REMOVED***>
-        ***REMOVED***props.preBodyComponents***REMOVED***
+      <body {...props.bodyAttributes}>
+        {props.preBodyComponents}
         <noscript key="noscript" id="gatsby-noscript">
           This app works best with JavaScript enabled.
         </noscript>
         <div
-          key=***REMOVED***`body`***REMOVED***
+          key={`body`}
           id="___gatsby"
-          dangerouslySetInnerHTML=***REMOVED******REMOVED*** __html: props.body ***REMOVED******REMOVED***
+          dangerouslySetInnerHTML={{ __html: props.body }}
         />
-        ***REMOVED***props.postBodyComponents***REMOVED***
+        {props.postBodyComponents}
       </body>
     </html>
   )
-***REMOVED***
+}
 
-HTML.propTypes = ***REMOVED***
+HTML.propTypes = {
   htmlAttributes: PropTypes.object,
   headComponents: PropTypes.array,
   bodyAttributes: PropTypes.object,
   preBodyComponents: PropTypes.array,
   body: PropTypes.string,
   postBodyComponents: PropTypes.array,
-***REMOVED***
+}

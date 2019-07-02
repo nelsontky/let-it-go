@@ -4,47 +4,47 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
-module.exports = ***REMOVED***
+module.exports = {
   pathPrefix: "/let-it-go",
   plugins: [
-    ***REMOVED***
+    {
       resolve: `gatsby-plugin-typography`,
-      options: ***REMOVED***
+      options: {
         pathToConfigModule: `src/utils/typography`,
-      ***REMOVED***,
-    ***REMOVED***,
-    ***REMOVED***
+      },
+    },
+    {
       resolve: "gatsby-source-firestore",
-      options: ***REMOVED***
+      options: {
         credential: require("./firebase.json"),
         types: [
-          ***REMOVED***
+          {
             type: "Toilets",
             collection: "toilets",
-            map: doc => ***REMOVED***
-              return ***REMOVED***
+            map: doc => {
+              return {
                 name: doc.name,
                 lat: doc.lat,
                 lon: doc.lon,
-                paranoma: ***REMOVED***
+                paranoma: {
                   femaleYaw: doc.paranoma.femaleYaw,
                   maleYaw: doc.paranoma.maleYaw,
                   handicappedYaw: doc.paranoma.handicappedYaw,
                   startingYaw: doc.paranoma.startingYaw,
                   waterCoolerYaw: doc.paranoma.waterCoolerYaw,
                   url: doc.paranoma.url,
-                ***REMOVED***,
-                facilities: ***REMOVED***
+                },
+                facilities: {
                   hose: doc.facilities.hose,
                   showerHeads: doc.facilities.showerHeads,
                   handicapped: doc.facilities.handicapped,
-                ***REMOVED***,
-              ***REMOVED***
-            ***REMOVED***,
-          ***REMOVED***,
+                },
+              }
+            },
+          },
         ],
-      ***REMOVED***,
-    ***REMOVED***,
+      },
+    },
     `gatsby-plugin-react-helmet`,
   ],
-***REMOVED***
+}

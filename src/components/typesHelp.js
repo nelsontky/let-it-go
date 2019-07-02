@@ -2,7 +2,7 @@ import React from "react"
 import HelpButton from "./helpButton"
 
 const content = (
-  <div style=***REMOVED******REMOVED*** textAlign: "left" ***REMOVED******REMOVED***>
+  <div style={{ textAlign: "left" }}>
     Legend:
     <ul>
       <li>
@@ -20,4 +20,4 @@ const content = (
   </div>
 )
 
-export default () => <HelpButton content=***REMOVED***content***REMOVED*** />
+export default () => <HelpButton content={content} />
