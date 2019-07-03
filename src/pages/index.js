@@ -41,6 +41,7 @@ export default class App extends React.Component {
     this.handleFilterChange = this.handleFilterChange.bind(this)
     this.isShown = this.isShown.bind(this)
     this.handlePageSize = this.handlePageSize.bind(this)
+    this.handlePageChange = this.handlePageChange.bind(this)
 
     this.getState = this.getState.bind(this)
     this.storeState = this.storeState.bind(this)
@@ -75,7 +76,7 @@ export default class App extends React.Component {
         hoseChecked: JSON.parse(sessionStorage.getItem("hoseChecked")),
         pageSize: JSON.parse(sessionStorage.getItem("pageSize")),
         pageNumber: JSON.parse(sessionStorage.getItem("pageNumber")),
-        isFilterHidden: JSON.parse(sessionStorage.getItem("isFilterHidden"))
+        isFilterHidden: JSON.parse(sessionStorage.getItem("isFilterHidden")),
       })
     }
   }
@@ -223,6 +224,10 @@ export default class App extends React.Component {
     }
   }
 
+  handlePageChange(event) {
+    this.setState({ pageNumber: parseInt(event.target.id) })
+  }
+
   render() {
     const iconStyle = { fontSize: "calc(0.6em + 0.5vw)" }
 
@@ -362,6 +367,7 @@ export default class App extends React.Component {
             key={this.paginateKey++}
             pageSize={this.state.pageSize}
             pageNumber={this.state.pageNumber}
+            handlePageChange={this.handlePageChange}
           >
             {this.state.toilets.filter(this.isShown).map((toilet, index) => (
               <tr key={index}>
