@@ -25,6 +25,8 @@ export default class App extends React.Component {
       waterCoolerChecked: false,
       showerHeadsChecked: false,
       hoseChecked: false,
+      pageSize: 6,
+      pageNumber: 1
     }
 
     this.sortByDistance = this.sortByDistance.bind(this)
@@ -262,9 +264,12 @@ export default class App extends React.Component {
               this.state.handicappedChecked +
               this.state.waterCoolerChecked +
               this.state.hoseChecked +
-              this.state.showerHeadsChecked
+              this.state.showerHeadsChecked +
+              this.state.pageSize +
+              this.state.pageNumber
             }
-            pageSize = {6}
+            pageSize={this.state.pageSize}
+            pageNumber={this.state.pageNumber}
           >
             {this.state.toilets.filter(this.isShown).map((toilet, index) => (
               <tr key={index}>

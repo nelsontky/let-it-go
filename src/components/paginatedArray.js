@@ -8,7 +8,7 @@ class PaginatedArray extends React.Component {
     this.pageSize = this.props.pageSize
 
     this.state = {
-      page: 1,
+      page: this.props.pageNumber,
     }
 
     // Setting up page number buttons
