@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import TypesHelp from "../components/typesHelp"
 import FilterHelp from "../components/filterHelp"
 import LocationHelp from "../components/locationHelp"
+import PaginatedArray from "../components/paginatedArray"
 import { graphql } from "gatsby"
 import { Link } from "gatsby"
 import * as utils from "../utils/utils"
@@ -148,6 +149,7 @@ export default class App extends React.Component {
           <title>Let It Go</title>
         </Helmet>
         <h1>Let It Go</h1>
+
         {/* Sorting dropdown */}
         <div style={{ float: "right" }}>
           <label>
@@ -253,7 +255,17 @@ export default class App extends React.Component {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <PaginatedArray
+            key={
+              this.state.maleChecked +
+              this.state.femaleChecked +
+              this.state.handicappedChecked +
+              this.state.waterCoolerChecked +
+              this.state.hoseChecked +
+              this.state.showerHeadsChecked
+            }
+            pageSize = {6}
+          >
             {this.state.toilets.filter(this.isShown).map((toilet, index) => (
               <tr key={index}>
                 {/* Name */}
@@ -295,7 +307,7 @@ export default class App extends React.Component {
                 </td>
               </tr>
             ))}
-          </tbody>
+          </PaginatedArray>
         </table>
       </Layout>
     )
