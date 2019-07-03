@@ -142,6 +142,7 @@ export default class App extends React.Component {
 
   handleFilterChange(event) {
     this.setState({
+      pageNumber: 1,
       [event.target.name]: !this.state[event.target.name],
     })
   }
