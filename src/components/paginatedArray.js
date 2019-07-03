@@ -5,20 +5,23 @@ class PaginatedArray extends React.Component {
     super(props)
     this.handleClick = this.handleClick.bind(this)
 
-    this.pageSize = this.props.pageSize
+    this.pageSize =
+      this.props.pageSize > this.props.children.length
+        ? this.props.children.length
+        : this.props.pageSize
 
     this.state = {
       page: this.props.pageNumber,
     }
 
     // Setting up page number buttons
-    this.pageNumbers = []
+    this.pageButtons = []
     for (
       let i = 0;
       i < Math.ceil(this.props.children.length / this.pageSize);
       i++
     ) {
-      this.pageNumbers.push(" " + (i + 1) + " ")
+      this.pageButtons.push(i + 1)
     }
 
     // Setting up individual pages
@@ -41,20 +44,22 @@ class PaginatedArray extends React.Component {
     return (
       <tbody>
         {this.pages[this.state.page - 1]}
-        <tr>
-          <td style={{ border: "0" }}>
-            {this.pageNumbers.map((x, i) => (
-              <button
-                onClick={this.handleClick}
-                id={i + 1}
-                key={i + 1}
-                disabled={this.state.page === i + 1}
-              >
-                {x}
-              </button>
-            ))}
-          </td>
-        </tr>
+        {this.pageSize < this.props.children.length && (
+          <tr>
+            <td colspan={2} style={{ border: "0", textAlign: "center" }}>
+              {this.pageButtons.map((x, i) => (
+                <button
+                  onClick={this.handleClick}
+                  id={i + 1}
+                  key={i + 1}
+                  disabled={this.state.page === i + 1}
+                >
+                  {x}
+                </button>
+              ))}
+            </td>
+          </tr>
+        )}
       </tbody>
     )
   }

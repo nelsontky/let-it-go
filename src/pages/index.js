@@ -25,8 +25,8 @@ export default class App extends React.Component {
       waterCoolerChecked: false,
       showerHeadsChecked: false,
       hoseChecked: false,
-      pageSize: 6,
-      pageNumber: 1
+      pageSize: 10,
+      pageNumber: 1,
     }
 
     this.sortByDistance = this.sortByDistance.bind(this)
@@ -37,6 +37,7 @@ export default class App extends React.Component {
     this.handleClick = this.handleClick.bind(this)
     this.handleFilterChange = this.handleFilterChange.bind(this)
     this.isShown = this.isShown.bind(this)
+    this.handlePageSize = this.handlePageSize.bind(this)
   }
 
   componentDidMount() {
@@ -53,6 +54,12 @@ export default class App extends React.Component {
     } else {
       this.sortByDistance()
     }
+  }
+
+  handlePageSize(event) {
+    this.setState({
+      pageSize: parseInt(event.target.value),
+    })
   }
 
   // Handles click on filter button
@@ -151,6 +158,23 @@ export default class App extends React.Component {
           <title>Let It Go</title>
         </Helmet>
         <h1>Let It Go</h1>
+
+        {/* Page size dropdown */}
+        <div style={{ float: "right", marginLeft:"10px" }}>
+          <label>
+            Show:{" "}
+            <select value={this.state.pageSize} onChange={this.handlePageSize}>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+              <option value="35">35</option>
+              <option value="40">40</option>
+            </select>
+          </label>
+        </div>
 
         {/* Sorting dropdown */}
         <div style={{ float: "right" }}>
