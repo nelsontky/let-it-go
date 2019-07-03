@@ -12,8 +12,11 @@ import { Helmet } from "react-helmet"
 export default class App extends React.Component {
   constructor(props) {
     super(props)
+    this.paginateKey = 0
+
     this.state = {
       isLocationAvailable: false,
+      isLocationLoading: true,
       toilets: this.props.data.allToilets.nodes.slice(0),
       myLat: null,
       myLon: null,
@@ -38,10 +41,77 @@ export default class App extends React.Component {
     this.handleFilterChange = this.handleFilterChange.bind(this)
     this.isShown = this.isShown.bind(this)
     this.handlePageSize = this.handlePageSize.bind(this)
+
+    this.getState = this.getState.bind(this)
+    this.storeState = this.storeState.bind(this)
   }
 
   componentDidMount() {
+    window.addEventListener("beforeunload", this.storeState)
+    this.getState()
     this.getLocation()
+  }
+
+  componentWillUnmount() {
+    this.storeState()
+    window.removeEventListener("beforeunload", this.storeState)
+  }
+
+  getState() {
+    if (sessionStorage.length > 1) {
+      this.setState({
+        sortBy: JSON.parse(sessionStorage.getItem("sortBy")),
+        maleChecked: JSON.parse(sessionStorage.getItem("maleChecked")),
+        femaleChecked: JSON.parse(sessionStorage.getItem("femaleChecked")),
+        handicappedChecked: JSON.parse(
+          sessionStorage.getItem("handicappedChecked")
+        ),
+        waterCoolerChecked: JSON.parse(
+          sessionStorage.getItem("waterCoolerChecked")
+        ),
+        showerHeadsChecked: JSON.parse(
+          sessionStorage.getItem("showerHeadsChecked")
+        ),
+        hoseChecked: JSON.parse(sessionStorage.getItem("hoseChecked")),
+        pageSize: JSON.parse(sessionStorage.getItem("pageSize")),
+        pageNumber: JSON.parse(sessionStorage.getItem("pageNumber")),
+        isFilterHidden: JSON.parse(sessionStorage.getItem("isFilterHidden"))
+      })
+    }
+  }
+
+  storeState() {
+    sessionStorage.setItem("sortBy", JSON.stringify(this.state.sortBy))
+    sessionStorage.setItem(
+      "maleChecked",
+      JSON.stringify(this.state.maleChecked)
+    )
+    sessionStorage.setItem(
+      "femaleChecked",
+      JSON.stringify(this.state.femaleChecked)
+    )
+    sessionStorage.setItem(
+      "handicappedChecked",
+      JSON.stringify(this.state.handicappedChecked)
+    )
+    sessionStorage.setItem(
+      "waterCoolerChecked",
+      JSON.stringify(this.state.waterCoolerChecked)
+    )
+    sessionStorage.setItem(
+      "showerHeadsChecked",
+      JSON.stringify(this.state.showerHeadsChecked)
+    )
+    sessionStorage.setItem(
+      "hoseChecked",
+      JSON.stringify(this.state.hoseChecked)
+    )
+    sessionStorage.setItem("pageSize", JSON.stringify(this.state.pageSize))
+    sessionStorage.setItem("pageNumber", JSON.stringify(this.state.pageNumber))
+    sessionStorage.setItem(
+      "isFilterHidden",
+      JSON.stringify(this.state.isFilterHidden)
+    )
   }
 
   handleChange(event) {
@@ -127,15 +197,19 @@ export default class App extends React.Component {
           this.setState({
             myLat: pos.coords.latitude,
             myLon: pos.coords.longitude,
-            sortBy: `distance`,
             isLocationAvailable: true,
+            isLocationLoading: false,
           })
-          this.sortByDistance()
+
+          if (this.state.sortBy === "distance") {
+            this.sortByDistance()
+          }
         },
         () => {
           // Geolocation permissions denied
           this.setState({
             isLocationAvailable: false,
+            isLocationLoading: false,
           })
         },
         { enableHighAccuracy: true }
@@ -144,12 +218,12 @@ export default class App extends React.Component {
       // Browser doesn't support Geolocation
       this.setState({
         isLocationAvailable: false,
+        isLocationLoading: false,
       })
     }
   }
 
   render() {
-    // console.log(this.state)
     const iconStyle = { fontSize: "calc(0.6em + 0.5vw)" }
 
     return (
@@ -160,7 +234,7 @@ export default class App extends React.Component {
         <h1>Let It Go</h1>
 
         {/* Page size dropdown */}
-        <div style={{ float: "right", marginLeft:"10px" }}>
+        <div style={{ float: "right", marginLeft: "10px" }}>
           <label>
             Show:{" "}
             <select value={this.state.pageSize} onChange={this.handlePageSize}>
@@ -262,8 +336,11 @@ export default class App extends React.Component {
           </div>
         )}
 
-        {/* Location not available message */}
-        {!this.state.isLocationAvailable && <LocationHelp />}
+        {/* Location not available/Loading message */}
+        {this.state.isLocationLoading && <p>Location service is loading...</p>}
+        {!this.state.isLocationAvailable && !this.state.isLocationLoading && (
+          <LocationHelp />
+        )}
 
         {/* Start of table */}
         <table style={{ tableLayout: "fixed" }}>
@@ -282,16 +359,7 @@ export default class App extends React.Component {
             </tr>
           </thead>
           <PaginatedArray
-            key={
-              this.state.maleChecked +
-              this.state.femaleChecked +
-              this.state.handicappedChecked +
-              this.state.waterCoolerChecked +
-              this.state.hoseChecked +
-              this.state.showerHeadsChecked +
-              this.state.pageSize +
-              this.state.pageNumber
-            }
+            key={this.paginateKey++}
             pageSize={this.state.pageSize}
             pageNumber={this.state.pageNumber}
           >

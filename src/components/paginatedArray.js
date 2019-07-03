@@ -46,7 +46,7 @@ class PaginatedArray extends React.Component {
         {this.pages[this.state.page - 1]}
         {this.pageSize < this.props.children.length && (
           <tr>
-            <td colspan={2} style={{ border: "0", textAlign: "center" }}>
+            <td colSpan={2} style={{ border: "0", textAlign: "center" }}>
               {this.pageButtons.map((x, i) => (
                 <button
                   onClick={this.handleClick}
