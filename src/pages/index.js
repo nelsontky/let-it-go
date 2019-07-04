@@ -115,9 +115,11 @@ export default class App extends React.Component {
     )
   }
 
+  // Handle change in soriing
   handleChange(event) {
     this.setState({
       sortBy: event.target.value,
+      pageNumber: 1,
     })
 
     if (event.target.value === "name") {
@@ -130,6 +132,7 @@ export default class App extends React.Component {
   handlePageSize(event) {
     this.setState({
       pageSize: parseInt(event.target.value),
+      pageNumber: 1,
     })
   }
 
@@ -343,7 +346,11 @@ export default class App extends React.Component {
         )}
 
         {/* Location not available/Loading message */}
-        {this.state.isLocationLoading && <p>Location service is loading...</p>}
+        {this.state.isLocationLoading && (
+          <p>
+            <strong>Location service is loading...</strong>
+          </p>
+        )}
         {!this.state.isLocationAvailable && !this.state.isLocationLoading && (
           <LocationHelp />
         )}

@@ -9,7 +9,7 @@ class ReviewText extends React.Component {
   constructor(props) {
     super(props)
 
-    this.len = 100
+    this.len = 240
 
     this.state = {
       review: this.props.review.slice(0, this.len),
