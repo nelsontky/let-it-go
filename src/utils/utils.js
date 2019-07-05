@@ -29,7 +29,7 @@ function hasFemaleToilet(toilet) {
 }
 
 function hasHandicappedToilet(toilet) {
-  return toilet.facilities.handicapped;
+  return toilet.facilities.handicapped
 }
 
 function hasSeperateHandicappedToilet(toilet) {
@@ -62,6 +62,44 @@ function buttonToLinkStyle(color, size) {
   }
 }
 
+function howLongAgo(date) {
+  const diff = Math.abs(date.toDate() - Date.now())
+  if (diff < 1000) {
+    return "Now"
+  } else if (diff < 60000) {
+    const sec = Math.floor(diff / 1000)
+    return sec === 1 ? `${sec} second ago` : `${sec} seconds ago`
+  } else if (diff < 3600000) {
+    const min = Math.floor(diff / 60000)
+    return min === 1 ? `${min} minute ago` : `${min} minutes ago`
+  } else if (diff < 86400000) {
+    const hour = Math.floor(diff / 3600000)
+    return hour === 1 ? `${hour} hour ago` : `${hour} hours ago`
+  } else if (diff < 604800000) {
+    const day = Math.floor(diff / 86400000)
+    return day === 1 ? `${day} day ago` : `${day} days ago`
+  } else if (diff < 2628000000) {
+    const week = Math.floor(diff / 604800000)
+    return week === 1 ? `${week} week ago` : `${week} weeks ago`
+  } else if (diff < 31540000000) {
+    const month = Math.floor(diff / 2628000000)
+    return month === 1 ? `${month} month ago` : `${month} months ago`
+  } else {
+    return (
+      "Posted on " +
+      date.toDate().toLocaleString("default", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    )
+  }
+}
+
+function starsStateToScore(starsState) {
+  return starsState.filter(x => x).length
+}
+
 export {
   latLonToMetres,
   hasMaleToilet,
@@ -72,5 +110,7 @@ export {
   toiletHasShowerHeads,
   toiletHasWaterCooler,
   appendMetres,
-  buttonToLinkStyle
+  buttonToLinkStyle,
+  howLongAgo,
+  starsStateToScore
 }

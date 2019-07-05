@@ -2,6 +2,8 @@ import React from "react"
 import Firebase from "../utils/firebase"
 import * as utils from "../utils/utils"
 import { Helmet } from "react-helmet"
+import Stars from "../components/stars"
+import StarsStatic from "../components/starsStatic"
 
 const uniqid = require("uniqid")
 
@@ -59,11 +61,14 @@ class Reviews extends React.Component {
       isSignedIn: false,
       myReview: "",
       reviewsLoading: true,
+      starsState: [false, false, false, false, false],
     }
+    this.starsKey = 0
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleStarClick = this.handleStarClick.bind(this)
   }
 
   componentDidMount() {
@@ -128,6 +133,7 @@ class Reviews extends React.Component {
             review: this.state.myReview,
             date: new Date(),
             uid: this.auth.currentUser.uid,
+            score: utils.starsStateToScore(this.state.starsState),
           }),
         },
         { merge: true }
@@ -135,6 +141,7 @@ class Reviews extends React.Component {
 
     this.setState({
       myReview: "",
+      starsState: [false, false, false, false, false]
     })
   }
 
@@ -153,6 +160,16 @@ class Reviews extends React.Component {
     }
   }
 
+  handleStarClick(event) {
+    const starsState = this.state.starsState
+      .slice()
+      .map((x, i) => i <= parseInt(event.target.id))
+
+    this.setState({
+      starsState,
+    })
+  }
+
   componentWillUnmount() {
     this.snapshot()
     this.stopAuthListener()
@@ -166,6 +183,10 @@ class Reviews extends React.Component {
             type="text/css"
             rel="stylesheet"
             href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
           />
         </Helmet>
         <h4>Reviews</h4>
@@ -194,18 +215,24 @@ class Reviews extends React.Component {
               </button>
             </p>
             <form onSubmit={this.handleSubmit}>
-              <label>
-                <textarea
-                  style={{ width: "100%", resize: "none", height: "75px" }}
-                  value={this.state.myReview}
-                  onChange={this.handleChange}
-                  placeholder="Write a review..."
-                />
-              </label>
+              <Stars
+                handleStarClick={this.handleStarClick}
+                starsState={this.state.starsState}
+                key={this.starsKey++}
+              />
+              <textarea
+                style={{ width: "100%", resize: "none", height: "75px" }}
+                value={this.state.myReview}
+                onChange={this.handleChange}
+                placeholder="Write a review..."
+              />
               <input
                 type="submit"
                 value="Submit"
-                disabled={this.state.myReview.trim() === ""}
+                disabled={
+                  this.state.myReview.trim() === "" ||
+                  utils.starsStateToScore(this.state.starsState) === 0
+                }
               />
             </form>
           </div>
@@ -230,16 +257,6 @@ class Reviews extends React.Component {
                       <strong style={{ color: "blue", fontSize: "80%" }}>
                         {x.name}
                       </strong>
-                      <span style={{ color: "gray", fontSize: "80%" }}>
-                        {" • " +
-                          x.date.toDate().toLocaleString("default", {
-                            day: "numeric",
-                            month: "long",
-                            year: "numeric",
-                            hour: "numeric",
-                            minute: "numeric",
-                          })}
-                      </span>
                       {this.state.isSignedIn &&
                         x.uid === this.auth.currentUser.uid && (
                           <span style={{ color: "gray", fontSize: "80%" }}>
@@ -252,6 +269,13 @@ class Reviews extends React.Component {
                             </button>
                           </span>
                         )}
+                      <br />
+                      <span>
+                        <StarsStatic score={x.score} />
+                        <span style={{ color: "gray", fontSize: "80%" }}>
+                          {" " + utils.howLongAgo(x.date)}
+                        </span>
+                      </span>
                       <br />
                       <ReviewText key={x.id} review={x.review} />
                     </td>
