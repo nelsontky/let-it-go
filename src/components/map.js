@@ -7,7 +7,6 @@ class Map extends React.Component {
 
     this.state = {
       isLocationAvailable: false,
-      isLocationLoading: true,
     }
 
     this.watchLocation = this.watchLocation.bind(this)
@@ -26,7 +25,6 @@ class Map extends React.Component {
           })
           this.setState({
             isLocationAvailable: true,
-            isLocationLoading: false,
           })
 
           this.accuracyRadius.setCenter(this.locationMarker.getPosition())
@@ -35,7 +33,6 @@ class Map extends React.Component {
         () => {
           this.setState({
             isLocationAvailable: false,
-            isLocationLoading: false,
           })
         },
         { enableHighAccuracy: true }
@@ -44,7 +41,6 @@ class Map extends React.Component {
       // Browser doesn't support Geolocation
       this.setState({
         isLocationAvailable: false,
-        isLocationLoading: false,
       })
     }
   }
@@ -118,12 +114,7 @@ class Map extends React.Component {
   render() {
     return (
       <div>
-        {this.state.isLocationLoading && (
-          <p>
-            <strong>Location service is loading...</strong>
-          </p>
-        )}
-        {!this.state.isLocationAvailable && !this.state.isLocationLoading && (
+        {!this.state.isLocationAvailable && (
           <LocationHelp />
         )}
         <div id="map" style={{ width: "100%", height: 300 }} />

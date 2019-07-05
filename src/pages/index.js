@@ -16,7 +16,6 @@ export default class App extends React.Component {
 
     this.state = {
       isLocationAvailable: false,
-      isLocationLoading: true,
       toilets: this.props.data.allToilets.nodes.slice(0),
       myLat: null,
       myLon: null,
@@ -203,7 +202,6 @@ export default class App extends React.Component {
             myLat: pos.coords.latitude,
             myLon: pos.coords.longitude,
             isLocationAvailable: true,
-            isLocationLoading: false,
           })
 
           if (this.state.sortBy === "distance") {
@@ -214,7 +212,6 @@ export default class App extends React.Component {
           // Geolocation permissions denied
           this.setState({
             isLocationAvailable: false,
-            isLocationLoading: false,
           })
         },
         { enableHighAccuracy: true }
@@ -223,7 +220,6 @@ export default class App extends React.Component {
       // Browser doesn't support Geolocation
       this.setState({
         isLocationAvailable: false,
-        isLocationLoading: false,
       })
     }
   }
@@ -346,14 +342,7 @@ export default class App extends React.Component {
         )}
 
         {/* Location not available/Loading message */}
-        {this.state.isLocationLoading && (
-          <p>
-            <strong>Location service is loading...</strong>
-          </p>
-        )}
-        {!this.state.isLocationAvailable && !this.state.isLocationLoading && (
-          <LocationHelp />
-        )}
+        {!this.state.isLocationAvailable && <LocationHelp />}
 
         {/* Start of table */}
         <table style={{ tableLayout: "fixed" }}>

@@ -51,6 +51,6 @@ const content = (
 
 export default () => (
   <p>
-    Location not detected <HelpButton content={content} />
+    Location loading/not available <HelpButton content={content} />
   </p>
 )
