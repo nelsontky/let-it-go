@@ -365,6 +365,7 @@ export default class App extends React.Component {
             pageSize={this.state.pageSize}
             pageNumber={this.state.pageNumber}
             handlePageChange={this.handlePageChange}
+            columns={2}
           >
             {this.state.toilets.filter(this.isShown).map((toilet, index) => (
               <tr key={index}>

@@ -4,6 +4,7 @@ import * as utils from "../utils/utils"
 import { Helmet } from "react-helmet"
 import Stars from "../components/stars"
 import StarsStatic from "../components/starsStatic"
+import PaginatedArray from "../components/paginatedArray"
 
 const uniqid = require("uniqid")
 
@@ -63,14 +64,17 @@ class Reviews extends React.Component {
       myReview: "",
       reviewsLoading: true,
       starsState: [false, false, false, false, false],
+      pageNumber: 1,
     }
     this.starsKey = 0
+    this.paginateKey = 0
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.handleStarClick = this.handleStarClick.bind(this)
     this.handleSort = this.handleSort.bind(this)
+    this.handlePageChange = this.handlePageChange.bind(this)
   }
 
   componentDidMount() {
@@ -145,6 +149,8 @@ class Reviews extends React.Component {
     this.setState({
       myReview: "",
       starsState: [false, false, false, false, false],
+      sortBy: "newest",
+      pageNumber: 1,
     })
   }
 
@@ -160,6 +166,11 @@ class Reviews extends React.Component {
             x => x.uid === this.auth.currentUser.uid && x.id !== id
           ),
         })
+
+      this.setState({
+        pageNumber: 1,
+        sortBy: "newest",
+      })
     }
   }
 
@@ -185,7 +196,13 @@ class Reviews extends React.Component {
 
     this.setState({
       reviews: reviewsCopy,
+      sortBy: event.target.value,
+      pageNumber: 1,
     })
+  }
+
+  handlePageChange(event) {
+    this.setState({ pageNumber: parseInt(event.target.id) })
   }
 
   componentWillUnmount() {
@@ -255,7 +272,7 @@ class Reviews extends React.Component {
             </form>
           </div>
         )}
-        {/* Sorting dropdonw */}
+        {/* Sorting dropdown */}
         {!this.state.reviewsLoading && this.state.reviews.length !== 0 && (
           <div>
             <label>
@@ -270,8 +287,8 @@ class Reviews extends React.Component {
         )}
         {/* Comments start here */}
         <table style={{ tableLayout: "fixed" }}>
-          <tbody>
-            {this.state.reviews.length === 0 ? (
+          {this.state.reviews.length === 0 ? (
+            <tbody>
               <tr key={1}>
                 <td>
                   {!this.state.reviewsLoading ? (
@@ -281,8 +298,16 @@ class Reviews extends React.Component {
                   )}
                 </td>
               </tr>
-            ) : (
-              this.state.reviews.map((x, i) => {
+            </tbody>
+          ) : (
+            <PaginatedArray
+              key={this.paginateKey++}
+              pageSize={8}
+              pageNumber={this.state.pageNumber}
+              handlePageChange={this.handlePageChange}
+              columns={1}
+            >
+              {this.state.reviews.map((x, i) => {
                 return (
                   <tr key={i}>
                     <td>
@@ -320,9 +345,9 @@ class Reviews extends React.Component {
                     </td>
                   </tr>
                 )
-              })
-            )}
-          </tbody>
+              })}
+            </PaginatedArray>
+          )}
         </table>
       </div>
     )

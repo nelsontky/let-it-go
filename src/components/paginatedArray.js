@@ -37,7 +37,7 @@ class PaginatedArray extends React.Component {
         {this.pages[this.props.pageNumber - 1]}
         {this.pageSize < this.props.children.length && (
           <tr>
-            <td colSpan={2} style={{ border: "0", textAlign: "center" }}>
+            <td colSpan={this.props.columns} style={{ border: "0", textAlign: "center" }}>
               {this.pageButtons.map((x, i) => (
                 <button
                   onClick={this.props.handlePageChange}
