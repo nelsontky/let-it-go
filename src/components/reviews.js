@@ -16,6 +16,7 @@ class ReviewText extends React.Component {
     this.state = {
       review: this.props.review.slice(0, this.len),
       isTooLong: this.props.review.length > this.len,
+      sortBy: "newest",
     }
   }
 
@@ -69,6 +70,7 @@ class Reviews extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.handleStarClick = this.handleStarClick.bind(this)
+    this.handleSort = this.handleSort.bind(this)
   }
 
   componentDidMount() {
@@ -130,6 +132,7 @@ class Reviews extends React.Component {
           userReviews: this.firebase.firebase.firestore.FieldValue.arrayUnion({
             id: uniqid(),
             name: this.auth.currentUser.displayName,
+            photoURL: this.auth.currentUser.photoURL,
             review: this.state.myReview,
             date: new Date(),
             uid: this.auth.currentUser.uid,
@@ -141,7 +144,7 @@ class Reviews extends React.Component {
 
     this.setState({
       myReview: "",
-      starsState: [false, false, false, false, false]
+      starsState: [false, false, false, false, false],
     })
   }
 
@@ -167,6 +170,21 @@ class Reviews extends React.Component {
 
     this.setState({
       starsState,
+    })
+  }
+
+  handleSort(event) {
+    let reviewsCopy = this.state.reviews.slice()
+    if (event.target.value === "newest") {
+      reviewsCopy.sort((r1, r2) => r2.date.toDate() - r1.date.toDate())
+    } else if (event.target.value === "lowest") {
+      reviewsCopy.sort((r1, r2) => r1.score - r2.score)
+    } else {
+      reviewsCopy.sort((r1, r2) => r2.score - r1.score)
+    }
+
+    this.setState({
+      reviews: reviewsCopy,
     })
   }
 
@@ -237,6 +255,20 @@ class Reviews extends React.Component {
             </form>
           </div>
         )}
+        {/* Sorting dropdonw */}
+        {!this.state.reviewsLoading && this.state.reviews.length !== 0 && (
+          <div>
+            <label>
+              Sort by:{" "}
+              <select value={this.state.sortBy} onChange={this.handleSort}>
+                <option value="newest">Newest</option>
+                <option value="highest">Highest Rating</option>
+                <option value="lowest">Lowest Rating</option>
+              </select>
+            </label>
+          </div>
+        )}
+        {/* Comments start here */}
         <table style={{ tableLayout: "fixed" }}>
           <tbody>
             {this.state.reviews.length === 0 ? (
@@ -254,8 +286,15 @@ class Reviews extends React.Component {
                 return (
                   <tr key={i}>
                     <td>
+                      <img
+                        src={x.photoURL}
+                        alt={x.name}
+                        width={36}
+                        height={36}
+                        style={{ verticalAlign: "top" }}
+                      />
                       <strong style={{ color: "blue", fontSize: "80%" }}>
-                        {x.name}
+                        {" " + x.name}
                       </strong>
                       {this.state.isSignedIn &&
                         x.uid === this.auth.currentUser.uid && (
