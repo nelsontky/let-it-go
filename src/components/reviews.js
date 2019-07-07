@@ -53,19 +53,6 @@ class ReviewText extends React.Component {
   }
 }
 
-// this.state.isSignedIn &&
-//   this.props.review.uid === this.props.auth.currentUser.uid && (
-// <span style={{ color: "gray", fontSize: "80%" }}>
-//   {" • "}
-//   <button
-//     onClick={this.handleEdit}
-//     style={utils.buttonToLinkStyle("red", "100%")}
-//   >
-//     Edit
-//   </button>
-// </span>
-//   )
-
 class SingleReview extends React.Component {
   render() {
     return (
