@@ -172,6 +172,10 @@ class Reviews extends React.Component {
                 x => x.uid !== this.auth.currentUser.uid
               ),
       })
+      this.setState({
+        inputBoxShown:
+          this.state.otherReviews.length === this.state.reviews.length,
+      })
     })
   }
 
@@ -313,8 +317,7 @@ class Reviews extends React.Component {
 
             {/* Comment input box/My review */}
 
-            {this.state.inputBoxShown ||
-            this.state.otherReviews.length === this.state.reviews.length ? (
+            {this.state.inputBoxShown ? (
               <form onSubmit={this.handleSubmit}>
                 <Stars
                   handleStarClick={this.handleStarClick}
