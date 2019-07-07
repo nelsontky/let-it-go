@@ -26,8 +26,7 @@
     "react-helmet": "^5.2.1",
     "react-typography": "^0.16.19",
     "typography": "^0.16.19",
-    "typography-theme-fairy-gates": "^0.16.19",
-    "uniqid": "^5.0.3"
+    "typography-theme-fairy-gates": "^0.16.19"
   },
   "devDependencies": {
     "gh-pages": "^2.0.1",
@@ -35,9 +34,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+    "url": "https://github.com/nelsontky/let-it-go"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/nelsontky/let-it-go/issues"
   }
 }
