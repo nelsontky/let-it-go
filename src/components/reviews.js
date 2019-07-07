@@ -276,6 +276,15 @@ class Reviews extends React.Component {
           />
         </Helmet>
         <h4>Reviews</h4>
+        {!this.state.reviewsLoading && this.state.reviews.length !== 0 && (
+          <span>
+            <i className="fas fa-star" style={{ color: "orange" }} />{" "}
+            {(
+              this.state.reviews.reduce((a, x) => a + x.score, 0) /
+              this.state.reviews.length
+            ).toFixed(1)}
+          </span>
+        )}
         {!this.state.isSignedIn && (
           <div>
             <div id="firebaseui-auth-container" />
@@ -303,7 +312,9 @@ class Reviews extends React.Component {
             </p>
 
             {/* Comment input box/My review */}
-            {this.state.inputBoxShown && !this.state.reviewsLoading ? (
+
+            {this.state.inputBoxShown ||
+            this.state.otherReviews.length === this.state.reviews.length ? (
               <form onSubmit={this.handleSubmit}>
                 <Stars
                   handleStarClick={this.handleStarClick}
@@ -344,6 +355,7 @@ class Reviews extends React.Component {
             )}
           </div>
         )}
+
         {/* Sorting dropdown */}
         <br />
         {!this.state.reviewsLoading && this.state.otherReviews.length !== 0 && (
@@ -365,7 +377,12 @@ class Reviews extends React.Component {
               <tr key={1}>
                 <td>
                   {!this.state.reviewsLoading ? (
-                    <p>No reviews (yet!)</p>
+                    <p>
+                      No{" "}
+                      {this.state.otherReviews.length <
+                        this.state.reviews.length && "other"}{" "}
+                      reviews (yet!)
+                    </p>
                   ) : (
                     <p>Reviews are loading...</p>
                   )}
