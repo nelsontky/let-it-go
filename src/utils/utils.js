@@ -21,11 +21,11 @@ function appendMetres(distance) {
 }
 
 function hasMaleToilet(toilet) {
-  return toilet.paranoma.maleYaw != null
+  return toilet.facilities.male
 }
 
 function hasFemaleToilet(toilet) {
-  return toilet.paranoma.femaleYaw != null
+  return toilet.facilities.female
 }
 
 function hasHandicappedToilet(toilet) {
@@ -33,7 +33,7 @@ function hasHandicappedToilet(toilet) {
 }
 
 function hasSeperateHandicappedToilet(toilet) {
-  return toilet.paranoma.handicappedYaw != null
+  return toilet.facilities.seperateHandicapped
 }
 
 function toiletHasHose(toilet) {
@@ -45,7 +45,7 @@ function toiletHasShowerHeads(toilet) {
 }
 
 function toiletHasWaterCooler(toilet) {
-  return toilet.paranoma.waterCoolerYaw != null
+  return toilet.facilities.waterCooler
 }
 
 function buttonToLinkStyle(color, size) {

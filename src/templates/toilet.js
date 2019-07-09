@@ -13,12 +13,7 @@ export default ({ data }) => {
   const name = data.toilets.name
   const lat = data.toilets.lat
   const lon = data.toilets.lon
-  const paranomaUrl = data.toilets.paranoma.url
-  const startingYaw = data.toilets.paranoma.startingYaw
-  const maleYaw = data.toilets.paranoma.maleYaw
-  const femaleYaw = data.toilets.paranoma.femaleYaw
-  const handicappedYaw = data.toilets.paranoma.handicappedYaw
-  const waterCoolerYaw = data.toilets.paranoma.waterCoolerYaw
+  const paranomaUrl = data.toilets.paranomaUrl
 
   function glanceStyle(pred) {
     return {
@@ -46,15 +41,7 @@ export default ({ data }) => {
       <h3>{name}</h3>
       <ShareButton name={name} />
       <Map lat={lat} lon={lon} />
-      <Paranoma
-        name={name}
-        paranomaUrl={paranomaUrl}
-        startingYaw={startingYaw}
-        maleYaw={maleYaw}
-        femaleYaw={femaleYaw}
-        handicappedYaw={handicappedYaw}
-        waterCoolerYaw={waterCoolerYaw}
-      />
+      <Paranoma name={name} paranomaUrl={paranomaUrl} />
       <h4>At a glance</h4>
       <ul style={{ listStyle: "none" }}>
         <li style={glanceStyle(utils.hasMaleToilet)}>
@@ -93,19 +80,16 @@ export const query = graphql`
       name
       lat
       lon
-      paranoma {
-        femaleYaw
-        handicappedYaw
-        maleYaw
-        startingYaw
-        waterCoolerYaw
-        url
-      }
       facilities {
         hose
         showerHeads
         handicapped
+        male
+        female
+        seperateHandicapped
+        waterCooler
       }
+    paranomaUrl
     }
   }
 `

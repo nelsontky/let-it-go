@@ -46,7 +46,7 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
-    this.watchLocation()
+
 
     this.map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: this.props.lat, lng: this.props.lon },
@@ -109,6 +109,7 @@ class Map extends React.Component {
     this.map.controls[window.google.maps.ControlPosition.LEFT_BOTTOM].push(
       centerControlDiv
     )
+    this.watchLocation()
   }
 
   render() {

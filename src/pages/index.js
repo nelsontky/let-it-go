@@ -424,12 +424,10 @@ export const query = graphql`
           hose
           showerHeads
           handicapped
-        }
-        paranoma {
-          femaleYaw
-          maleYaw
-          handicappedYaw
-          waterCoolerYaw
+          male
+          female
+          seperateHandicapped
+          waterCooler
         }
         lat
         lon

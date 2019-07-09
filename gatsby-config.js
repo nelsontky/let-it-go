@@ -26,19 +26,16 @@ module.exports = {
                 name: doc.name,
                 lat: doc.lat,
                 lon: doc.lon,
-                paranoma: {
-                  femaleYaw: doc.paranoma.femaleYaw,
-                  maleYaw: doc.paranoma.maleYaw,
-                  handicappedYaw: doc.paranoma.handicappedYaw,
-                  startingYaw: doc.paranoma.startingYaw,
-                  waterCoolerYaw: doc.paranoma.waterCoolerYaw,
-                  url: doc.paranoma.url,
-                },
                 facilities: {
                   hose: doc.facilities.hose,
                   showerHeads: doc.facilities.showerHeads,
                   handicapped: doc.facilities.handicapped,
+                  male: doc.facilities.male,
+                  female: doc.facilities.female,
+                  seperateHandicapped: doc.facilities.seperateHandicapped,
+                  waterCooler: doc.facilities.waterCooler
                 },
+                paranomaUrl: doc.paranomaUrl
               }
             },
           },
