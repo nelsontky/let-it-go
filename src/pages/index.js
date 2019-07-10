@@ -426,7 +426,7 @@ export const query = graphql`
           handicapped
           male
           female
-          seperateHandicapped
+          separateHandicapped
           waterCooler
         }
         lat

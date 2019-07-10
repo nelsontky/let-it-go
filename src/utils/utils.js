@@ -32,8 +32,8 @@ function hasHandicappedToilet(toilet) {
   return toilet.facilities.handicapped
 }
 
-function hasSeperateHandicappedToilet(toilet) {
-  return toilet.facilities.seperateHandicapped
+function hasSeparateHandicappedToilet(toilet) {
+  return toilet.facilities.separateHandicapped
 }
 
 function toiletHasHose(toilet) {
@@ -105,7 +105,7 @@ export {
   hasMaleToilet,
   hasFemaleToilet,
   hasHandicappedToilet,
-  hasSeperateHandicappedToilet,
+  hasSeparateHandicappedToilet,
   toiletHasHose,
   toiletHasShowerHeads,
   toiletHasWaterCooler,

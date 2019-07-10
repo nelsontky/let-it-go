@@ -25,10 +25,10 @@ export default ({ data }) => {
   function handicappedText() {
     if (!utils.hasHandicappedToilet(data.toilets)) {
       return "Is handicapped accessible"
-    } else if (!utils.hasSeperateHandicappedToilet(data.toilets))
+    } else if (!utils.hasSeparateHandicappedToilet(data.toilets))
       return "Is handicapped accessible (Handicapped cubicle inside toilet)"
     else {
-      return "Is handicapped accessible (Has seperate handicapped toilet)"
+      return "Is handicapped accessible (Has separate handicapped toilet)"
     }
   }
 
@@ -86,7 +86,7 @@ export const query = graphql`
         handicapped
         male
         female
-        seperateHandicapped
+        separateHandicapped
         waterCooler
       }
     paranomaUrl

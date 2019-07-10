@@ -13,7 +13,7 @@ const content = (
       </li>
       <li>
         <i className="em-svg em-wheelchair" />: Is handicapped accessible
-        (Includes seperate handicapped toilets or those inside toilets as a
+        (Includes separate handicapped toilets or those inside toilets as a
         larger cubicle)
       </li>
     </ul>

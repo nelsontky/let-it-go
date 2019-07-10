@@ -32,7 +32,7 @@ module.exports = {
                   handicapped: doc.facilities.handicapped,
                   male: doc.facilities.male,
                   female: doc.facilities.female,
-                  seperateHandicapped: doc.facilities.seperateHandicapped,
+                  separateHandicapped: doc.facilities.separateHandicapped,
                   waterCooler: doc.facilities.waterCooler
                 },
                 paranomaUrl: doc.paranomaUrl
