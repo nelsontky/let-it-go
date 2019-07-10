@@ -67,18 +67,33 @@ class SingleReview extends React.Component {
         <strong style={{ color: "blue", fontSize: "80%" }}>
           {" " + this.props.children.name}
         </strong>
+
         {/* Edit button (if shown) */}
         {this.props.handleEdit != null && (
           <span style={{ color: "gray", fontSize: "80%" }}>
             {" • "}
             <button
               onClick={this.props.handleEdit}
-              style={utils.buttonToLinkStyle("red", "100%")}
+              style={utils.buttonToLinkStyle("#1ca086", "100%")}
             >
               Edit
             </button>
           </span>
         )}
+
+        {/* Delete button (if shown) */}
+        {this.props.handleDelete != null && (
+          <span style={{ color: "gray", fontSize: "80%" }}>
+            {" • "}
+            <button
+              onClick={this.props.handleDelete}
+              style={utils.buttonToLinkStyle("red", "100%")}
+            >
+              Delete
+            </button>
+          </span>
+        )}
+
         <br />
         <span>
           <StarsStatic score={this.props.children.score} />
@@ -112,6 +127,7 @@ class Reviews extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleEdit = this.handleEdit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
     this.handleStarClick = this.handleStarClick.bind(this)
     this.handleSort = this.handleSort.bind(this)
     this.handlePageChange = this.handlePageChange.bind(this)
@@ -207,7 +223,6 @@ class Reviews extends React.Component {
   }
 
   handleEdit() {
-    console.log("edit")
     const review = this.state.reviews.filter(
       x => x.uid === this.auth.currentUser.uid
     )[0]
@@ -219,6 +234,18 @@ class Reviews extends React.Component {
       ),
       inputBoxShown: true,
     })
+  }
+
+  handleDelete() {
+    if (window.confirm(`Are you sure you want to delete your review?`)) {
+      this.db
+        .collection("reviews")
+        .doc(this.props.name)
+        .collection("users")
+        .doc(this.auth.currentUser.uid)
+        .delete()
+        .then(() => this.setState({ inputBoxShown: true }))
+    }
   }
 
   handleStarClick(event) {
@@ -276,6 +303,8 @@ class Reviews extends React.Component {
           />
         </Helmet>
         <h4>Reviews</h4>
+
+        {/* Average ratings */}
         {!this.state.reviewsLoading && this.state.reviews.length !== 0 && (
           <span>
             <i className="fas fa-star" style={{ color: "orange" }} />{" "}
@@ -344,7 +373,10 @@ class Reviews extends React.Component {
                   borderWidth: "1px",
                 }}
               >
-                <SingleReview handleEdit={this.handleEdit}>
+                <SingleReview
+                  handleEdit={this.handleEdit}
+                  handleDelete={this.handleDelete}
+                >
                   {
                     this.state.reviews.filter(
                       x => x.uid === this.auth.currentUser.uid
