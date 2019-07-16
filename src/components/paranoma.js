@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet"
 
 class Paranoma extends React.Component {
   componentDidMount() {
-    window.pannellum.viewer("panorama", {
+    this.viewer = window.pannellum.viewer("panorama", {
       type: "equirectangular",
       panorama: this.props.paranomaUrl,
       vaov: 45,
@@ -12,6 +12,10 @@ class Paranoma extends React.Component {
       autoLoad: true,
     })
   }
+  
+  componentWillUnmount() {                                                     
+    this.viewer.destroy();                                             
+  }                      
 
   render() {
     return (
