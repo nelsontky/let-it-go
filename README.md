@@ -132,28 +132,28 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
 
     (:scroll: represents a collection while :page_facing_up: represents a document)
     <ul style="list-style:none">
-      <li>:scroll: ```reviews```</li>
+      <li>:scroll: <code>reviews</code></li>
       <ul style="list-style:none">
-        <li>:page_facing_up: ```COM1 Level 1 Main Entrance```</li>
+        <li>:page_facing_up: <code>COM1 Level 1 Main Entrance</code></li>
         <ul style="list-style:none">
-          <li>:scroll: ```users```</li>
+          <li>:scroll: <code>users</code></li>
           <ul style="list-style:none">
-            <li>:page_facing_up: *```userId```* (a random unique id that is generated for every user who has logged in before)</li>
-            <li>```review :```</li>
+            <li>:page_facing_up: <em><code>userId</code></em> (a random unique id that is generated for every user who has logged in before)</li>
+            <li><code>review :</code></li>
             <ul style="list-style:none">
-              <li>```date :```</li>
-              <li>```name :```</li>
-              <li>```photoURL :```</li>
-              <li>```review :```</li>
-              <li>```score :```</li>
-              <li>```uid :```</li>
+              <li><code>date :</code></li>
+              <li><code>name :</code></li>
+              <li><code>photoURL :</code></li>
+              <li><code>review :</code></li>
+              <li><code>score :</code></li>
+              <li><code>uid :</code></li>
             </ul>
-            <li>:page_facing_up: *```Another userId```*</li>
-            <li>```...```</li>
+            <li>:page_facing_up: <em><code>Another userId</code></em></li>
+            <li><code>...</code></li>
           </ul>
         </ul>
-        <li>:page_facing_up: *```Other toilets```*</li>
-        <li>```...```</li>
+        <li>:page_facing_up: <em><code>Other toilets</code></em></li>
+        <li><code>...</code></li>
       </ul>
     </ul>
 
