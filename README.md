@@ -148,7 +148,7 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
      <li>As can be seen from the numerous commits where we thought that things were fixed, this issue of key security was quite a ride. :stuck_out_tongue_closed_eyes:</li>
        <br/>
        <img src="https://i.imgur.com/ZuYYH1Q.png" alt="Key commits" width= "700" />
-     <li>We are glad that we learnt about key security while doing a small scale project like Orbital. Think of the consequences if we do accidentally push private keys during our internship/work. :shudders:</li>
+     <li>We are glad that we learnt about key security while doing a small scale project like Orbital. Think of the consequences if we do accidentally push private keys during our internship/work. :shudders:</li></ul>
 
 1. Database security
 
