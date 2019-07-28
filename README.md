@@ -7,36 +7,41 @@ Let It Go is a web app that allows you to locate toilets in NUS nearest to you i
 
 Never fear again when you are in a foreign part of NUS, for now you can finally release your faeces in peace!
 
-## Screenshots
-Demo video: https://www.youtube.com/watch?v=W06EW9-r1iY
-#### Webapp:
-![Main Screen](https://i.imgur.com/U9En22F.png)
-![Toilets Page](https://i.imgur.com/KROzJDB.png)
+[And yes, you can submit your own toilets too!](https://nelsontky.github.io/let-it-go-submission/)
+([Learn more](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md))
+
+## Demo
+Webapp: https://nelsontky.github.io/let-it-go/
+
+Submissions portal ([?](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md)): https://nelsontky.github.io/let-it-go-submission/
+
+
+Demo video: https://www.youtube.com/watch?v=4WnngILnw18
+
+### Screenshots
+#### Webapp
+<br />
+<img src="https://i.imgur.com/tYTp85P.png" width="300" alt="Main Screen" />
+<img src="https://i.imgur.com/BaGjpQX.png" width="300" alt="Toilets Page" />
 #### iOS app:
-![Main Screen](https://i.imgur.com/0NGHavv.jpg)
-![Toilets Page](https://i.imgur.com/knArjQZ.jpg)
-![Toilets Page](https://i.imgur.com/nIN5mz7.jpg)
+<br />
+<img src="https://i.imgur.com/LNhE71g.png" width="300" alt="Main Screen" />
+<img src="https://i.imgur.com/Y03w8jW.png" width="300" alt="Toilets Page" />
+<img src="https://i.imgur.com/eKbgXLH.png" width="300" alt="Toilets Page" />
+<img src="https://i.imgur.com/rcBy2c4.png" width="300" alt="Submit Review" />
 
 ## Features
-#### Implemented
-* Documented all the toilets in School of Computing.
 * Map showing location of toilet.
-* 180 degree photos of the vicinity of each toilet to facilitate recognition and navigation to a toilet.
+* 360 degree photos of the vicinity of each toilet to facilitate recognition and navigation to a toilet.
 * Detailed information about each toilet such as the availability of facilities like wheelchair accessible cubicles or presense of shower heads.
 * Ability to filter/sort toilets by features such as proximity (duh!) and gender.
-* Rudimentary review system that is linked to Google account. Review deletion is still not possible and current review system is just a VERY basic comment system.
+* Rudimentary review system that is linked to Google account.
+    * Each Google account can only submit 1 review, with the ability to edit or delete the review.
+    * Ability to rate toilets with stars, average stars are shown at the top.
+    * Reviews are paginated, preventing reviews from taking too much page space.
 * A native iOS application.
-
-#### To be implemented
-* Document **ALL** toilets in NUS.
-* Paginate main list of toilets.
-* Persistance of options chosen (such as filters and sorting) upon navigation back to main page.
-* Refine review system:
-  * Paginate reviews, lazily load each page of reviews.
-  * Implement star ratings.
-  * Add ability to delete reviews.
-  * Add captcha protection to submission of reviews.
-* Creation of a seperate portal that allows users to submit toilets. Toilets will be added into main database upon review.
+* Separate portal that allows users to submit toilets. Toilets will be added into main database upon review.
+    * Implemented as a separate webapp, more information about the submissions portal can be found [here](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md).
 
 ## Target audience
 * Basically anyone in NUS. Even students/professors who already know where the nearest toilets are can still benefit.
@@ -47,3 +52,7 @@ Demo video: https://www.youtube.com/watch?v=W06EW9-r1iY
 * [Firebase](https://firebase.google.com/)
 * [React Native](https://facebook.github.io/react-native/)
 * And lots and lots of love 💕💕💕
+
+## Bugs, problems encountered, and lessons learnt :(
+Milestone 3 was one hell of a ride. The move fast and breaks things mindset we had in the earlier milestones came back to bite us hard as some deep rooted issues that we waved away back then surfaced. :grin: 
+1. Keys and security
