@@ -149,11 +149,12 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
        <br/>
        <img src="https://i.imgur.com/ZuYYH1Q.png" alt="Key commits" width= "700" />
      <li>We are glad that we learnt about key security while doing a small scale project like Orbital. Think of the consequences if we do accidentally push private keys during our internship/work. :shudders:</li>
+
 1. Database security
 
-   - With Cloud Firestore's revolutionary data model (as alluded to in the previous segment), the way we [organise data must be carefully considered](https://firebase.google.com/docs/rules/get-started#define_your_data_and_rules_structures) so as to allow for easier integration of database security rules.
-   - Our move fast and break things approach did us no favors here and we had to restructure the `reviews` collection so as to ensure that logged in users could only edit and delete their own reviews.
-   - After much restructuring, our `reviews` collections looks like this:
+   * With Cloud Firestore's revolutionary data model (as alluded to in the previous segment), the way we [organise data must be carefully considered](https://firebase.google.com/docs/rules/get-started#define_your_data_and_rules_structures) so as to allow for easier integration of database security rules.
+   * Our move fast and break things approach did us no favors here and we had to restructure the `reviews` collection so as to ensure that logged in users could only edit and delete their own reviews.
+   * After much restructuring, our `reviews` collections looks like this:
 
    (:scroll: represents a collection while :page_facing_up: represents a document)
 
@@ -183,8 +184,8 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
      </ul>
    </ul>
 
-   - In the `reviews` collection, each toilet has their own specific document (named after the toilet name). Inside each toilet document, there is a collection of `users` who've posted reviews.
-   - Such a structure then allows us to lock down the database such that only authors of a review can delete/edit their review. Code that secures the `reviews` collection as such is shown below:
+   * In the `reviews` collection, each toilet has their own specific document (named after the toilet name). Inside each toilet document, there is a collection of `users` who've posted reviews.
+   * Such a structure then allows us to lock down the database such that only authors of a review can delete/edit their review. Code that secures the `reviews` collection as such is shown below:
 
    ```javascript
    match /reviews/{toilet}/users/{userId} {
@@ -194,7 +195,7 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
    }
    ```
 
-   - From this, we learnt that we should always start structuring data with security in mind, thus reducing the amount of data we have to restructure once we begin locking down the database. :smile:
+   * From this, we learnt that we should always start structuring data with security in mind, thus reducing the amount of data we have to restructure once we begin locking down the database. :smile:
 
 TODO: bugs squashed
 
