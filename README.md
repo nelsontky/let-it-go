@@ -28,10 +28,13 @@ Demo video: https://www.youtube.com/watch?v=4WnngILnw18
 
 #### iOS app:
 <br />
-<img src="https://i.imgur.com/LNhE71g.png" width="200" alt="Main Screen" />
-<img src="https://i.imgur.com/Y03w8jW.png" width="200" alt="Toilets Page" />
-<img src="https://i.imgur.com/eKbgXLH.png" width="200" alt="Toilets Page" />
-<img src="https://i.imgur.com/rcBy2c4.png" width="200" alt="Submit Review" />
+<p float = "left">
+    <img src="https://i.imgur.com/LNhE71g.png" width="300" alt="Main Screen" />
+    <img src="https://i.imgur.com/Y03w8jW.png" width="300" alt="Toilets Page" />
+    <img src="https://i.imgur.com/eKbgXLH.png" width="300" alt="Toilets Page" />
+    <img src="https://i.imgur.com/rcBy2c4.png" width="300" alt="Submit Review" />
+</p>
+
 
 ## Features
 * Map showing location of toilet.
