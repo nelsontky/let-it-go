@@ -189,9 +189,9 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
 
    ```javascript
    match /reviews/{toilet}/users/{userId} {
-  allow read: if true;
-       // Only allow users to write to what they created
-       allow write: if request.auth.uid == userId;
+    allow read: if true;
+    // Only allow users to write to what they created
+    allow write: if request.auth.uid == userId;
    }
    ```
 
