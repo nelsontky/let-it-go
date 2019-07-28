@@ -83,20 +83,91 @@ Just like anyone who is exploring new technology that he/she has never used befo
 1. Git
     * We were using Git (and Github) for the sake of attaining Apollo 11 certification back then and thus did not really appreciate its usefulness.
     * As I am typing this one day before milestone 3 submission deadline, 🙈🙈🙈 I realised how important each commit message was and most of the things typed above came from memories triggered by our old commit messages.
-    * One thing that led to us not appreciating Git was that we did not use it to collaborate much. (as you can see - all commits, except 1 - in this repo was made by nelsontky :new_moon_with_face:)
+    * One thing that led to us not appreciating Git was that we did not use it to collaborate much. (as you can see - all commits, except 1 - in this repo was made by Nelson :new_moon_with_face:)
         * We started trying to collaborate with Git while writing our submissions portal. We experimented with all that flashy branching and merging thingies and of course, we ran into the issue of merge conflicts, which will be described in the submission portal's [README](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md).
     * Git was also useful when we wanted to roll back to old versions of code but once I rolled back to the wrong commit and chaos ensued :(
         * From that unfortunate incident, we learnt to commit more frequently and commit individual files as much as possible. Before this, we were committing huge chunks of code and multiple files only at the end of a hearty day of coding. :sweat_smile::sweat_smile::sweat_smile:
     * Usage of Github gave us trouble when I accidentally pushed private api keys into this very public repo. :sweat_smile: It was almost impossible to rewrite history in git and it is also discouraged to do so. More of this issue will be elaborated in the milestone 3 section.
-    * Git is a very useful tool for managing large codebases and we definitely will be using it in any other projects we are involved in. We will just try not to do studpid things. :sweat_smile:
+    * Git is a very useful tool for managing large codebases and we definitely will be using it in any other projects we are involved in. We will just try not to do stupid things. :sweat_smile:
 1. :raising_hand_woman::raising_hand_woman::raising_hand_woman: **FEMALE TOILETS** :raising_hand_woman::raising_hand_woman::raising_hand_woman:
     * There was no way an orbital group composed of 2 guys could enter female toilets to find out which facilities they had. And there is only so many times we can ask a female for help.
     * So we decided to create a [submissions portal](https://nelsontky.github.io/let-it-go-submission/) to excuse our inability to document female toilets.
         * We eventually used the submissions portal as an excuse to not document all the toilets in NUS too :new_moon_with_face: and decided to spend more time on the submissions portal to make it more polished.
         * Learnt a lot from the submissions portal too. A similar section as this can be found in the submission portal's [README](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md).
 
-All in all, milestone 1 + 2 was exciting as we were just blind kids experimenting with new technologies and blundering around copying stackoverflow answers with little to no understanding. Slowly yet surely, we came to understand what we were actually doing and actually came up with something stable by milestone 2. The best way to learn is to fail, and what better way is there to learn other than reading countless pages of documentation and stackoverflow pages till our app started working? Moving fast and breaking things definitely gave us a better appreciation of the technologies we employed and by the end of milestone 2, we were even good enough to help other orbital mates fix some of the bugs in their code! :sunglasses::sunglasses::sunglasses:
+All in all, milestone 1 + 2 was exciting as we were just blind kids experimenting with new technologies and blundering around copying stackoverflow answers with little to no understanding. Slowly yet surely, we came to understand what we were actually doing and actually came up with something stable by milestone 2. The best way to learn is to fail, and what better way is there to learn other than by reading countless pages of documentation and stackoverflow pages till our app started working? Moving fast and breaking things definitely gave us a better appreciation of the technologies we employed and by the end of milestone 2, we were even good enough to help other orbital mates fix some of the bugs in their code! :sunglasses::sunglasses::sunglasses:
 
 ### Milestone 3
-Milestone 3 was one hell of a ride. The move fast and breaks things mindset we had in the earlier milestones came back to bite us hard as some deep rooted issues that we waved away back then surfaced. :grin:
+Milestone 3 was one hell of a ride. The move fast and break things mindset we had in the earlier milestones came back to bite us hard as some deep rooted issues that we waved away back then surfaced. :grin: Here are some issues that actually came back and bit us hard.
 1. Keys and security
+    * Api key management and database security was always this niggling thought in our minds.
+        * However, we dispelled all such thoughts in the earlier milestones as we were adopting a move fast and break things stance and why let boring concepts like key security and database rules slow us down?
+    * After milestone 2 was submitted, we went for a drink and then subsequently started work on implementing api key security.
+        * On the way home from our little drinking session, I started reading an article describing the purpose of development and production keys. (Which I obviously did not understand duhhh)
+    * For some reason, a few days later, I decided to rename our Firebase Admin SDK private key. This led to me accidentally pushing our private keys to this very public repo (I did not update the ```.gitignore``` file), which led to this very scary email from Google:
+    <br />
+    <img src="https://i.imgur.com/UrD5YVz.png" alt="Scary email" width= "1000" />
+    * In this day and age, no one actually checks their emails and thus I did not identify any problems and in less than 2 hours, I received this scarier email: (I mean IT'S IN RED)
+    <br />
+    <img src="https://i.imgur.com/oACVJEo.png" alt="Scary email" width= "1000" />
+    * The problem was only identified when reviews suddenly would not work and I started checking my emails and then :man_facepalming::man_facepalming::man_facepalming:.
+        * Apparently, bots crawl public Github repos for Google api keys and then use them to mine cryptocurrency with a Google Cloud Compute instance using the scraped api key.
+    * First we submitted appeals to Google to get our database back. Subsequently, we tried to rewrite git history by [deleting all sensitive information](https://help.github.com/en/articles/removing-sensitive-data-from-a-repository).
+    * The next day, our appeal was still not processed and with us raring and ready to code, we decided to create a new firebase project and restore one of our nifty JSON backups to the new project.
+        * Such a decision was actually a master stroke as it allowed us to delete the old project, along with all the other compromised api keys.
+        * We no longer had to rewrite git history. :grin:
+    * With a fresh start, we decided not to mess it up again and started reading up about [environment variables](https://www.gatsbyjs.org/docs/environment-variables/) and learning how to secure and lock down production keys while still allowing development keys full access.
+    <br />
+    <img src="https://i.imgur.com/437i5ZA.png" alt="Scary email" width= "1000" />
+    * No more fear when we received an email like this, for we've locked down our production key to only be able to be used from a single domain.
+        * We could've made the keys more secure and harder to be scrapped by employing [Base64 encoding](https://en.wikipedia.org/wiki/Base64) but we do not think that it is very neccessary.
+    * As can be seen from the numerous commits where we thought that things were fixed, this issue of key security was quite a ride.	:stuck_out_tongue_closed_eyes:
+    <br/>
+    <img src="https://i.imgur.com/ZuYYH1Q.png" alt="Key commits" width= "700" />
+    * We are glad that we learnt about key security while doing a small scale project like Orbital. Think of the consequences if we do accidentally push private keys during our internship/work. :shudders:
+1. Database security
+    * With Cloud Firestore's revolutionary data model (as alluded to in the previous segment), the way we [organise data must be carefully considered](https://firebase.google.com/docs/rules/get-started#define_your_data_and_rules_structures) so as to allow for easier integration of database security rules.
+    * Our move fast and break things approach did us no favors here and we had to restructure the ```reviews``` collection so as to ensure that logged in users could only edit and delete their own reviews.
+    * After much restructuring, our ```reviews``` collections looks like this:
+
+    (:scroll: represents a collection while :page_facing_up: represents a document)
+    <ul style="list-style:none">
+      <li>:scroll: ```reviews```</li>
+      <ul style="list-style:none">
+        <li>:page_facing_up: ```COM1 Level 1 Main Entrance```</li>
+        <ul style="list-style:none">
+          <li>:scroll: ```users```</li>
+          <ul style="list-style:none">
+            <li>:page_facing_up: *```userId```* (a random unique id that is generated for every user who has logged in before)</li>
+            <li>```review :```</li>
+            <ul style="list-style:none">
+              <li>```date :```</li>
+              <li>```name :```</li>
+              <li>```photoURL :```</li>
+              <li>```review :```</li>
+              <li>```score :```</li>
+              <li>```uid :```</li>
+            </ul>
+            <li>:page_facing_up: *```Another userId```*</li>
+            <li>```...```</li>
+          </ul>
+        </ul>
+        <li>:page_facing_up: *```Other toilets```*</li>
+        <li>```...```</li>
+      </ul>
+    </ul>
+
+    * In the ```reviews``` collection, each toilet has their own specific document (named after the toilet name). Inside each toilet document, there is a collection of ```users``` who've posted reviews.
+    * Such a structure then allows us to lock down the database such that only authors of a review can delete/edit their review. Code that secures the ```reviews``` collection as such is shown below:
+    ```javascript
+    match /reviews/{toilet}/users/{userId} {
+    	allow read: if true;
+        // Only allow users to write to what they created
+        allow write: if request.auth.uid == userId;
+    }
+    ```
+    * From this, we learnt that we should always start structuring data with security in mind, thus reducing the amount of data we have to restructure once we begin locking down the database. :smile:
+
+TODO: bugs squashed
+
+All in all, in milestone 3, we did not work much on the main app. Not much new features were developed and we spent more time on our submissions portal. However, the lessons learnt from the short time working on the main app was definitely valuable and these lessons made writing the submissions portal easier!
