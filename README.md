@@ -75,7 +75,7 @@ Just like anyone who is exploring new technology that he/she has never used befo
         * We could not understand the [revolutionary data model](https://firebase.google.com/docs/firestore/data-model) of collections and documents. It was totally different from the ```{ key: value }``` JSON models that we were used to.
         * Slowly but surely, we came to appreciate Cloud Firestore's data model, and now, there are no more hard feelings. :blush:
         * It's still inconvenient to create backups and thus we wrote a bunch of scripts that could work well with our database structure so as to export our database as a JSON. :new_moon_with_face: Not the best way but we work with what we have.
-    * Authentication with Firebase was easy to work with. In fact, it was so easy that we felt dirty and doubted if such an implemetation could bring us 🚀🚀🚀 Apollo 11 🚀🚀🚀 glory.
+    * Authentication with Firebase was easy to work with. In fact, it was so easy that we felt dirty and doubted if such an implementation could bring us 🚀🚀🚀 Apollo 11 🚀🚀🚀 glory.
       * Only problem was that the [firebase-auth-ui react wrapper](https://github.com/firebase/firebaseui-web-react) did not play nice with GatsbyJS.
       * In the end we decided to use hacky methods to implement the [Javascript api](https://firebase.google.com/docs/auth/web/firebaseui) into GatsbyJS, which worked pleasantly.
           * This was really hacky, [we did dirty things with constructors and class instances](https://github.com/nelsontky/let-it-go/blob/master/src/utils/firebase.js). 🙈🙈🙈
@@ -93,12 +93,12 @@ Just like anyone who is exploring new technology that he/she has never used befo
     * There was no way an orbital group composed of 2 guys could enter female toilets to find out which facilities they had. And there is only so many times we can ask a female for help.
     * So we decided to create a [submissions portal](https://nelsontky.github.io/let-it-go-submission/) to excuse our inability to document female toilets.
         * We eventually used the submissions portal as an excuse to not document all the toilets in NUS too :new_moon_with_face: and decided to spend more time on the submissions portal to make it more polished.
-        * Learnt a lot from the submissions portal too. A similar section as this can be found in the submission portal's [README](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md).
+        * We learnt a lot from the submissions portal too. A similar section as this can be found in the submission portal's [README](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md).
 
-All in all, milestone 1 + 2 was exciting as we were just blind kids experimenting with new technologies and blundering around copying stackoverflow answers with little to no understanding. Slowly yet surely, we came to understand what we were actually doing and actually came up with something stable by milestone 2. The best way to learn is to fail, and what better way is there to learn other than by reading countless pages of documentation and stackoverflow pages till our app started working? Moving fast and breaking things definitely gave us a better appreciation of the technologies we employed and by the end of milestone 2, we were even good enough to help other orbital mates fix some of the bugs in their code! :sunglasses::sunglasses::sunglasses:
+All in all, milestone 1 + 2 was exciting as we were just blind kids experimenting with new technologies and blundering around copying stackoverflow answers with little to no understanding. Slowly yet surely, we came to understand what we were actually doing and actually came up with something stable by milestone 2. The best way to learn is to fail, and what better way is there to learn other than by reading countless pages of documentation and stackoverflow pages till our app started working? Moving fast and breaking things definitely gave us a better appreciation of the technologies we employed and by the end of milestone 2, we were even good enough to help other Orbital mates fix some of the bugs in their code! :sunglasses::sunglasses::sunglasses:
 
 ### Milestone 3
-Milestone 3 was one hell of a ride. The move fast and break things mindset we had in the earlier milestones came back to bite us hard as some deep rooted issues that we waved away back then surfaced. :grin: Here are some issues that actually came back and bit us hard.
+Milestone 3 was one hell of a ride. The move fast and break things mindset we had in the earlier milestones came back to bite us hard as some deep rooted issues that we waved away back then surfaced. :grin: Here are some issues that actually came back and bit us.
 1. Keys and security
     * Api key management and database security was always this niggling thought in our minds.
         * However, we dispelled all such thoughts in the earlier milestones as we were adopting a move fast and break things stance and why let boring concepts like key security and database rules slow us down?
@@ -107,9 +107,11 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
     * For some reason, a few days later, I decided to rename our Firebase Admin SDK private key. This led to me accidentally pushing our private keys to this very public repo (I did not update the ```.gitignore``` file), which led to this very scary email from Google:
     <br />
     <img src="https://i.imgur.com/UrD5YVz.png" alt="Scary email" width= "1000" />
+    <br />
     * In this day and age, no one actually checks their emails and thus I did not identify any problems and in less than 2 hours, I received this scarier email: (I mean IT'S IN RED)
     <br />
     <img src="https://i.imgur.com/oACVJEo.png" alt="Scary email" width= "1000" />
+    <br />
     * The problem was only identified when reviews suddenly would not work and I started checking my emails and then :man_facepalming::man_facepalming::man_facepalming:.
         * Apparently, bots crawl public Github repos for Google api keys and then use them to mine cryptocurrency with a Google Cloud Compute instance using the scraped api key.
     * First we submitted appeals to Google to get our database back. Subsequently, we tried to rewrite git history by [deleting all sensitive information](https://help.github.com/en/articles/removing-sensitive-data-from-a-repository).
