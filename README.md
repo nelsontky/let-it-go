@@ -117,37 +117,38 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
    - For some reason, a few days later, I decided to rename our Firebase Admin SDK private key. This led to me accidentally pushing our private keys to this very public repo (I did not update the `.gitignore` file), which led to this very scary email from Google:
      <br />
      <img src="https://i.imgur.com/UrD5YVz.png" alt="Scary email" width= "1000" />
-     <ul><li>In this day and age, no one actually checks their emails and thus I did not identify any problems and in less than 2 hours, I received this scarier email: (I mean IT'S IN RED)</li></ul>
-     <br />
-     <img src="https://i.imgur.com/oACVJEo.png" alt="Scary email" width= "1000" />
-     <ul>
-      <li>
-        The problem was only identified when reviews suddenly would not work and I started checking my emails and then :man_facepalming::man_facepalming::man_facepalming:.
-      </li>
-      <ul>
+       <ul><li>In this day and age, no one actually checks their emails and thus I did not identify any problems and in less than 2 hours, I received this scarier email: (I mean IT'S IN RED)</li></ul>
+       <br />
+       <img src="https://i.imgur.com/oACVJEo.png" alt="Scary email" width= "1000" />
+       <ul>
         <li>
-        Apparently, bots crawl public Github repos for Google api keys and then use them to mine cryptocurrency with a Google Cloud Compute instance using the scraped api key.
+          The problem was only identified when reviews suddenly would not work and I started checking my emails and then :man_facepalming::man_facepalming::man_facepalming:.
         </li>
-      </ul>
-      <li>
-        First we submitted appeals to Google to get our database back. Subsequently, we tried to rewrite git history by [deleting all sensitive information](https://help.github.com/en/articles/removing-sensitive-data-from-a-repository).
-      </li>
-      <li>
-        The next day, our appeal was still not processed and with us raring and ready to code, we decided to create a new firebase project and restore one of our nifty JSON backups to the new project.
-      </li>
-      <ul>
-        <li>Such a decision was actually a master stroke as it allowed us to delete the old project, along with all the other compromised api keys.
+        <ul>
+          <li>
+          Apparently, bots crawl public Github repos for Google api keys and then use them to mine cryptocurrency with a Google Cloud Compute instance using the scraped api key.
+          </li>
+        </ul>
+        <li>
+          First we submitted appeals to Google to get our database back. Subsequently, we tried to rewrite git history by [deleting all sensitive information](https://help.github.com/en/articles/removing-sensitive-data-from-a-repository).
         </li>
-        <li>We no longer had to rewrite git history. :grin:</li></ul>
-   <li>With a fresh start, we decided not to mess it up again and started reading up about [environment variables](https://www.gatsbyjs.org/docs/environment-variables/) and learning how to secure and lock down production keys while still allowing development keys full access.</li></ul>
-     <br />
-     <img src="https://i.imgur.com/437i5ZA.png" alt="Scary email" width= "1000" />
-   - No more fear when we received an email like this, for we've locked down our production key to only be able to be used from a single domain.
-     - We could've made the keys more secure and harder to be scrapped by employing [Base64 encoding](https://en.wikipedia.org/wiki/Base64) but we do not think that it is very neccessary.
-   - As can be seen from the numerous commits where we thought that things were fixed, this issue of key security was quite a ride. :stuck_out_tongue_closed_eyes:
-     <br/>
-     <img src="https://i.imgur.com/ZuYYH1Q.png" alt="Key commits" width= "700" />
-   - We are glad that we learnt about key security while doing a small scale project like Orbital. Think of the consequences if we do accidentally push private keys during our internship/work. :shudders:
+        <li>
+          The next day, our appeal was still not processed and with us raring and ready to code, we decided to create a new firebase project and restore one of our nifty JSON backups to the new project.
+        </li>
+        <ul>
+          <li>Such a decision was actually a master stroke as it allowed us to delete the old project, along with all the other compromised api keys.
+          </li>
+          <li>We no longer had to rewrite git history. :grin:</li></ul>
+     <li>With a fresh start, we decided not to mess it up again and started reading up about [environment variables](https://www.gatsbyjs.org/docs/environment-variables/) and learning how to secure and lock down production keys while still allowing development keys full access.</li></ul>
+       <br />
+       <img src="https://i.imgur.com/437i5ZA.png" alt="Scary email" width= "1000" />
+       <ul>
+     <li>No more fear when we received an email like this, for we've locked down our production key to only be able to be used from a single domain.</li>
+       <ul><li>We could've made the keys more secure and harder to be scrapped by employing [Base64 encoding](https://en.wikipedia.org/wiki/Base64) but we do not think that it is very neccessary.</li></ul>
+     <li>As can be seen from the numerous commits where we thought that things were fixed, this issue of key security was quite a ride. :stuck_out_tongue_closed_eyes:</li>
+       <br/>
+       <img src="https://i.imgur.com/ZuYYH1Q.png" alt="Key commits" width= "700" />
+     <li>We are glad that we learnt about key security while doing a small scale project like Orbital. Think of the consequences if we do accidentally push private keys during our internship/work. :shudders:</li>
 1. Database security
 
    - With Cloud Firestore's revolutionary data model (as alluded to in the previous segment), the way we [organise data must be carefully considered](https://firebase.google.com/docs/rules/get-started#define_your_data_and_rules_structures) so as to allow for easier integration of database security rules.
