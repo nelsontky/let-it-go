@@ -70,10 +70,24 @@ Just like anyone who is exploring new technology that he/she has never used befo
     * We used a firebase database to store information about the toilets in NUS. (Subsequently, we added user reviews and user submissions to the database too!)
         * Firebase seemed flashy enough to get our project certified for 🚀🚀🚀 Apollo 11 🚀🚀🚀 and that's why we went for it!
         * And of course not forgetting its nifty integration with multiple login providers, thus allowing us an easy way to implement user authentication!
-    * When asked if we wated to use the older [Realtime Database](https://firebase.google.com/docs/database) or the bleeding edge [Cloud Firestore](https://firebase.google.com/docs/firestore), out inner vampire appeared and we went for bleeding edge.
+    * When asked if we wanted to use the older [Realtime Database](https://firebase.google.com/docs/database) or the bleeding edge [Cloud Firestore](https://firebase.google.com/docs/firestore), our inner vampire appeared and we went for bleeding edge.
         * Regretted our decision in the beginning. Documentation (and stackoverflow threads) for the newer storage model was sparse and simple functions such as backup and restore of databases required us to jump through so many hoops. :sob:
-        * We could not understand the [revolutionary data model](https://firebase.google.com/docs/firestore/data-model) of collections and documents. It was totally different from the ```{ key: value }``` JSON models that we were used to
-1. FEMALE TOILETS :raising_hand_woman::raising_hand_woman::raising_hand_woman:
+        * We could not understand the [revolutionary data model](https://firebase.google.com/docs/firestore/data-model) of collections and documents. It was totally different from the ```{ key: value }``` JSON models that we were used to.
+        * Slowly but surely, we came to appreciate Cloud Firestore's data model, and now, there are no more hard feelings. :blush:
+        * It's still inconvenient to create backups and thus we wrote a bunch of scripts that could work well with our database structure so as to export our database as a JSON. :new_moon_with_face: Not the best way but we work with what we have.
+    * Authentication with Firebase was easy to work with. In fact, it was so easy that we felt dirty and doubted if such an implemetation could bring us 🚀🚀🚀 Apollo 11 🚀🚀🚀 glory.
+      * Only problem was that the [firebase-auth-ui react wrapper](https://github.com/firebase/firebaseui-web-react) did not play nice with GatsbyJS.
+      * In the end we decided to use hacky methods to implement the Javascript api into GatsbyJS, which worked pleasantly.
+          * This was really hacky, we did dirty things with constructors and class instances. 🙈🙈🙈
+    * All in all, Firebase was nice to work with and the lessons learnt from building something with Firebase can be employed to build scalable apps that do not require us to bother ourselves too much with creating a database/backend from scratch.
+1. Git
+    * We were using Git (and Github) for the sake of attaining Apollo 11 certification back then and thus did not really appreciate its usefulness.
+    * As I am typing this one day before milestone 3 submission deadline, 🙈🙈🙈 I realised how important each commit message was and most of the things typed above came from memories triggered by our old commit messages.
+    * One thing that led to us not appreciating Git was that we did not use it to collaborate much. (as you can see - all commits, except 1 - in this repo was made by @nelsontky :new_moon_with_face:)
+        * We started trying to collaborate with Git while writing our submissions portal. We experimented with all that flashy branching and merging thingies and of course, we ran into the issue of merge conflicts, which will be described in the submission portal's [README](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md).
+    * Git was also useful when we wanted to roll back to old versions of code but once I rolled back to the wrong commit and chaos ensued :(
+        * From that unfortunate incident, we learnt to commit more frequently and commit individual files as much as possible. Before this, we were committing huge chunks of code and multiple files only at the end of a hearty day of coding. :sweat_smile::sweat_smile::sweat_smile:
+1. :raising_hand_woman::raising_hand_woman::raising_hand_woman: FEMALE TOILETS :raising_hand_woman::raising_hand_woman::raising_hand_woman:
     * There was no way an orbital group composed of 2 guys could enter female toilets to find out which facilities they had. And there is only so many times we can ask a female for help.
     * So we decided to create a [submissions portal](https://nelsontky.github.io/let-it-go-submission/) to excuse our inability to document female toilets.
         * Eventually used the submissions portal as an excuse to not document all the toilets in NUS too :new_moon_with_face: and decided to spend more time on the submissions portal to make it more polished.
