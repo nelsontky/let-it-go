@@ -77,21 +77,25 @@ Just like anyone who is exploring new technology that he/she has never used befo
         * It's still inconvenient to create backups and thus we wrote a bunch of scripts that could work well with our database structure so as to export our database as a JSON. :new_moon_with_face: Not the best way but we work with what we have.
     * Authentication with Firebase was easy to work with. In fact, it was so easy that we felt dirty and doubted if such an implemetation could bring us 🚀🚀🚀 Apollo 11 🚀🚀🚀 glory.
       * Only problem was that the [firebase-auth-ui react wrapper](https://github.com/firebase/firebaseui-web-react) did not play nice with GatsbyJS.
-      * In the end we decided to use hacky methods to implement the Javascript api into GatsbyJS, which worked pleasantly.
-          * This was really hacky, we did dirty things with constructors and class instances. 🙈🙈🙈
+      * In the end we decided to use hacky methods to implement the [Javascript api](https://firebase.google.com/docs/auth/web/firebaseui) into GatsbyJS, which worked pleasantly.
+          * This was really hacky, [we did dirty things with constructors and class instances](https://github.com/nelsontky/let-it-go/blob/master/src/utils/firebase.js). 🙈🙈🙈
     * All in all, Firebase was nice to work with and the lessons learnt from building something with Firebase can be employed to build scalable apps that do not require us to bother ourselves too much with creating a database/backend from scratch.
 1. Git
     * We were using Git (and Github) for the sake of attaining Apollo 11 certification back then and thus did not really appreciate its usefulness.
     * As I am typing this one day before milestone 3 submission deadline, 🙈🙈🙈 I realised how important each commit message was and most of the things typed above came from memories triggered by our old commit messages.
-    * One thing that led to us not appreciating Git was that we did not use it to collaborate much. (as you can see - all commits, except 1 - in this repo was made by @nelsontky :new_moon_with_face:)
+    * One thing that led to us not appreciating Git was that we did not use it to collaborate much. (as you can see - all commits, except 1 - in this repo was made by nelsontky :new_moon_with_face:)
         * We started trying to collaborate with Git while writing our submissions portal. We experimented with all that flashy branching and merging thingies and of course, we ran into the issue of merge conflicts, which will be described in the submission portal's [README](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md).
     * Git was also useful when we wanted to roll back to old versions of code but once I rolled back to the wrong commit and chaos ensued :(
         * From that unfortunate incident, we learnt to commit more frequently and commit individual files as much as possible. Before this, we were committing huge chunks of code and multiple files only at the end of a hearty day of coding. :sweat_smile::sweat_smile::sweat_smile:
-1. :raising_hand_woman::raising_hand_woman::raising_hand_woman: FEMALE TOILETS :raising_hand_woman::raising_hand_woman::raising_hand_woman:
+    * Usage of Github gave us trouble when I accidentally pushed private api keys into this very public repo. :sweat_smile: It was almost impossible to rewrite history in git and it is also discouraged to do so. More of this issue will be elaborated in the milestone 3 section.
+    * Git is a very useful tool for managing large codebases and we definitely will be using it in any other projects we are involved in. We will just try not to do studpid things. :sweat_smile:
+1. :raising_hand_woman::raising_hand_woman::raising_hand_woman: **FEMALE TOILETS** :raising_hand_woman::raising_hand_woman::raising_hand_woman:
     * There was no way an orbital group composed of 2 guys could enter female toilets to find out which facilities they had. And there is only so many times we can ask a female for help.
     * So we decided to create a [submissions portal](https://nelsontky.github.io/let-it-go-submission/) to excuse our inability to document female toilets.
-        * Eventually used the submissions portal as an excuse to not document all the toilets in NUS too :new_moon_with_face: and decided to spend more time on the submissions portal to make it more polished.
+        * We eventually used the submissions portal as an excuse to not document all the toilets in NUS too :new_moon_with_face: and decided to spend more time on the submissions portal to make it more polished.
         * Learnt a lot from the submissions portal too. A similar section as this can be found in the submission portal's [README](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md).
+
+All in all, milestone 1 + 2 was exciting as we were just blind kids experimenting with new technologies and blundering around copying stackoverflow answers with little to no understanding. Slowly yet surely, we came to understand what we were actually doing and actually came up with something stable by milestone 2. The best way to learn is to fail, and what better way is there to learn other than reading countless pages of documentation and stackoverflow pages till our app started working? Moving fast and breaking things definitely gave us a better appreciation of the technologies we employed and by the end of milestone 2, we were even good enough to help other orbital mates fix some of the bugs in their code! :sunglasses::sunglasses::sunglasses:
 
 ### Milestone 3
 Milestone 3 was one hell of a ride. The move fast and breaks things mindset we had in the earlier milestones came back to bite us hard as some deep rooted issues that we waved away back then surfaced. :grin:
