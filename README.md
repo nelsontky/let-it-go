@@ -139,7 +139,7 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
           <li>:scroll: ```users```</li>
           <ul style="list-style:none">
             <li>:page_facing_up: *```userId```* (a random unique id that is generated for every user who has logged in before)</li>
-            <li>```review :```</li>
+            ```<li>review : </li>```
             <ul style="list-style:none">
               <li>```date :```</li>
               <li>```name :```</li>
