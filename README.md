@@ -214,7 +214,7 @@ Bug hunting and user testing was also something we waited till milestone 3 to st
 
         Tooltip only shows when location cannot be detected by the browser. A helpful message is also shown upon clicking on the question mark icon to aid users in enabling location services.
 
-        (040c6ba34da1bb3b506b266228a498371f760371 and 83c51f1feb69db38db8a99a9793523d4a3801bf4 were 2 commits that made the tooltip more reliable after much testing)
+        040c6ba34da1bb3b506b266228a498371f760371 and 83c51f1feb69db38db8a99a9793523d4a3801bf4 were 2 commits that made the tooltip more reliable after much testing
     * On our commutes, we also tested the location services to check if our location marker would update while we were moving. Preliminary testing showed that the location updates were too choppy and unreliable.
         * Back then, we were using an algorithm that would grab a user's location via [```Geolocation.getCurrentPosition()```](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) every second and then update it on the map.
         * After the testing yielded less than satisfactory results, we went back to old trsuty Google and realised that there exists a [command that updates the user location whenever position of the device changes](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition).
