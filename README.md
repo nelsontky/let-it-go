@@ -16,7 +16,7 @@ Never fear again when you are in a foreign part of NUS, for now you can finally 
 
 ## Demo
 
-Webapp: https://nelsontky.github.io/let-it-go/
+Web App: https://nelsontky.github.io/let-it-go/
 
 Submissions portal ([?](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md)): https://nelsontky.github.io/let-it-go-submission/
 
@@ -24,7 +24,7 @@ Demo video: https://www.youtube.com/watch?v=4WnngILnw18
 
 ### Screenshots
 
-#### Webapp
+#### Web App
 
 <br />
 <p float = "left">
@@ -43,9 +43,9 @@ Demo video: https://www.youtube.com/watch?v=4WnngILnw18
 
 
 ## Features
-* Map showing location of toilet.
+* Map showing the location of toilet.
 * 360 degree photos of the vicinity of each toilet to facilitate recognition and navigation to a toilet.
-* Detailed information about each toilet such as the availability of facilities like wheelchair accessible cubicles or presense of shower heads.
+* Detailed information about each toilet, such as the availability of facilities like wheelchair accessible cubicles or presence of shower heads.
 * Ability to filter/sort toilets by features such as proximity (duh!) and gender.
 * Share toilets to social media!
 * Review system that is linked to Google account.
@@ -75,10 +75,10 @@ Demo video: https://www.youtube.com/watch?v=4WnngILnw18
 Just like anyone who is exploring new technology that he/she has never used before, we definitely ran into many problems when starting out with GatsbyJS, Firebase, Git, and React Native.
 
 1. GatsbyJS
-   - It was diffcult to get Javascript libraries (such as the Google Maps api) to work with ReactJS (and consequently GatsbyJS)
+   - It was difficult to get Javascript libraries (such as the Google Maps api) to work with ReactJS (and consequently GatsbyJS)
    - I've been told that there are many npm modules made as replacements/wrappers for Javascript libraries. (There are like 10 million npm modules that implement the Google Maps api. Some examples can be found: [here](https://www.npmjs.com/package/google-map-react), [here](https://www.npmjs.com/package/react-google-maps), and [here](https://www.npmjs.com/package/@react-google-maps/api))
    - However, such unofficial modules do not have the best documentation and are plagued with multiple issues and unanswered stackoverflow threads.
-   - Thus, so as to enjoy the extensive documentation that comes with official apis, we decided to employ hacky means to make Javascript libraries work in ReactJS. There were much problems and performance issues initially but thank god, there were more answered stackoverflow threads on how to integrate Javascript apis into ReactJS than those on the unofficial ReactJS wrapper modules.
+   - Thus, so as to enjoy the extensive documentation that comes with official apis, we decided to employ hacky means to make Javascript libraries work in ReactJS. There were many problems and performance issues initially but thank god, there were more answered stackoverflow threads on how to integrate Javascript apis into ReactJS than those on the unofficial ReactJS wrapper modules.
    - We eventually managed to fix every memory leak and rogue re-render brought by our sloppy implementations of Javascript apis and such a task gave us more understanding of React lifecycles.
    - Other than that, GatsbyJS was a pleasure to work with and the Firebase integration with GraphQL was intuitive and simple. :blush:
 1. Firebase
@@ -98,7 +98,7 @@ Just like anyone who is exploring new technology that he/she has never used befo
 1. Git
    - We were using Git (and Github) for the sake of attaining Apollo 11 certification back then and thus did not really appreciate its usefulness.
    - As I am typing this one day before milestone 3 submission deadline, 🙈🙈🙈 I realised how important each commit message was and most of the things typed above came from memories triggered by our old commit messages.
-   - One thing that led to us not appreciating Git was that we did not use it to collaborate much. (as you can see - all commits, except 1 - in this repo was made by Nelson :new_moon_with_face:)
+   - One thing that led to us not appreciating Git was that we did not use it to collaborate. (as you can see - all commits, except 1 - in this repo was made by Nelson :new_moon_with_face:)
      - We started trying to collaborate with Git while writing our submissions portal. We experimented with all that flashy branching and merging thingies and of course, we ran into the issue of merge conflicts, which will be described in the submission portal's [README](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md).
    - Git was also useful when we wanted to roll back to old versions of code but once I rolled back to the wrong commit and chaos ensued :(
      - From that unfortunate incident, we learnt to commit more frequently and commit individual files as much as possible. Before this, we were committing huge chunks of code and multiple files only at the end of a hearty day of coding. :sweat_smile::sweat_smile::sweat_smile:
@@ -117,7 +117,7 @@ All in all, milestone 1 + 2 was exciting as we were just blind kids experimentin
 Milestone 3 was one hell of a ride. The move fast and break things mindset we had in the earlier milestones came back to bite us hard as some deep rooted issues that we waved away back then surfaced. :grin: Here are some issues that actually came back and bit us.
 
 1. Keys and security
-   * Api key management and database security was always this niggling thought in our minds.
+   * Api key management and database security was always this nagging thought in our minds.
      * However, we dispelled all such thoughts in the earlier milestones as we were adopting a move fast and break things stance and why let boring concepts like key security and database rules slow us down?
    * For some reason, a few days after milestone 2, I decided to rename our Firebase Admin SDK private key. This led to me accidentally pushing our private keys to this very public repo (I did not update the `.gitignore` file, nor did I check the committed files before pushing :new_moon_with_face:), which led to this very scary email from Google:
      <br />
@@ -149,7 +149,7 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
        <img src="https://i.imgur.com/437i5ZA.png" alt="Scary email" width= "1000" />
        <ul>
      <li>No more fear when we received an email like this, for we've locked down our production key to only be able to be used from a single domain.</li>
-       <ul><li>We could've made the keys more secure and harder to be scrapped by employing <a href="https://en.wikipedia.org/wiki/Base64">Base64 encoding</a> but we do not think that it is very neccessary.</li></ul>
+       <ul><li>We could've made the keys more secure and harder to be scrapped by employing <a href="https://en.wikipedia.org/wiki/Base64">Base64 encoding</a> but we do not think that it is very necessary.</li></ul>
      <li>As can be seen from the numerous commits where we thought that things were fixed, this issue of key security was quite a ride. :stuck_out_tongue_closed_eyes:</li>
        <br/>
        <img src="https://i.imgur.com/ZuYYH1Q.png" alt="Key commits" width= "700" />
@@ -204,7 +204,7 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
 
 #### Bugs and user testing
 Bug hunting and user testing was also something we waited till milestone 3 to start seriously doing. We gave up our daily dose of [Hacker News](https://news.ycombinator.com/) on our commutes and started vigorously testing the application in our free time.
-1. Location servcies related testing
+1. Location services related testing
     * We spent a lot of time obsessing about what would happen when users do funny things with their GPS settings. What would happen if a user turns off their GPS after navigating to a new page in the webapp? What will happen if the only enable GPS after navigating to a new page?
         * For this, we came up with a tooltip that would show when a user's location was not detected. Subsequently, we tried all the weird combinations of enabling/disabling location services that are possible and settled on a reliable algorithm which allowed the tooltip to be shown whenever it should appear.
 
@@ -217,7 +217,44 @@ Bug hunting and user testing was also something we waited till milestone 3 to st
         ([040c6ba](https://github.com/nelsontky/let-it-go/commit/040c6ba34da1bb3b506b266228a498371f760371) and [83c51f1](https://github.com/nelsontky/let-it-go/commit/83c51f1feb69db38db8a99a9793523d4a3801bf4) were 2 commits that made the tooltip more reliable after much testing)
     * On our commutes, we also tested the location services to check if our location marker would update while we were moving. Preliminary testing showed that the location updates were too choppy and unreliable.
         * Back then, we were using an algorithm that would grab a user's location via [```Geolocation.getCurrentPosition()```](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) every second and then update it on the map.
-        * After the testing yielded less than satisfactory results, we went back to old trsuty Google and realised that there exists a [command that updates the user location whenever position of the device changes](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition).
+        * After the testing yielded less than satisfactory results, we went back to the old trusty Google and realised that there exists a [command that updates the user location whenever position of the device changes](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition).
+        * Changing to using [```Geolocation.watchPosition()```](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition) in commit [b20af76](https://github.com/nelsontky/let-it-go/commit/b20af761ab8bb25f27e4e11c417a41d9ff7e3429) made location polling waaaaaaaayyyy smoother.
+        * Plus, performance improved by a lot as the per second polling employed back then lead to memory leaks, slowing an eighth gen Intel Core i5 laptop to a crawl. :sweat_smile:
+1. Panorama performance issues
+    * As stated above, some of our implementations of Javascript apis in ReactJS left much to be desired. Our implementation of the [Pannellum library](https://pannellum.org/) was creating multiple viewers without destruction, thus causing performance issues. This was fixed in [79dcd8e](https://github.com/nelsontky/let-it-go/commit/79dcd8e836f1711ced94908e94df8f107327f2d2), after reading more on the Pannellum docs and after gaining more understanding of React lifecycle methods.
+1. Spelling woes (Not really a bug but yes, a bug in our brains LOL)
+    * One fine day as we let one of our friends try the webapp, this sharp boy majoring in English saw that all instances of "separate" was spelt wrongly as "seperate".
+    * First there was denial. "IT'S JUST THE BRITISH SPELLING!", I argued with blind fervour.
+    * However, a quick Google search led to the conclusion that my 22 years on this Earth was a lie and that most people start spelling "separate" correctly when they are 6.
+    * This led to us renaming all instances of "seperate" in the Cloud Firestore database and the source code.
+        * As stated above, the bleeding edge Cloud Firestore database was a b***h to work with and this applies to renaming a single field in 20+ toilets.
+        * Took some time writing and testing our renaming script to ensure that it does not nuke those 20+ carefully recorded toilets into oblivion.
+    * The source code was more straightforward. It just involved a simple replace through multiple files but we had to be sure we didn't miss any instance of the childish typo and thus this took some time too.
+        * Thus the existence of this shameful commit [0b890ab](https://github.com/nelsontky/let-it-go/commit/0b890ab1d90628b961263885f7aaf6c6b41351d0).
+    * As we were working on the submission portal, we realised that "panorama" was spelt (quite terribly wrongly) as "paranoma". I blame this on excessive amount of Paranormal Activity I binged on just as summer started.
+        * How shameful - an entire file name was spelt wrongly: [```/src/components/paranoma.js```](https://github.com/nelsontky/let-it-go/blob/master/src/components/paranoma.js)
+        * For this typo, we were already too jaded by the earlier replacement of the word "separate" and thus we decided to let it be in the source code and database of the webapp.
+        * The submissions portal was way messier, with half of the references being the correct "panorama", while the other half being the erroneous "paranoma".
+    * Lessons learnt: encapsulate all hard to spell words into a single function in the future, so spelling errors are easier to fix.
+        * Nah just joking, [we'll just invest half a semester worth of school fees to get a full collection of The Oxford English Dictonary](https://global.oup.com/academic/product/the-oxford-english-dictionary-9780198611868?cc=gb&lang=en&).
+1. Other user testing
+    * As alluded above, we did let some of our friends try the app so as to hunt for bugs and get feedback.
+    * In hindsight, we should have tracked all issues with Github issues, but we were young and didn't really git gud with Github back then and thus all we did was haphazardly document issues all around the place.
 
+    ![No issues](https://i.imgur.com/yEFkRbu.png)
+
+    #fakeNews, we did have many issues with our apps, just that it wasn't documented. :sweat_smile:
+
+    <img src="https://i.imgur.com/b0WSszQ.jpg" width="300" />
+    <img src="https://i.imgur.com/irEPbzF.jpg" width="300" />
+    <img src="https://i.imgur.com/atiCrrR.jpg" width="300" />
+    <img src="https://i.imgur.com/bIEqBOW.jpg" width="300" />
+
+    * Just some of the numerous suggestions and ideas we received from our testers/our own testing, all randomly scribbled around my Google Keep. :new_moon_with_face:
+
+    <img src="https://i.imgur.com/Wv3L3Sw.png" width="300" />
+
+    * Another half of the suggestions/issues (not showing all of course) were on [Trello](https://trello.com), thus making all this issue tracking thingy very messy.
+    * Since then, we've appreciated the use of Github issues and have started using them in our submissions portal.
 
 All in all, in milestone 3, we did not work much on the main app. Not much new features were developed and we spent more time on our submissions portal. However, the lessons learnt from the short time working on the main app was definitely valuable and these lessons made writing the submissions portal easier!
