@@ -116,11 +116,9 @@ All in all, milestone 1 + 2 was exciting as we were just blind kids experimentin
 Milestone 3 was one hell of a ride. The move fast and break things mindset we had in the earlier milestones came back to bite us hard as some deep rooted issues that we waved away back then surfaced. :grin: Here are some issues that actually came back and bit us.
 
 1. Keys and security
-   - Api key management and database security was always this niggling thought in our minds.
-     - However, we dispelled all such thoughts in the earlier milestones as we were adopting a move fast and break things stance and why let boring concepts like key security and database rules slow us down?
-   - After milestone 2 was submitted, we went for a drink and then subsequently started work on implementing api key security.
-     - On the way home from our little drinking session, I started reading an article describing the purpose of development and production keys. (Which I obviously did not understand duhhh)
-   - For some reason, a few days later, I decided to rename our Firebase Admin SDK private key. This led to me accidentally pushing our private keys to this very public repo (I did not update the `.gitignore` file), which led to this very scary email from Google:
+   * Api key management and database security was always this niggling thought in our minds.
+     * However, we dispelled all such thoughts in the earlier milestones as we were adopting a move fast and break things stance and why let boring concepts like key security and database rules slow us down?
+   * For some reason, a few days after milestone 2, I decided to rename our Firebase Admin SDK private key. This led to me accidentally pushing our private keys to this very public repo (I did not update the `.gitignore` file, nor did I check the committed files before pushing :new_moon_with_face:), which led to this very scary email from Google:
      <br />
      <img src="https://i.imgur.com/UrD5YVz.png" alt="Scary email" width= "1000" />
        <ul><li>In this day and age, no one actually checks their emails and thus I did not identify any problems and in less than 2 hours, I received this scarier email: (I mean IT'S IN RED)</li></ul>
@@ -154,7 +152,7 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
      <li>As can be seen from the numerous commits where we thought that things were fixed, this issue of key security was quite a ride. :stuck_out_tongue_closed_eyes:</li>
        <br/>
        <img src="https://i.imgur.com/ZuYYH1Q.png" alt="Key commits" width= "700" />
-     <li>We are glad that we learnt about key security while doing a small scale project like Orbital. Think of the consequences if we do accidentally push private keys during our internship/work. :shudders:</li></ul>
+     <li>We are glad that we learnt about key security while doing a small scale project like Orbital. Locking down production keys is paramount to security and we've learnt that we should always check committed files before pushing them to Github. Think of the consequences if we do accidentally push private keys during our internship/work. :shudders:</li></ul>
 
 1. Database security
 
@@ -164,34 +162,34 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
 
    (:scroll: represents a collection while :page_facing_up: represents a document)
 
+  <ul style="list-style:none">
+   <li>:scroll: <code>reviews</code></li>
    <ul style="list-style:none">
-     <li>:scroll: <code>reviews</code></li>
+     <li>:page_facing_up: <code>COM1 Level 1 Main Entrance</code></li>
      <ul style="list-style:none">
-       <li>:page_facing_up: <code>COM1 Level 1 Main Entrance</code></li>
+       <li>:scroll: <code>users</code></li>
        <ul style="list-style:none">
-         <li>:scroll: <code>users</code></li>
+         <li>:page_facing_up: <em><code>userId</code></em> (a random unique id that is generated for every user who has logged in before)</li>
+         <li><code>review :</code></li>
          <ul style="list-style:none">
-           <li>:page_facing_up: <em><code>userId</code></em> (a random unique id that is generated for every user who has logged in before)</li>
+           <li><code>date :</code></li>
+           <li><code>name :</code></li>
+           <li><code>photoURL :</code></li>
            <li><code>review :</code></li>
-           <ul style="list-style:none">
-             <li><code>date :</code></li>
-             <li><code>name :</code></li>
-             <li><code>photoURL :</code></li>
-             <li><code>review :</code></li>
-             <li><code>score :</code></li>
-             <li><code>uid :</code></li>
-           </ul>
-           <li>:page_facing_up: <em><code>Another userId</code></em></li>
-           <li><code>...</code></li>
+           <li><code>score :</code></li>
+           <li><code>uid :</code></li>
          </ul>
+         <li>:page_facing_up: <em><code>Another userId</code></em></li>
+         <li><code>...</code></li>
        </ul>
-       <li>:page_facing_up: <em><code>Other toilets</code></em></li>
-       <li><code>...</code></li>
      </ul>
+     <li>:page_facing_up: <em><code>Other toilets</code></em></li>
+     <li><code>...</code></li>
    </ul>
+  </ul>
 
-   * In the `reviews` collection, each toilet has their own specific document (named after the toilet name). Inside each toilet document, there is a collection of `users` who've posted reviews.
-   * Such a structure then allows us to lock down the database such that only authors of a review can delete/edit their review. Code that secures the `reviews` collection as such is shown below:
+  * In the `reviews` collection, each toilet has their own specific document (named after the toilet name). Inside each toilet document, there is a collection of `users` who've posted reviews.
+  * Such a structure then allows us to lock down the database such that only authors of a review can delete/edit their review. Code that secures the `reviews` collection as such is shown below:
 
    ```javascript
    match /reviews/{toilet}/users/{userId} {
@@ -203,6 +201,14 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
 
    * From this, we learnt that we should always start structuring data with security in mind, thus reducing the amount of data we have to restructure once we begin locking down the database. :smile:
 
-TODO: bugs squashed
+#### Bugs and user testing
+Bug hunting and user testing was also something we waited till milestone 3 to start seriously doing. We gave up our daily dose of [Hacker News](https://news.ycombinator.com/) on our commutes and started vigorously testing the application in our free time.
+1. Location servcies related testing
+    * We spent a lot of time obsessing about what would happen when users do funny things with their GPS settings. What would happen if a user turns off their GPS after navigating to a new page in the webapp? What will happen if the only enable GPS after navigating to a new page?
+        * For this, we came up with a tooltip that would show when a user's location was not detected. Subsequently, we tried all the weird combinations of enabling/disabling location services that are possible and settled on a reliable algorithm which allowed the tooltip to be shown whenever it should appear. **(reference commits, show ss)**
+    * On our commutes, we also tested the location services to check if our location marker would update while we were moving. Preliminary testing showed that the location updates were too choppy and unreliable.
+        * Back then, we were using an algorithm that would grab a user's location via [```Geolocation.getCurrentPosition()```](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) every second and then update it on the map.
+        * After the testing yielded less than satisfactory results, we went back to old trsuty Google and realised that there exists a [command that updates the user location whenever position of the device changes](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition).
+
 
 All in all, in milestone 3, we did not work much on the main app. Not much new features were developed and we spent more time on our submissions portal. However, the lessons learnt from the short time working on the main app was definitely valuable and these lessons made writing the submissions portal easier!
