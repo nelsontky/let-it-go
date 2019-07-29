@@ -47,7 +47,8 @@ Demo video: https://www.youtube.com/watch?v=4WnngILnw18
 * 360 degree photos of the vicinity of each toilet to facilitate recognition and navigation to a toilet.
 * Detailed information about each toilet such as the availability of facilities like wheelchair accessible cubicles or presense of shower heads.
 * Ability to filter/sort toilets by features such as proximity (duh!) and gender.
-* Rudimentary review system that is linked to Google account.
+* Share toilets to social media!
+* Review system that is linked to Google account.
     * Each Google account can only submit 1 review, with the ability to edit or delete the review.
     * Ability to rate toilets with stars, average stars are shown at the top.
     * Reviews are paginated, preventing reviews from taking too much page space.
@@ -205,7 +206,15 @@ Milestone 3 was one hell of a ride. The move fast and break things mindset we ha
 Bug hunting and user testing was also something we waited till milestone 3 to start seriously doing. We gave up our daily dose of [Hacker News](https://news.ycombinator.com/) on our commutes and started vigorously testing the application in our free time.
 1. Location servcies related testing
     * We spent a lot of time obsessing about what would happen when users do funny things with their GPS settings. What would happen if a user turns off their GPS after navigating to a new page in the webapp? What will happen if the only enable GPS after navigating to a new page?
-        * For this, we came up with a tooltip that would show when a user's location was not detected. Subsequently, we tried all the weird combinations of enabling/disabling location services that are possible and settled on a reliable algorithm which allowed the tooltip to be shown whenever it should appear. **(reference commits, show ss)**
+        * For this, we came up with a tooltip that would show when a user's location was not detected. Subsequently, we tried all the weird combinations of enabling/disabling location services that are possible and settled on a reliable algorithm which allowed the tooltip to be shown whenever it should appear.
+
+        ![Location not available message](https://i.imgur.com/UdxtVvt.png)
+
+        ![Help message](https://i.imgur.com/8U5Q0MF.png)
+
+        Tooltip only shows when location cannot be detected by the browser. A helpful message is also shown upon clicking on the question mark icon to aid users in enabling location services.
+
+        (040c6ba34da1bb3b506b266228a498371f760371 and 83c51f1feb69db38db8a99a9793523d4a3801bf4 were 2 commits that made the tooltip more reliable after much testing)
     * On our commutes, we also tested the location services to check if our location marker would update while we were moving. Preliminary testing showed that the location updates were too choppy and unreliable.
         * Back then, we were using an algorithm that would grab a user's location via [```Geolocation.getCurrentPosition()```](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) every second and then update it on the map.
         * After the testing yielded less than satisfactory results, we went back to old trsuty Google and realised that there exists a [command that updates the user location whenever position of the device changes](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition).
