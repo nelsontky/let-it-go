@@ -43,6 +43,7 @@ Demo video: https://www.youtube.com/watch?v=4WnngILnw18
 
 
 ## Features
+* All toilets in Computing and some in Business are present in the app!
 * Map showing the location of toilet.
 * 360 degree photos of the vicinity of each toilet to facilitate recognition and navigation to a toilet.
 * Detailed information about each toilet, such as the availability of facilities like wheelchair accessible cubicles or presence of shower heads.
@@ -52,7 +53,7 @@ Demo video: https://www.youtube.com/watch?v=4WnngILnw18
     * Each Google account can only submit 1 review, with the ability to edit or delete the review.
     * Ability to rate toilets with stars, average stars are shown at the top.
     * Reviews are paginated, preventing reviews from taking too much page space.
-* Separate Web Portal that allows users to submit toilets, along with functionalities of editing and deleting Toilets will be added into main database upon review.
+* Separate Web Portal that allows users to submit toilets.
     * Implemented as a separate webapp, more information about the submissions portal can be found [here](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md).
 
 
@@ -219,7 +220,7 @@ Bug hunting and user testing was also something we waited till milestone 3 to st
         * Back then, we were using an algorithm that would grab a user's location via [```Geolocation.getCurrentPosition()```](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) every second and then update it on the map.
         * After the testing yielded less than satisfactory results, we went back to the old trusty Google and realised that there exists a [command that updates the user location whenever position of the device changes](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition).
         * Changing to using [```Geolocation.watchPosition()```](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition) in commit [b20af76](https://github.com/nelsontky/let-it-go/commit/b20af761ab8bb25f27e4e11c417a41d9ff7e3429) made location polling waaaaaaaayyyy smoother.
-        * Plus, performance improved by a lot as the per second polling employed back then lead to memory leaks, slowing an eighth gen Intel Core i5 laptop to a crawl. :sweat_smile:
+        * Plus, performance improved by a lot as the per second polling employed back then led to memory leaks, slowing an eighth gen Intel Core i5 laptop to a crawl. :sweat_smile:
 1. Panorama performance issues
     * As stated above, some of our implementations of Javascript apis in ReactJS left much to be desired. Our implementation of the [Pannellum library](https://pannellum.org/) was creating multiple viewers without destruction, thus causing performance issues. This was fixed in [79dcd8e](https://github.com/nelsontky/let-it-go/commit/79dcd8e836f1711ced94908e94df8f107327f2d2), after reading more on the Pannellum docs and after gaining more understanding of React lifecycle methods.
 1. Spelling woes (Not really a bug but yes, a bug in our brains LOL)
