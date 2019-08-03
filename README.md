@@ -43,6 +43,7 @@ Demo video: https://www.youtube.com/watch?v=4WnngILnw18
 
 
 ## Features (iOS and WebApp)
+* All toilets in Computing and some in Business are present in the app!
 * Map showing the location of toilet.
 * 360 degree photos of the vicinity of each toilet to facilitate recognition and navigation to a toilet.
 * Detailed information about each toilet, such as the availability of facilities like wheelchair accessible cubicles or presence of shower heads.
@@ -53,7 +54,7 @@ Demo video: https://www.youtube.com/watch?v=4WnngILnw18
     * Reviews are paginated, preventing reviews from taking too much page space.
 * Clean and Minimalistic display
 
-## Features (WebApp extras)
+## Features (WebApp exclusive)
 * Share toilets to social media!
 * Separate Web Portal that allows users to submit toilets, along with functionalities of editing and deleting Toilets will be added into main database upon review.
     * Implemented as a separate webapp, more information about the submissions portal can be found [here](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md).
