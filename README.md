@@ -42,18 +42,20 @@ Demo video: https://www.youtube.com/watch?v=4WnngILnw18
 </p>
 
 
-## Features
-* All toilets in Computing and some in Business are present in the app!
+## Features (iOS and WebApp)
 * Map showing the location of toilet.
 * 360 degree photos of the vicinity of each toilet to facilitate recognition and navigation to a toilet.
 * Detailed information about each toilet, such as the availability of facilities like wheelchair accessible cubicles or presence of shower heads.
 * Ability to filter/sort toilets by features such as proximity (duh!) and gender.
-* Share toilets to social media!
 * Review system that is linked to Google account.
     * Each Google account can only submit 1 review, with the ability to edit or delete the review.
     * Ability to rate toilets with stars, average stars are shown at the top.
     * Reviews are paginated, preventing reviews from taking too much page space.
-* Separate Web Portal that allows users to submit toilets.
+* Clean and Minimalistic display
+
+## Features (WebApp extras)
+* Share toilets to social media!
+* Separate Web Portal that allows users to submit toilets, along with functionalities of editing and deleting Toilets will be added into main database upon review.
     * Implemented as a separate webapp, more information about the submissions portal can be found [here](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md).
 
 
@@ -110,8 +112,17 @@ Just like anyone who is exploring new technology that he/she has never used befo
    - So we decided to create a [submissions portal](https://nelsontky.github.io/let-it-go-submission/) to excuse our inability to document female toilets.
      - We eventually used the submissions portal as an excuse to not document all the toilets in NUS too :new_moon_with_face: and decided to spend more time on the submissions portal to make it more polished.
      - We learnt a lot from the submissions portal too. A similar section as this can be found in the submission portal's [README](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md).
+1. React Native
+   - While there were a lot of helpful documentation on React Native readily available online, there were issues we met along the way due to the relatively young history of React Native, resulting in numerous unexpected bugs.
+   - Bug reportings on React Native were generally crpytic in nature, for example, a simple error of not running <code>react-native link</code> ensued in a lot of [unnecessary confusion](https://i.stack.imgur.com/OmniO.png)
+   - We came to discover that many packages/modules widely available for React Native were not well maintained and had nagging issues for either iOS/Android side, leading to the us taking the wise choice of specialising for iOS only, allowing better performance and less unexpected bugs
+   - It also did not help that different modules had different integration steps with Xcode, throwing a lot of unnecessary warnings and issues that could potentially result in bugs in future. 
+   
+
+
 
 All in all, milestone 1 + 2 was exciting as we were just blind kids experimenting with new technologies and blundering around copying stackoverflow answers with little to no understanding. Slowly yet surely, we came to understand what we were actually doing and actually came up with something stable by milestone 2. The best way to learn is to fail, and what better way is there to learn other than by reading countless pages of documentation and stackoverflow pages till our app started working? Moving fast and breaking things definitely gave us a better appreciation of the technologies we employed and by the end of milestone 2, we were even good enough to help other Orbital mates fix some of the bugs in their code! :sunglasses::sunglasses::sunglasses:
+
 
 ### Milestone 3
 
@@ -220,7 +231,7 @@ Bug hunting and user testing was also something we waited till milestone 3 to st
         * Back then, we were using an algorithm that would grab a user's location via [```Geolocation.getCurrentPosition()```](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) every second and then update it on the map.
         * After the testing yielded less than satisfactory results, we went back to the old trusty Google and realised that there exists a [command that updates the user location whenever position of the device changes](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition).
         * Changing to using [```Geolocation.watchPosition()```](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition) in commit [b20af76](https://github.com/nelsontky/let-it-go/commit/b20af761ab8bb25f27e4e11c417a41d9ff7e3429) made location polling waaaaaaaayyyy smoother.
-        * Plus, performance improved by a lot as the per second polling employed back then led to memory leaks, slowing an eighth gen Intel Core i5 laptop to a crawl. :sweat_smile:
+        * Plus, performance improved by a lot as the per second polling employed back then lead to memory leaks, slowing an eighth gen Intel Core i5 laptop to a crawl. :sweat_smile:
 1. Panorama performance issues
     * As stated above, some of our implementations of Javascript apis in ReactJS left much to be desired. Our implementation of the [Pannellum library](https://pannellum.org/) was creating multiple viewers without destruction, thus causing performance issues. This was fixed in [79dcd8e](https://github.com/nelsontky/let-it-go/commit/79dcd8e836f1711ced94908e94df8f107327f2d2), after reading more on the Pannellum docs and after gaining more understanding of React lifecycle methods.
 1. Spelling woes (Not really a bug but yes, a bug in our brains LOL)
