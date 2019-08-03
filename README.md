@@ -20,7 +20,7 @@ Web App: https://nelsontky.github.io/let-it-go/
 
 Submissions portal ([?](https://github.com/nelsontky/let-it-go-submission/blob/master/README.md)): https://nelsontky.github.io/let-it-go-submission/
 
-Demo video: https://www.youtube.com/watch?v=4WnngILnw18
+Demo video: https://youtu.be/YADOVkDN8HE
 
 ### Screenshots
 
